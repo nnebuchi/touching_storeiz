@@ -14,7 +14,10 @@ class CreateStoryPreviewsTable extends Migration
     public function up()
     {
         Schema::create('story_previews', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('story_id');
+            $table->integer('user_id');
+            $table->text('browser_cookie');
             $table->timestamps();
         });
     }

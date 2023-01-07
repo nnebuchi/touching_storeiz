@@ -52,6 +52,12 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
+        'central_storage' => [
+            'driver' => 'local',
+            'root'   => env('CENTRAL_STORAGE'),
+            'url' => env('CENTRAL_STORAGE_URL').'/storage',
+            'visibility' => 'public',
+        ],
 
     ],
 
