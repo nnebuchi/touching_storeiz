@@ -14,8 +14,8 @@ class UserController extends Controller
         $request->validate([
             'first_name'=>'required',
             'last_name'=>'required',
-            'pen_name'=>'required',
-            'email'=>'required|email',
+            'pen_name'=>'required|unique:users',
+            'email'=>'required|email|unique:users',
             'cover_photo'=>'required|mimes:jpeg,jpg,png|max:1024',
             'password'=>'min:8'
         ]);
@@ -27,7 +27,11 @@ class UserController extends Controller
         return UserService::verifyEmail($request);
         
         // 2021-12-10 08:26:24
-      }
+    }
+
+    public function dashboard(){
+        return 'Writers Dashboard is under construction';
+    }
 
     
 }

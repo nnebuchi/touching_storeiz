@@ -16,7 +16,7 @@
 </div>
 <h3>Hi {{ $user->username }}</h3>
 
-<p>We are thrilled to see you here!</p>
+<p>Welcome to {{ env('APP_NAME')}} writers forum. We are thrilled to see you here!</p>
 @php
 	$email = $user->email;
 	$verification_code = $user->verification_code;
@@ -34,9 +34,9 @@
 
 	<a href="{{ url('verify-email/'.$email.'/'.$verification_code) }}">{{ url('verify-email/'.$email.'/'.$verification_code) }}</a>
 <hr>
-	<p>This message was sent to you by Skezzole</p>
+	<p>This message was sent to you by {{env("APP_NAME")}}</p>
 
-	<p>For support, contact us via <a href="mail-to:support@skezzole.com.ng"></a>support@skezzole.com.ng</p>
+	<p>For support, contact us via <a href="mail-to:support@{{env('APP_DOMAIN')}}"></a>support@{{env('APP_DOMAIN')}}</p>
 	<img src="{{ asset('assets/img/logo/logo.png') }}"  style="width: 60px;">
 	<p style="font-size:12px;">Copyright &copy; Skezzole - 2022 </p>
 	{{-- src="assets/img/logo/logo.png" --}}

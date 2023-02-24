@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class StoryTag extends Model
 {
     use HasFactory;
+
+    public $table = "story_tag";
 }

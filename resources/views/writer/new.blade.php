@@ -3,20 +3,20 @@
 <div class="container-fluid">
 
     <section class="become_section" >
-      <div class="row">
-        <div class="col-lg-6 offset-lg-0 col-sm-10 offset-sm-1 px-sm-0   col-12 px-4  ">
-            <div class="img_container">
+      <div class="row" style="height:100%;">
+        <div class="col-md-6 offset-md-0 col-sm-5 offset-sm-0 px-sm-0 col-12 px-4 bg-grey-5 become-left d-none d-sm-block">
+            <div class="img_container d-flex justify-content-center">
                     <img src="../assets/img/become/novelist.svg" alt="novelist" class="become_hero-img">
             </div>
           
         </div>
-        <div class="col-12 col-sm-12 offset-sm-0 col-md-10 offset-md-1   col-lg-6 offset-lg-0 d-non">
-            <div class="container">
+        <div class="col-12 col-sm-7 offset-sm-0 col-md-6 offset-md-0 d-non py-5" style="height:100%">
+            <div class="containe">
               <div class="become_reg">
             
                   <div class="row">
-                      <div class="col-lg-12 col-md-9 offset-md-1 mx-md-auto px-md-0 col-sm-12 px-sm-4 offset-sm-0  col-10 offset-1">
-                        <h2 class="text-capitalize become_reg-title text-md-center text-lg-start  ">become a writer</h2>
+                      <div class="col-lg-12 mx-md-auto px-md-3 col-sm-12 px-sm-4 offset-sm-0  col-10 offset-1">
+                        <h2 class="text-capitalize become_reg-title text-md-center text-lg-start">become a writer</h2>
                         <p class="mt-lg-4 mt-md-3 mt-3 become_reg-subtitle text-md-center text-lg-start ">Upload a Profile Picture 
                           </p>
                           <div class="text-danger" >
@@ -24,7 +24,7 @@
                               {{ $message }}
                             @enderror
                           </div>
-                          <form action="{{ route('writer.new') }}" class="row g-3" method="post" enctype="multipart/form-data" >
+                          <form action="{{ route('writer.new') }}" class="row g-3" method="post" enctype="multipart/form-data" id="writer-form">
                             @csrf
                             
                             <label for="inputTag" class="input_label">
@@ -34,28 +34,28 @@
                             <input type="file" name="cover_photo" id="inputTag" onchange="uploadCoverPhoto(event)"/>
 
                               
-                            <div class="col- input_div mt-lg-5 mt-3 mt-sm-5">
+                            <div class="col- input_div mb-2 mt-lg-5 mt-3 mt-sm-5">
                               <label for="validationCustom01" class="form-label"></label>
-                              <input type="text" name="first_name" class="form-control rounded-3 py-2" id="validationCustom01" placeholder="First name" @guest value="{{ old('first_name') }}" @endguest required>
+                              <input type="text" name="first_name" class="form-control rounded-3 py-2" id="first_name" placeholder="First name" @guest value="{{ old('first_name') }}" @endguest required>
                               <div class="text-danger" >
                                 @error('first_name')
                                   {{ $message }}
                                 @enderror
                               </div>
                             </div>
-                            <div class="col- input_div">
+                            <div class="col- input_div mb-2">
                               <label for="validationCustom02" class="form-label"></label>
-                              <input type="text" name="last_name" class="form-control rounded-3 py-2" id="validationCustom02" placeholder="Last name" @guest value="{{ old('last_name') }}" @endguest required>
+                              <input type="text" name="last_name" class="form-control rounded-3 py-2" id="last_name" placeholder="Last name" @guest value="{{ old('last_name') }}" @endguest required>
                               <div class="text-danger" >
                                 @error('last_name')
                                   {{ $message }}
                                 @enderror
                               </div>
                             </div>
-                            <div class="col- input_div">
+                            <div class="col- input_div mb-2">
                               <label for="validationCustomUsername" class="form-label"></label>
                               <div class="input-group has-validation">
-                                <input type="text" name="pen_name" class="form-control rounded-3 py-2" id="validationCustomUsername" placeholder="Pen Name" aria-describedby="inputGroupPrepend" @guest value="{{ old('pen_name') }}" @endguest required>
+                                <input type="text" name="pen_name" class="form-control rounded-3 py-2" id="pen_name" placeholder="Pen Name" aria-describedby="inputGroupPrepend" @guest value="{{ old('pen_name') }}" @endguest required>
                                 
                               </div>
                               <div class="text-danger" >
@@ -64,10 +64,10 @@
                                 @enderror
                               </div>
                             </div>
-                            <div class="col- input_div">
+                            <div class="col- input_div mb-2">
                               <label for="validationCustomUsername" class="form-label"></label>
                               <div class="input-group has-validation">
-                                <input type="email" name="email" class="form-control rounded-3 py-2" id="validationCustomUsername" placeholder="Email" aria-describedby="inputGroupPrepend" @guest value="{{ old('email') }}" @endguest required>
+                                <input type="email" name="email" class="form-control rounded-3 py-2" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" @guest value="{{ old('email') }}" @endguest required>
                                 
                               </div>
                               <div class="text-danger" >
@@ -77,11 +77,11 @@
                               </div>
                             </div>
                             @guest
-                            <div class="col- input_div">
+                            <div class="col- input_div mb-2">
                               <label for="validationCustomUsername" class="form-label"></label>
                               <div class="input-group ">
                                 <input type="password" name="password" class="form-control rounded-start py-2" id="password" placeholder="Password" required minlength="8">
-                                <span class="input-group-text rounded-end"  id="eye" onclick="togglePasswordReveal()"><i class="bi-eye"></i></span>
+                                <span class="input-group-text rounded-end"  id="eye" onclick="togglePasswordReveal('eye', 'password')"><i class="bi-eye"></i></span>
                                 <div class="text-danger" >
                                   @error('password')
                                     {{ $message }}
@@ -107,7 +107,7 @@
                             </div>
                             
                             <div class="col- my-5">
-                              <button class=" cust_btn-1 w-100" type="submit">Become a Writer</button>
+                              <button class=" cust_btn-1 w-100 login-btn" type="button" onclick="validateLoginForm()">Become a Writer</button>
                             </div>
                           </form>
                         
@@ -123,55 +123,64 @@
 </div>
 
 <script>
-  function togglePasswordReveal(){
+  // function togglePasswordReveal(){
 
-    const passwordInput = document.querySelector("#password");
-    if(passwordInput.getAttribute("type") === 'text'){
-      passwordInput.setAttribute("type", "password");
-      document.querySelector("#eye").innerHTML = `<i class="bi-eye"></i>`;
-    }else{
-      passwordInput.setAttribute("type", "text");
-      document.querySelector("#eye").innerHTML = `<i class="bi-eye-slash"></i>`;
-    }
+  //   const passwordInput = document.querySelector("#password");
+  //   if(passwordInput.getAttribute("type") === 'text'){
+  //     passwordInput.setAttribute("type", "password");
+  //     document.querySelector("#eye").innerHTML = `<i class="bi-eye"></i>`;
+  //   }else{
+  //     passwordInput.setAttribute("type", "text");
+  //     document.querySelector("#eye").innerHTML = `<i class="bi-eye-slash"></i>`;
+  //   }
 
-    }
+  // }
 
-    const uploadCoverPhoto = (event)=>{
-      const file = event.target.files[0];
-      const tempPath = URL.createObjectURL(file);
-      // const styles = {
-      //   backgroundImage: `url(${tempPath})`,
-      //   color: 'white',
-      //   height:'300px'
-      // }
-      document.querySelector('.input_label').style.backgroundImage = `url(${tempPath})`;
-      document.querySelector('.input_label').style.color ='white';
-      document.querySelector('.input_label').style.height ='300px';
-      document.querySelector('.input_label').style.backgroundSize ='cover';
+    const validateLoginForm = () => {
+
+      const submitBtn = document.querySelector(".login-btn");
+      const oldBtnHTML = submitBtn.innerHTML;
+      setBtnLoading(submitBtn);
+
+      const validation = runValidation([
+          
+          {
+              id:"email",
+              rules: {'required':true, 'email':true}
+          },
+          {
+              id:'password',
+              rules:{'required':true, 'min_length':8, 'has_special_character':true}
+          },
+          {
+              id:"first_name",
+              rules: {'required':true}
+          },
+          {
+              id:"last_name",
+              rules: {'required':true}
+          },
+          {
+              id:"pen_name",
+              rules: {'required':true}
+          },
+          
+      ]);
       
-      // url('https://cdn.pixabay.com/photo/2022/01/08/19/51/christmas-tree-6924746_960_720.jpg'); height: 300px; background-size:cover; color:white;
+      if(validation === true){
+          submitLoginForm();
+          setBtnNotLoading(submitBtn, oldBtnHTML)
+      }else{
+          setBtnNotLoading(submitBtn, oldBtnHTML)
+      }
     }
+
+    const submitLoginForm = () => {
+      document.querySelector("#writer-form").submit();
+    } 
+
 </script>
-<script>
-  (() => {
-       'use strict'
 
-       // Fetch all the forms we want to apply custom Bootstrap validation styles to
-       const forms = document.querySelectorAll('.needs-validation')
-
-       // Loop over them and prevent submission
-       Array.from(forms).forEach(form => {
-           form.addEventListener('submit', event => {
-           if (!form.checkValidity()) {
-               event.preventDefault()
-               event.stopPropagation()
-           }
-
-           form.classList.add('was-validated')
-           }, false)
-       })
-       })()
-   </script>
 <style>
   #cover-upload-text{
     position: absolute;

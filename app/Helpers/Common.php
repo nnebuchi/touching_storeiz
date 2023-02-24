@@ -1,6 +1,7 @@
 <?php
 
 use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Support\Str;
 
 if (!function_exists('generateOTP')) {
     /**
@@ -31,5 +32,9 @@ if (!function_exists('generateOTP')) {
     function getUser($request){
         $token = PersonalAccessToken::findToken($request->bearerToken());
         return $token->tokenable;
+    }
+
+    function slugify(String $string){
+        return str_replace(' ', '-', $string).'-'.Str::random(5);
     }
 }

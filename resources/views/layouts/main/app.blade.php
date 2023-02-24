@@ -3,7 +3,11 @@
     @include('layouts.main.head')
     <body>
         @include('layouts.main.navbar')
+
         <main>
+            <div class="text-center main-div">
+                @include('layouts.shared.alert')
+            </div>
             @yield('content')
         </main>
         @include('layouts.main.footer')

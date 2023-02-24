@@ -45,6 +45,20 @@ class UserService
 
     private static function makeUserAWriter($request){
 
+        $uploaded_photo = FileService::upload($request, 'cover_photo', 'public', 'writers_cover_photos');
+
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->is_writer = true;
+        $user->first_name = sanitize_input($request->first_name);
+        $user->last_name = sanitize_input($request->last_name);
+        $user->pen_name = sanitize_input($request->pen_name);
+        $user->username = sanitize_input($request->username);
+        $user->cover_photo = $uploaded_photo;
+        $user->verification_code = Str::random(25);
+        $user->is_writer = true;
+        $user->verification_expiry_date = strtotime('+3 days');
+        WriterCreated::dispatch($user);
+        $user->save();
     }
 
     public static function verifyEmail($request){
@@ -69,6 +83,7 @@ class UserService
         
         Session(['msg'=>'Email Successfully verified', 'alert'=>'success']);
 
-        return redirect()->route('writer-dashboard');
+        // return redirect()->route('writer-dashboard');
+        return redirect()->route('add-story-form');
     }
 }

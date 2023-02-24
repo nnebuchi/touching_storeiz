@@ -37,3 +37,19 @@ if (!function_exists('sanitize_input')) {
         }
     }
 }
+
+
+if (!function_exists('shallow_sanitize')) {
+    function shallow_sanitize($input)
+    {
+        if (is_array($input)) {
+            $output = [];
+            foreach ($input as $var => $val) {
+                $output[$var] = shallow_sanitize($val);
+            }
+            return $output;
+        } else {
+            return escape_string(stripslashes($input));
+        }
+    }
+}
