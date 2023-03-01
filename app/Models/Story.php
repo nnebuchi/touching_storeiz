@@ -17,7 +17,16 @@ class Story extends Model
         return $this->belongsToMany(File::class)->where('is_cover', 1);
     }
 
-    public function tags(){
-        return $this->belongsToMany(Tag::class);
+    public function tags($count=null){
+        if($count == null){
+            return $this->belongsToMany(Tag::class);
+        }else{
+            return $this->belongsToMany(Tag::class)->limit($count)->get();
+        }
+        
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

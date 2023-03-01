@@ -5,7 +5,7 @@
         @include('layouts.main.navbar')
 
         <main>
-            <div class="text-center main-div">
+            <div class="text-center main-div bg-success">
                 @include('layouts.shared.alert')
             </div>
             @yield('content')

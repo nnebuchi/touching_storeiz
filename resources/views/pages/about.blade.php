@@ -11,7 +11,7 @@
                 </div>
                 <div class="hero_btns mt-4 d-lg-block d-md-flex">
                     <a href=""  class="ts-btn-lg ts-btn-primary-outline ts-btn ">Sign Up</a>
-                    <a href=""  class="ts-btn-lg ts-btn-primary ts-btn ms-lg-5 ms-2 "><strong>Start Reading</strong></a>
+                    <a href="{{route('stories')}}"  class="ts-btn-lg ts-btn-primary ts-btn ms-lg-5 ms-2 "><strong>Start Reading</strong></a>
                 </div>
             </div>
             <div class="col-lg-6 col-xl-6 offset-xl-1 offset-lg-0 mt-lg-0 mt-4 px-4 px-lg-0">
@@ -25,29 +25,37 @@
         <div class="cust-container">
             <h2 class="trending_hero-title text-center text-capitalize mt-1 mb-5">Trending now</h2>
             <div class="owl-carousel owl-theme">
+              @foreach ($stories as $story)
                 <div class="item">
                     <div class="card mb-3" >
                         <div class="row g-0">
-                          <div class="col-md-4 col-4">
-                            <img src="{{asset('assets/img/landing_page/card-img-1.svg')}}" class="img-fluid rounded-start cust_card-img" alt="..." >
-                          </div>
-                          <div class="col-md-8 col-8">
-                            <div class="card-body cust_card-body">
-                              <h5 class="card-title cust_card-title text-capitalize">seven seasons of horror</h5>
-                                <p class="card-text cust_card-text d-inline text-capitalize">Horror<span class="bi bi-dot"> </span></p>
-                                <p class="card-text cust_card-text d-inline ms-lg-4 ms-xl-0  ms-xl-0 text-capitalize">Humour<span class="bi bi-dot"></span></p>
-                                <p class="card-text cust_card-text d-inline ms-lg-4  ms-xl-0 text-capitalize">Cringe</p>
+                        <div class="col-md-4 col-4">
+                            <img src="{{asset('storage/'.$story->cover_photo[0]->file)}}" class="img-fluid rounded-start cust_card-img" alt="..." >
+                        </div>
+                        <div class="col-md-8 col-8">
+                            <div class="card-body cust_card-body story-slider-card">
+                            <h5 class="card-title cust_card-title text-capitalize">{{$story->title}}</h5>
+                            @foreach ($story->tags(3) as $key=>$tag)
+                                <p class="card-text cust_card-text d-inline text-capitalize">{{$tag->title}} 
+                                    @if($key < (count($story->tags(3)) - 1)) 
+                                        <span class="bi bi-dot story-slider-dot"> </span> 
+                                    @endif
+                                </p>
+                            @endforeach
+                                
+                                
                                 <p class="card-text cust_card-tex mt-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod, in? Lorem ipsum dolor sit amet </p>
-                              <div class=" card_btns d-flex flex-column-reverse d-md-flex flex-md-column-reverse   d-sm-flex flex-sm-row d-xl-block">
+                            <div class=" card_btns d-flex flex-column-reverse d-md-flex flex-md-column-reverse   d-sm-flex flex-sm-row d-xl-block">
                                 <span class="card-text  mt-2 mt-lg-0 ms-2 ms-md-0 ms-lg-0 "><small class="text-mute"> <span><i class="bi bi-book"></i></span> 6,000 Reads</small></span> 
-                                <button class="cust_btn-1 ms-lg-3 ms-xl-1 ms-sm-3 ms-md-0"><a href="">Read</a></button>
-                              </div>
-                              
+                                <a href="" class="ts-btn-md ts-btn-primary ts-btn ms-lg-3 ms-xl-1 ms-sm-3 ms-md-0">Read</a>
                             </div>
-                          </div>
+                            
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
+              @endforeach
                
             </div>
         </div>
@@ -120,4 +128,50 @@
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        responsiveClass: true,
+        responsive: {
+            0: {
+            items: 1,
+            nav: true
+            },
+            375:{
+            items: 1,
+            nav: true,
+            margin: 5
+            },
+            576:{
+            items: 1,
+            nav: true,
+            margin: 5
+            },
+        
+            768: {
+            items: 2,
+            nav: true
+            },
+            
+        
+            991: {
+            items: 2,
+            nav: true,
+            loop: true,
+            margin: 20
+            },
+        
+            1000: {
+            items: 3,
+            nav: true,
+            loop: true,
+            margin: 20
+            }
+        }
+        })
+    })
+</script>
 @endsection

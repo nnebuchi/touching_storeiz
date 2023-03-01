@@ -9,6 +9,7 @@ use App\Models\FileStory;
 use App\Models\StoryTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class StoryService
 {
@@ -158,5 +159,59 @@ class StoryService
         ]);
 
         return redirect()->route('manage-story', $story->slug);
+    }
+
+    public static function index(Request $request, Int $page_count){
+        if($request->tag){
+            $tag = Tag::where('slug', $request->tag)->first();
+            if($tag){
+                $data['request_tag'] = $tag->title;
+                $stories = Story::whereHas('tags', function ($q) use($tag) {
+                    return $q->whereIn('slug', $tag); 
+                })
+                ->with(array('author'=>function($query){
+                    $query->select('id', 'pen_name');
+                }));
+            }
+        }else{
+            $stories = Story::with('author')->with('tags');
+        }
+        
+
+        $data['stories']= $stories->with('cover_photo')->paginate($page_count);
+        $data['tags'] = Tag::all();
+        // dd($data['stories']);
+        return view('story.index')->with($data);
+    }
+
+    //   public static function moreStory($currentPage, $lastPage, $totalItem, $perPage){
+    public static function moreStory(Request $request){
+        if($request->tag){
+            
+            $tag = Tag::where('slug', $request->tag)->first();
+            
+            if($tag){
+                $data['request_tag'] = $tag->title;
+                $stories = Story::whereHas('tags', function ($q) use($tag) {
+                    return $q->whereIn('slug', $tag); 
+                });
+                // ->with(array('author'=>function($query){
+                //     $query->select('id', 'pen_name');
+                // }));
+            }
+        }else{
+            $stories = Story::with('tags');
+        }
+        $data = $stories->with('author')->paginate(2);
+        return Response::json([
+            'status'=>'success',
+            'stories'=>$data
+        ], 200);
+    }
+
+    public static function read(Request $request){
+        
+        $data['story'] = Story::with('cover_photo')->where('slug', $request->slug)->firstOrFail();
+        return view('story.read')->with($data);
     }
 }

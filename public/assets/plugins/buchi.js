@@ -1,5 +1,5 @@
 const buchi_validate = (input, constraints, alias=null) => {
-
+    console.log(input);
     // Remove existing validation message
     $('.'+input.getAttribute('id')+'-validation-message').remove();
 
@@ -30,27 +30,37 @@ const buchi_validate = (input, constraints, alias=null) => {
         has_special_character:{
             pass: constraints.has_special_character === true ? specialCharsRegex.test(input.value) : true,
             message:alias ===null ?  input.getAttribute('id').replace('_', ' ')+" must have special character" : alias+" must have special character"
-        }
+        },
+        // max_size:{
+        //     pass:input.getAttribute('type') == 'file' ? (input.files.length > 0 ? input.files[0].size <= constraints.max_size : true): true,
+        //     message:alias === null ? input.getAttribute('id').replace('_', ' ') +" must not exceed "+constraints.max_size+" kb" : alias+" must not exceed "+constraints.max_size+" kb"
+        // },
+        // file_formats:{
+        //     pass:input.getAttribute('type') == 'file' &&  input.files.length > 0 ?  constraints.file_formats.includes(input.files.ext): true,
+        //     // message:alias === null ? input.getAttribute('id').replace('_', ' ') +" format is invalid" : alias+" format is invalid"
+        //     message:alias === null ? input.getAttribute('id').replace('_', ' ') +" must be either of these formats: "+constraints.file_formats.toString() : alias+" must be either of these formats: "+constraints.file_formats.toString()
+        // }
     }
 
     const feedback = [];
   
-    for (constrain in constraints){
+    for (constraint in constraints){
         
-        if(rules.hasOwnProperty(constrain)){
+        if(rules.hasOwnProperty(constraint)){
             
-            if(rules[constrain].pass === false){
+            if(rules[constraint].pass === false){
                 feedback.push({
-                    message:rules[constrain],
+                    message:rules[constraint],
                     targetId:input.getAttribute('id')
                 })
             }
 
         }else{
-            alert('invalid rule '+constrain);
+            
+            alert('invalid rule '+constraint);
             return {
                 status: 'fail',
-                error: 'invalid rule '+constrain
+                error: 'invalid rule '+constraint
             }
         }
        
@@ -77,7 +87,7 @@ const buchi_validate = (input, constraints, alias=null) => {
 
 
 const runValidation = (fields) =>{
-    
+   
     const negatives = []
     fields.forEach(function(field, index){
         result = buchi_validate(document.querySelector("#"+field.id), field.rules, field.alias);
