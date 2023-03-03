@@ -202,7 +202,7 @@ class StoryService
         }else{
             $stories = Story::with('tags');
         }
-        $data = $stories->with('author')->paginate(2);
+        $data = $stories->with('author')->with('cover_photo')->paginate(2);
         return Response::json([
             'status'=>'success',
             'stories'=>$data
