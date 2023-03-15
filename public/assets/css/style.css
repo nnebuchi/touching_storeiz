@@ -266,6 +266,13 @@ body a{
     color: #ffff!important;
  }
 
+.reaction{
+    cursor:pointer;
+}
+.reaction:hover img{
+    width: 30%;
+}
+
 
  
 /* nav ends */
@@ -607,6 +614,26 @@ main {
     width: 60%; 
     object-fit: cover; 
     margin: 10px 0 0 10px;
+}
+
+/* Modal Styles */
+.modal-content-cust{
+    padding: 20px 50px;
+}
+.modal-center{
+    text-align: center !important;
+    color: var(--primaryColor-1);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.modal-bod textarea{
+    border: 2px solid var(--primaryColor-1) !important;
+    border-radius: 10px;
+    resize: none;
+}
+.modal-body textarea::placeholder{
+
+    color: #0C0910 !important;
 }
 /* read story ends */
 
@@ -971,6 +998,8 @@ tbody .table_hover td{
      height: 400px;
      width: 100%;
 }
+
+
 
 @media (max-width:1400px){
     .sn{

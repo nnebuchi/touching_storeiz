@@ -27,5 +27,13 @@
     <!-- Buchi JS plugin -->
     <script src="{{asset('assets/plugins/buchi.js')}}"></script>
 
+    <script>
+      const url = "{{ url('/') }}";
+      const universal_token = "{{csrf_token()}}";
+      @auth
+        const user_data = <?=json_encode(\Auth::user())?>
+      @endauth
+    </script>
+    <script src="{{asset('assets/plugins/cookies.js')}}"></script>
     <title>Home</title>
 </head>

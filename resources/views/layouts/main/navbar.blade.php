@@ -36,6 +36,17 @@
                 </div>
           @elseif(Auth::check() && !Auth::user()->is_writer)
             <a href="{{ route('become-a-writer') }}" class="cust_btn-1 ms-auto" ><strong> Become a Writer</strong></a>
+            <div class="nav-item dropdown ms-auto">
+              <a class="cust_nav-link nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span><img src="{{asset('assets/img/avatars/avatar.png')}}" height="40" alt="Avatar"></span> {{Auth::user()->username}}
+              </a>
+              <ul class="dropdown-menu me-5 me-lg-0">
+               
+                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                <li><a class="dropdown-item" href="{{route('new-ticket')}}">Raise Ticket</a></li>
+                
+              </ul>
+            </div>
           @else
           <div class="d-flex ms-auto">
             <a href="{{ route('become-a-writer') }}" class="cust_btn-1 ms-auto me-2"> <strong> Become a Writer</strong></a>

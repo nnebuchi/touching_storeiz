@@ -52,4 +52,8 @@ class StoryController extends Controller
     public function moreStory(Request $request){
         return StoryService::moreStory($request);
     }
+
+    public function like(Request $request){
+        return StoryService::like($request);
+    }
 }

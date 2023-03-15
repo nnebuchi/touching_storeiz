@@ -14,4 +14,17 @@ class AuthController extends Controller
         ]);
         return AuthService::login($request);
     }
+
+    public function register(Request $request){
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required|min:8',
+            'username'=>'required'
+        ]);
+        return AuthService::register($request);
+    }
+
+    // public function saveUserToken(Request $request){
+    //     return AuthService::saveUserToken($user);
+    // }
 }

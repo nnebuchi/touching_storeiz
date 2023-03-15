@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\Story;
 use App\Models\Tag;
 use App\Models\FileStory;
+use App\Models\StoryLike;
 use App\Models\StoryTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -210,8 +211,41 @@ class StoryService
     }
 
     public static function read(Request $request){
+
+        if(Auth::check()){
+            $data['story'] = Story::with('cover_photo')->with('likes')->with('current_user_like')->where('slug', $request->slug)->firstOrFail();
+            $data['user_id'] = Auth::user()->id; 
+        }else{
+            $data['story'] = Story::with('cover_photo')->where('slug', $request->slug)->firstOrFail();
+        }
         
-        $data['story'] = Story::with('cover_photo')->where('slug', $request->slug)->firstOrFail();
         return view('story.read')->with($data);
+    }
+
+    public static function like(Request $request){
+        // check for existing like 
+        $story_like = StoryLike::where(['user_id'=>Auth::user()->id, 'story_id'=>$request->story_id])->first();
+
+        if(!$story_like){
+            // if no existing like, create new one
+            $story_like = new StoryLike;
+        }else{
+            // if there is an existing like, delete it
+            StoryLike::where(['user_id'=>Auth::user()->id, 'story_id'=>$request->story_id])->delete();
+            return Response::json([
+                'status'=>'success'
+            ], 200);
+
+        }
+        
+        $story_like->user_id = Auth::user()->id;
+        $story_like->story_id = sanitize_input($request->story_id);
+        $story_like->like_type = sanitize_input($request->like_type);
+
+        $story_like->save();
+
+        return Response::json([
+            'status'=>'success'
+        ], 200);
     }
 }

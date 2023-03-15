@@ -37,23 +37,31 @@ Route::group(['prefix' => 'writer'], function () {
 
 Route::group(['prefix' => 'story'], function () {
     
-    Route::group(['middleware' => ['verified_writer', 'auth']], function () {  
-        Route::get('/new', [StoryController::class, 'showAddForm'])->name('add-story-form');
+    Route::group(['middleware' => ['auth']], function () {
+          
+        Route::post('/{slug}/like', [StoryController::class, 'like'])->name('like-story');
 
-        Route::post('/add', [StoryController::class, 'add'])->name('add-story');
+        Route::group(['middleware' => ['verified_writer']], function () {
+            Route::get('/new', [StoryController::class, 'showAddForm'])->name('add-story-form');
 
-        Route::get('/mine/{slug}', [StoryController::class, 'ManageStory'])->name('manage-story');
+            Route::post('/add', [StoryController::class, 'add'])->name('add-story');
 
-        Route::get('/mine/{slug}/edit', [StoryController::class, 'EditStory'])->name('edit-story');
+            Route::get('/mine/{slug}', [StoryController::class, 'ManageStory'])->name('manage-story');
 
-        Route::post('/update', [StoryController::class, 'update'])->name('update-story');
+            Route::get('/mine/{slug}/edit', [StoryController::class, 'EditStory'])->name('edit-story');
+
+            Route::post('/update', [StoryController::class, 'update'])->name('update-story');
+        });
     });
+
+    
 
     Route::get('/', [StoryController::class, 'index'])->name('stories');
 
     Route::get('/more', [StoryController::class, 'moreStory'])->name('more-story');
 
     Route::get('/{slug}', [StoryController::class, 'read'])->name('read-story');
+
 });
 
 Route::group(['prefix' => 'tickets', 'middleware' => ['auth']], function () {
@@ -64,13 +72,26 @@ Route::group(['prefix' => 'tickets', 'middleware' => ['auth']], function () {
 
 
 // Auth Routes
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+Route::group([], function () {
 
-Route::get('/logout', function () {
-    Auth::logout();
-    return redirect()->route('home');
-})->name('logout');
+    Route::get('/register', function () {
+        return view('auth.register');
+    })->name('signup');
 
-Route::post('/sign-in', [AuthController::class, 'login'])->name('sign-in');
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('login')->middleware('guest');
+
+    Route::get('/logout', function () {
+        Auth::logout();
+        return redirect()->route('home');
+    })->name('logout');
+
+    Route::post('/sign-in', [AuthController::class, 'login'])->name('sign-in');
+});
+
+
+
+

@@ -92,7 +92,7 @@
             </div>
             <div class="col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5 position-absolute" style="right:10px;top:0!important;">
                 
-                <div class="mt-lg-0 mt-4" style="height:500px; overflow:scroll;">
+                <div class="mt-lg-0 mt-4" style="height:500px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
                     <div class="titles d-flex justify-content-between mb-4 mt-5">
                         <h3 class="popular">Popular Categories</h3>
                         <h5 class="ms-auto more">See more</h5>
@@ -124,7 +124,7 @@
                     @endforeach
                 </div>
                 
-                <div class="mt-3 overflow-scroll" style="height:500px;">
+                <div class="mt-3" style="height:500px;overflow-y:scroll; border-bottom:2px solid #c5844d;">
                     <div class="titles d-flex justify-content-between">
                         <h3 class="popular my-3 my-sm-3 my-lg-5">See What People are Reading</h3>
                     </div>
