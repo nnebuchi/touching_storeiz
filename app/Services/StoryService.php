@@ -6,11 +6,14 @@ use App\Models\File;
 use App\Models\Story;
 use App\Models\Tag;
 use App\Models\FileStory;
+use App\Models\Comment;
 use App\Models\StoryLike;
+use App\Models\StoryRead;
 use App\Models\StoryTag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Carbon\Carbon;
 
 class StoryService
 {
@@ -213,12 +216,11 @@ class StoryService
     public static function read(Request $request){
 
         if(Auth::check()){
-            $data['story'] = Story::with('cover_photo')->with('likes')->with('current_user_like')->where('slug', $request->slug)->firstOrFail();
+            $data['story'] = $story = Story::with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->where('slug', $request->slug)->firstOrFail();
             $data['user_id'] = Auth::user()->id; 
         }else{
-            $data['story'] = Story::with('cover_photo')->where('slug', $request->slug)->firstOrFail();
+            $data['story'] = $story = Story::with('cover_photo')->where('slug', $request->slug)->firstOrFail();
         }
-        
         return view('story.read')->with($data);
     }
 
@@ -244,8 +246,122 @@ class StoryService
 
         $story_like->save();
 
+        
         return Response::json([
             'status'=>'success'
         ], 200);
     }
+
+    public static function addComment(Request $request){
+        $comment = new Comment;
+        $comment->story_id = sanitize_input($request->story_id);
+        $comment->user_id = Auth::user()->id;
+        $comment->content = sanitize_input($request->content);
+        $comment->save();
+
+        $recent_comments =  Comment::where('story_id', $comment->story_id)->with('user')->where('deleted', 0)->orderBy('created_at', 'Desc')->paginate(50);
+        $comment_readable_time = [];
+        foreach($recent_comments as $key=>$comment){
+            $comment_readable_time[$key] = $comment->created_at->diffForHumans();
+
+        }
+
+
+        // $recent_comments_f =array_map('formatTime', $recent_comments);
+        return Response::json([
+            'status'=>'success',
+            'comments'=>$recent_comments,
+            'comment_dates'=>$comment_readable_time
+        ], 200);
+    }
+
+    function formatTime($row){
+        $row->created_at = $row->created_at->diffForHumans();
+        return $row;
+    }
+    public static function updateComment(Request $request){
+        $comment = Comment::where(['id'=>$request->id, 'user_id'=>Auth::user()->id])->first();
+        if(!$comment){
+            return Response::json([
+                'status'=>'fail',
+                'comment not found'
+            ], 404);
+        }
+        $comment->content = sanitize_input($request->content);
+        $comment->save();
+        return Response::json([
+            'status'=>'success'
+        ], 200);
+    }
+
+    public static function deleteComment(Request $request){
+        $comment = Comment::where(['id'=>$request->id, 'user_id'=>Auth::user()->id])->first();
+        if(!$comment){
+            return Response::json([
+                'status'=>'fail',
+                'comment not found'
+            ], 404);
+        }
+        Comment::where(['id'=>$request->id, 'user_id'=>Auth::user()->id])->delete();
+        
+        return Response::json([
+            'status'=>'success'
+        ], 200);
+    }
+
+    public static function recordRead(Request $request){
+
+        $story = Story::where('slug', $request->slug)->first();
+
+        if($story){
+
+            $read = new StoryRead;
+            $read->story_id = $story->id;
+            $read->browser_cookie = sanitize_input($request->browser_cookie);
+            $read->user_id = Auth::check() ? Auth::user()->id: null;
+            $read->time_spent = 1;
+            $read->save();
+
+            return Response::json([
+                'status' => 'success',
+                'message'=>'read recorded'
+            ], 200);  
+           
+        }
+
+        return Response::json([
+            'status' => 'fail',
+            'message'=>'Story not found'
+        ], 404);  
+    }
+
+    public static function updateReadRecord(Request $request){
+        if(Auth::check()){
+            $read = StoryRead::where(['user_id'=>Auth::user()->id])->latest()->first();
+       }else{
+           $read = StoryRead::where(['browser_cookie'=>$request->browser_cookie])->latest()->first();
+       }
+
+       if($read){
+            $read->time_spent = $read->time_spent + 1;
+            $read->save();
+
+            return Response::json([
+                'status' => 'success',
+                'message'=>'read recorded updated'
+            ], 200);  
+       }
+
+       return Response::json([
+            'status' => 'fail',
+            'message'=>'Read instance not found'
+        ], 404);  
+    }
+
+    //  public function getComments(Request $request){
+    //     return Response::json([
+    //         'status'=>'success',
+    //         'comments'=>Comment::where(['id'=>$request->id])->get()
+    //     ], 200);
+    // }
 }

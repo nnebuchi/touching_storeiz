@@ -9,7 +9,7 @@ use App\Models\User;
 class AuthService
 {
     public static function login($request){
-        if(Auth::attempt(['email'=>sanitize_input($request->email), 'password'=>sanitize_input($request->password)])){
+        if(Auth::attempt(['email'=>sanitize_input($request->email), 'password'=>sanitize_input($request->password)], true)){
             $request->session()->regenerate();
             return redirect()->back();
         }
@@ -26,7 +26,7 @@ class AuthService
         $user->password = Hash::make(sanitize_input($request->password));
         $user->save();
 
-        if(Auth::attempt(['email'=>$user->email, 'password'=>sanitize_input($request->password)])){
+        if(Auth::attempt(['email'=>$user->email, 'password'=>sanitize_input($request->password)], true)){
             return redirect()->back();
        }
     }

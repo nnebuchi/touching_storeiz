@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\StoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StoryController extends Controller
 {
@@ -55,5 +56,62 @@ class StoryController extends Controller
 
     public function like(Request $request){
         return StoryService::like($request);
+    }
+
+    public function addComment(Request $request){
+        $validator = Validator::make($request->all(),[
+            'content'   => 'required',
+            'story_id'  => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return returnValidationError($validator->errors(), 'Commenting Failed');
+        }
+        return StoryService::addComment($request);
+    }
+    
+    public function updateComment(Request $request){
+        $validator = Validator::make($request->all(), [
+            'content'   => 'required',
+            'id'  => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return returnValidationError($validator->errors(), 'Commenting Failed');
+        }
+        return StoryService::updateComment($request);
+    }
+
+    public function deleteComment(Request $request){
+        $validator = Validator::make($request->all(), [
+            'id'  => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            return returnValidationError($validator->errors(), 'Commenting Failed');
+        }
+        return StoryService::deleteComment($request);
+    }
+
+    public function recordRead(Request $request){
+        $validator = Validator::make($request->all(),[
+            'browser_cookie'   => 'required'
+        ]);
+        
+        if ($validator->fails()) {
+            return returnValidationError($validator->errors(), 'Recording stor read failed');
+        }
+        return StoryService::recordRead($request);
+    }
+
+    public function updateReadRecord(Request $request){
+        $validator = Validator::make($request->all(),[
+            'browser_cookie'   => 'required'
+        ]);
+        
+        if ($validator->fails()) {
+            return returnValidationError($validator->errors(), 'Recording stor read failed');
+        }
+        return StoryService::updateReadRecord($request);
     }
 }

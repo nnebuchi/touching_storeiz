@@ -40,7 +40,10 @@ Route::group(['prefix' => 'story'], function () {
     Route::group(['middleware' => ['auth']], function () {
           
         Route::post('/{slug}/like', [StoryController::class, 'like'])->name('like-story');
-
+        Route::post('/{slug}/add-comment', [StoryController::class, 'addComment'])->name('story.add_comment');
+        Route::post('/update-comment', [StoryController::class, 'updateComment'])->name('update-comment');
+        Route::post('/delete-comment', [StoryController::class, 'deleteComment'])->name('delete-comment');
+        
         Route::group(['middleware' => ['verified_writer']], function () {
             Route::get('/new', [StoryController::class, 'showAddForm'])->name('add-story-form');
 
@@ -62,6 +65,9 @@ Route::group(['prefix' => 'story'], function () {
 
     Route::get('/{slug}', [StoryController::class, 'read'])->name('read-story');
 
+    Route::post('/{slug}/record/read', [StoryController::class, 'recordRead'])->name('record-story-read');
+    
+    Route::post('/{slug}/update-read-record', [StoryController::class, 'updateReadRecord'])->name('update-read-record');
 });
 
 Route::group(['prefix' => 'tickets', 'middleware' => ['auth']], function () {

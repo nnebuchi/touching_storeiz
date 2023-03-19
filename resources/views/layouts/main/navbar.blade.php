@@ -31,7 +31,8 @@
                     <li><a class="dropdown-item" href="{{route('add-story-form')}}">Create a new story</a></li>
                     <li><a class="dropdown-item" href="#">My Profile</a></li>
                     <li><a class="dropdown-item" href="{{route('new-ticket')}}">Raise Ticket</a></li>
-                    
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="javascript::void()" onclick="logout()">Logout</a></li>
                   </ul>
                 </div>
           @elseif(Auth::check() && !Auth::user()->is_writer)

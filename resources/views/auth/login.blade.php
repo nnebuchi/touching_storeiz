@@ -56,31 +56,31 @@
 
 <script>
     const validateLoginForm = () => {
-    document.querySelectorAll(".backend-msg").forEach(function(field, index){
-        field.innerHTML = '';
-    })
-    const submitBtn = document.querySelector(".login-btn");
-    const oldBtnHTML = submitBtn.innerHTML;
-    setBtnLoading(submitBtn);
+        document.querySelectorAll(".backend-msg").forEach(function(field, index){
+            field.innerHTML = '';
+        })
+        const submitBtn = document.querySelector(".login-btn");
+        const oldBtnHTML = submitBtn.innerHTML;
+        setBtnLoading(submitBtn);
 
-    const validation = runValidation([
-        {
-            id:"email",
-            rules: {'required':true, 'email':true}
-        },
-        {
-            id:'password',
-            rules:{'required':true}
-        },
-        
-    ]);
+        const validation = runValidation([
+            {
+                id:"email",
+                rules: {'required':true, 'email':true}
+            },
+            {
+                id:'password',
+                rules:{'required':true}
+            },
+            
+        ]);
 
-    if(validation === true){
-        submitLoginForm();
-        setBtnNotLoading(submitBtn, oldBtnHTML)
-    }else{
-        setBtnNotLoading(submitBtn, oldBtnHTML)
-    }
+        if(validation === true){
+            submitLoginForm();
+            setBtnNotLoading(submitBtn, oldBtnHTML)
+        }else{
+            setBtnNotLoading(submitBtn, oldBtnHTML)
+        }
     }
 
     const submitLoginForm = () => {

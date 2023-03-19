@@ -3,7 +3,7 @@ const generateUserToken = (token, data=null)=>{
         token:token,
         data:data
     };
-    document.cookie = "user="+JSON.stringify(userCookie)+"; expires=Wed, 08 Mar 2023 08:25:00 UTC; path=/";
+    document.cookie = "user="+JSON.stringify(userCookie)+"; path=/";
 }
 
 
@@ -13,20 +13,8 @@ const destroyUserToken = ()=>{
 }
 
 const logout = ()=>{
-    const user_cookie = getCookie("user");
-    const user_token = user_cookie.token;
-    fetch(`${creator_base_url}/logout`, {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json",
-            "Authorization":`Bearer ${user_token}`
-        }
-    })
-    .then((response)=>{
-        destroyUserToken();
-        location.replace(url+'/login');
-        return;
-    })
+    destroyUserToken();
+    location.replace(url+"/logout");
 }
 
 function getCookie(cname) {
@@ -47,7 +35,7 @@ function getCookie(cname) {
 }
 // destroyUserToken()
 
-let usercookie = getCookie("user")!='' ? JSON.parse(getCookie("user")):null;
+var usercookie = getCookie("user")!='' ? JSON.parse(getCookie("user")):null;
 console.log(usercookie);
 
 if(usercookie === null){

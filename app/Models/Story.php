@@ -38,4 +38,8 @@ class Story extends Model
     public function current_user_like(){
         return $this->hasOne(StoryLike::class)->where('user_id', Auth::user()->id);
     }
+    
+    public function comments(){
+        return $this->hasMany(Comment::class)->orderBy('created_at', 'Desc');
+    }
 }
