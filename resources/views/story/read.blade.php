@@ -150,7 +150,7 @@
                     </div>
                     <div id="comment-holder" style="height:500px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
                         @foreach($story->comments as $comment)
-                        <div class="border rounded py-3 text-end comment-action-box" id="comment-action-box-{{$story->id}}">
+                        <div class="border rounded py-3 text-end comment-action-box" id="comment-action-box-{{$comment->id}}" target-id="{{$comment->id}}">
                             
                             <div class="comment-action py-2 px-2"> 
                                 <span class="edit-comment" target-input="comment-edit-input-{{$comment->id}}" target-comment="comment-item-{{$comment->id}}"> Edit <i class="fa fa-edit"></i></span>
@@ -328,7 +328,7 @@
           Are you sure you want to delete this comment ?
         <div class="modal-foote text-center">
             <button type="button" class="btn ts-btn-primary-outline" data-bs-dismiss="modal">No</button>
-            <button type="button" class="cust_btn-1 ts-btn-primary mx-auto my-4 comment-btn" target-id="" onclick="DeleteComment(event)">Delete</button>
+            <button id="delete-comment-btn" type="button" class="cust_btn-1 ts-btn-primary mx-auto my-4 comment-btn" target-id="" onclick="deleteComment(event)">Delete</button>
         </div>
       </div>
     </div>
@@ -800,7 +800,6 @@
     $('.three-dot').each(function(){
         let $this = $(this);
         $this.on('click', function(){
-           console.log($this.closest('.comment-item'))
             $this.closest('.comment-item').prev().show();
         })
         
@@ -818,12 +817,11 @@
         let $this = $(this);
         $this.on('click', function(){
             $('#deleteCommentModal').modal('show');
-        //    $('#'+$this.attr('target-input')).show();
-        //    $('#'+$this.attr('target-comment')).hide();
+            $('#delete-comment-btn').attr('target-id', $this.closest('.comment-action-box').attr('target-id'));
         })
     })
 
-
+    
     $('.cancel-edit-comment').each(function(){
         let $this = $(this);
         $this.on('click', function(){
@@ -842,6 +840,33 @@
             
         })
     })
+
+    const deleteComment = (event) => {
+        const comment_id = event.target.getAttribute('target-id');
+        
+        $.ajax({
+            type:"post",
+            url: "{{route('delete-comment')}}",
+            data:{
+                id:comment_id,
+                _token: universal_token
+            },
+            success:function(response){
+                if(response.status === 'success'){
+                    removeCommmentElelments(comment_id)
+                }
+            }
+        });
+    }
+
+    const removeCommmentElelments = (comment_id) => {
+        
+        $('#comment-action-box-'+comment_id).remove();
+        $('#comment-item-'+comment_id).remove();
+        $('#comment-edit-input-'+comment_id).remove();
+        $('#deleteCommentModal').modal('hide');
+        return;
+    }
 
     const updateComment = (comment_id, content, targetComment, targetInput) => {
         $.ajax({
@@ -867,23 +892,23 @@
         });
     }
 
-    const deleteComment = (comment_id) => {
-        $.ajax({
-            type:"post",
-            url:"{{route('delete-comment')}}",
-            data:{
-                id: comment_id,
-                _token: universal_token
-            },
-            success:function(response){
-                return response.status;
-            },
-            error:function(par1, par2, par3){
-                console.log(par3);
-                return;
-            }
-        })
-    }
+    // const deleteComment = (comment_id) => {
+    //     $.ajax({
+    //         type:"post",
+    //         url:"{{route('delete-comment')}}",
+    //         data:{
+    //             id: comment_id,
+    //             _token: universal_token
+    //         },
+    //         success:function(response){
+    //             return response.status;
+    //         },
+    //         error:function(par1, par2, par3){
+    //             console.log(par3);
+    //             return;
+    //         }
+    //     })
+    // }
 
 
     const updateCommentElements = (targetComment, targetInput) => {
