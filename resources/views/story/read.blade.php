@@ -328,7 +328,7 @@
           Are you sure you want to delete this comment ?
         <div class="modal-foote text-center">
             <button type="button" class="btn ts-btn-primary-outline" data-bs-dismiss="modal">No</button>
-            <button type="button" class="cust_btn-ts-btn-primary mx-auto my-4 comment-btn" target-id="" onclick="DeleteComment(event)">Delete</button>
+            <button type="button" class="cust_btn-1 ts-btn-primary mx-auto my-4 comment-btn" target-id="" onclick="DeleteComment(event)">Delete</button>
         </div>
       </div>
     </div>
