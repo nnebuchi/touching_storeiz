@@ -15,10 +15,10 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.2.0
       with:
-        server: stormcelltech.com
+        server: storihom.com
         username: ${{ secrets.MAIN_FTP_USERNAME }}
         password: ${{ secrets.MAIN_FTP_PASSWORD }}
-        server-dir: /wordbank.stormcelltech.com/
+        server-dir: /public_html/
 
     - name: 📂 Run SSH Commands
       uses: appleboy/ssh-action@master
@@ -28,5 +28,5 @@ jobs:
         port: ${{ secrets.MAIN_PORT }}
         password: ${{ secrets.MAIN_FTP_PASSWORD }}
         script: |
-          cd wordbank.stormcelltech.com
+          cd public_html
           sh ./.scripts/deploy.sh
