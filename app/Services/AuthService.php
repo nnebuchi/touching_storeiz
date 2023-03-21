@@ -5,12 +5,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Services\UserService;
 
 class AuthService
 {
     public static function login($request){
         if(Auth::attempt(['email'=>sanitize_input($request->email), 'password'=>sanitize_input($request->password)], true)){
+            
             $request->session()->regenerate();
+            UserService::updateUserRead($request->user_token);
             return redirect()->back();
         }
         Session(['msg'=>'Invalid Login Credentials', 'alert'=>'danger']);

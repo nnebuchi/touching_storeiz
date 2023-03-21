@@ -216,11 +216,18 @@ class StoryService
     public static function read(Request $request){
 
         if(Auth::check()){
-            $data['story'] = $story = Story::with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->where('slug', $request->slug)->firstOrFail();
+            $data['story'] = $story = Story::with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->where('slug', $request->slug)->firstOrFail();
             $data['user_id'] = Auth::user()->id; 
         }else{
             $data['story'] = $story = Story::with('cover_photo')->where('slug', $request->slug)->firstOrFail();
         }
+
+        // $related = $data['related'] = Story::whereHas('tags', function ($q) use ($story) {
+        //     return $q->whereIn('title', $story->tags->pluck('title')); 
+        // })
+        // ->where('id', '!=', $story->id) // So you won't fetch same post
+        // ->get();
+        // dd($related);
         return view('story.read')->with($data);
     }
 

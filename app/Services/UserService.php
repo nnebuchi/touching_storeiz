@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Event\WriterCreated;
+use App\Models\StoryRead;
 use App\Models\User;
 use App\Services\FileService;
 use Illuminate\Support\Facades\Auth;
@@ -85,5 +86,15 @@ class UserService
 
         // return redirect()->route('writer-dashboard');
         return redirect()->route('add-story-form');
+    }
+
+    public function updateUserRead(String $token){
+        $reads = StoryRead::where('browser_cookie', $token)->whereNull('user_id')->get();
+        // dd($reads);
+        foreach($reads as $read){
+            $read->user_id = Auth::user()->id;
+            $read->save();
+        }
+        return;
     }
 }

@@ -42,4 +42,8 @@ class Story extends Model
     public function comments(){
         return $this->hasMany(Comment::class)->orderBy('created_at', 'Desc');
     }
+
+    public function reads(){
+        return $this->hasMany(StoryRead::class);
+    }
 }

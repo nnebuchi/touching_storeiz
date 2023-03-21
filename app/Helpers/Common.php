@@ -37,4 +37,13 @@ if (!function_exists('generateOTP')) {
     function slugify(String $string){
         return str_replace(' ', '-', $string).'-'.Str::random(5);
     }
+
+    function formatReadTimeCount(Float $value){
+        // dd($value);
+        if($value < 60){
+            return $value." minutes";
+        }else{
+            return number_format((float)($value/60), 2,'.', ',')." hours";
+        }
+    }
 }

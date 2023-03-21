@@ -123,12 +123,16 @@
                                 <?=$story->content ?>
 
                                 <div class="row story_stats-section" style="border-bottom:2px solid #EBD6C3;padding-bottom: 40px;">
-                                    <div class="col-lg-5 col-12 col-md-5 story_stats">
-                                        <small class=""><i class="bi bi-book fs-6"></i> 6,000 Reads</small>
+                                    <div class=" col-12 col-md-6 story_stats">
+                                        <small class=""><i class="bi bi-book fs-6"></i> {{number_format($story->reads->count())}} Reads</small> 
+                                        
+                                        <small><i class="bi bi-clock fs-6 ms-3"></i>
+                                            {{formatReadTimeCount($story->reads()->sum('time_spent'))}}
+                                        </small>
                                         <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">{{($story->comments->count())}}</span> comments</small>
                                     </div>
                                     
-                                    <div class="col-lg-6 col-12 offset-1 col-md-6 offset-md-1 mt-lg-0 mt-3 ms-0 mt-md-0  ms-lg-5" >
+                                    <div class="col-lg-6 col-12 col-md-6  mt-lg-0 mt-3 ms-0 mt-md-0 " >
                                         <button type="button" class="cust-btn-outline  px-4" id="share-icon" data-bs-toggle="modal" data-bs-target="#shareModal"> <i class="bi bi-share"></i> Share</button>
                                         <button type="button" class="cust_btn-1 ms-lg-4 ms-5 px-4 px-md-2 px-lg-4 ms-md-2"  data-bs-toggle="modal" @auth data-bs-target="#commentModal" @else data-bs-target="#loginModal"  @endauth><i class="fa fa-comment"></i> Comment</button>
                                     </div>
@@ -142,13 +146,14 @@
                 </div>
             </div>
             <div class="col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5">
+                @if($story->comments->count() > 0)
                 <div>
 
                     <div class="titles d-flex justify-content-between">
                         <h3 class="reaction">Reactions</h3>
                         <h5 class="ms-auto more">See more</h5>
                     </div>
-                    <div id="comment-holder" style="height:500px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
+                    <div id="comment-holder" style="max-height:500px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
                         @foreach($story->comments as $comment)
                         <div class="border rounded py-3 text-end comment-action-box" id="comment-action-box-{{$comment->id}}" target-id="{{$comment->id}}">
                             
@@ -160,12 +165,20 @@
                         </div>
                         <div class="custom_card border border-1 rounded-2 px-3 py-2 my-4 comment-item" id="comment-item-{{$comment->id}}">
                             <div class="d-flex justify-content-between">
+                                
                                 <div class="card-title">
-                                    {{$comment->user->username}} 
+                                    {{$comment->user->username}}
+                                    
                                     @if($story->user_id === $comment->user_id) <small style="font-size: 10px;">Author</small>@endif
+                                    
                                 </div>
+                                
                                 <small class="text-mut">
-                                    {{$comment->created_at->diffForHumans()}} &nbsp; &nbsp;&nbsp; <span class="comment-action-toggle ms-3 three-dot" style="font-weight:normal;" ><i class="fa fa-ellipsis-v comment-action-toggle"></i></span>
+                                    {{$comment->created_at->diffForHumans()}} 
+                                    @auth
+                                    &nbsp; &nbsp;&nbsp; 
+                                    <span class="comment-action-toggle ms-3 three-dot" style="font-weight:normal;" ><i class="fa fa-ellipsis-v comment-action-toggle"></i></span>
+                                    @endauth
                                 </small>
                                 
                             </div>
@@ -186,9 +199,10 @@
                     </div>
                     
                 </div>
+                @endif
                 <div class="mt-5">
                     <h3 class="text-capitalize reaction">similiar stories</h3>
-                    <div style="height:500px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
+                    <div style="max-height:600px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
                         <div class="card similiar_card mb-3" >
                             <div class="row g-0">
                             <div class="col-4">
@@ -333,133 +347,136 @@
       </div>
     </div>
   </div>
+   </div>
 
-    <!-- login modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-scrollable"  >
-            <div class="modal-content modal-content-cust "  >
-                <div class="modal-header">
-                    <h1 class="modal-titl  modal-center mx-auto my-3" id="loginModalLabel">Login</h1>
-                    <span type="button" class="btn-close close-x my-3" data-bs-dismiss="modal" aria-label="Close"></span>
-                </div>
-                <div class="modal-bod" >
-                    <small>Sign in to Storihom to interact with like-minds b sharing sharing your thoughts on the stories you read.
-                    </small>
-                    @if(count($errors) > 0)
-                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                        @foreach ($errors->all() as $error)
-                            {{ $error }}<br/>
-                        @endforeach
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    @guest
+        <!-- login modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content modal-content-cust">
+                    <div class="modal-header">
+                        <h1 class="modal-titl  modal-center mx-auto my-3" id="loginModalLabel">Login</h1>
+                        <span type="button" class="btn-close close-x my-3" data-bs-dismiss="modal" aria-label="Close"></span>
                     </div>
-                    @endif
-                    <form action="{{route('sign-in')}}" class="row g-3 needs-validation " method="post" id="login-form">
-                        @csrf
-                        <div class="col- reg_input-div mt-lg-2 mt-3 mt-sm-2 post_input-div">
-                            <div class="col- reg_input-div mt-1 mt-lg-0">
-                                <label for="validationCustomUsername" class="form-label"></label>
-                                <div class="input-group has-validation">
-                                    <input type="email" id="email" name="email" class="form-control rounded-3 py-sm-2 py-1" placeholder="Email"  required>
+                    <div class="modal-bod" >
+                        <small>Sign in to Storihom to interact with like-minds b sharing sharing your thoughts on the stories you read.
+                        </small>
+                        @if(count($errors) > 0)
+                        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}<br/>
+                            @endforeach
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+                        <form action="{{route('sign-in')}}" class="row g-3 needs-validation " method="post" id="login-form">
+                            @csrf
+                            <div class="col- reg_input-div mt-lg-2 mt-3 mt-sm-2 post_input-div">
+                                <div class="col- reg_input-div mt-1 mt-lg-0">
+                                    <label for="validationCustomUsername" class="form-label"></label>
+                                    <div class="input-group has-validation">
+                                        <input type="email" id="email" name="email" class="form-control rounded-3 py-sm-2 py-1" placeholder="Email"  required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col- reg_input-div mt-1 mt-lg-0">
-                                <label for="validationCustomUsername" class="form-label"></label>
-                                <div class="input-group has-validation">
-                                    <input type="password" name="password" id="password" class="form-control rounded-3 py-sm-2 py-1 p-word" placeholder="Password" required>
-                                    <span class="input-group-text eye" id="eye" onclick="togglePasswordReveal('eye', 'password')"><i class="bi bi-eye-slash"></i></span>
-                                    <div class="invalid-feedback">
-                                        Enter Password.
+                                <div class="col- reg_input-div mt-1 mt-lg-0">
+                                    <label for="validationCustomUsername" class="form-label"></label>
+                                    <div class="input-group has-validation">
+                                        <input type="password" name="password" id="password" class="form-control rounded-3 py-sm-2 py-1 p-word" placeholder="Password" required>
+                                        <span class="input-group-text eye" id="eye" onclick="togglePasswordReveal('eye', 'password')"><i class="bi bi-eye-slash"></i></span>
+                                        <div class="invalid-feedback">
+                                            Enter Password.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" col my-lg-4  ">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" required>
+                                        <label class="form-check-label " for="invalidCheck">
+                                        <small>Not registered? <a type="button" href="javascript:void(0)"   data-bs-toggle="modal" data-bs-target="#registerModal" href="#">Sign up</a></small> 
+                                        </label>
+                                        
                                     </div>
                                 </div>
                             </div>
-
-                            <div class=" col my-lg-4  ">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                    <label class="form-check-label " for="invalidCheck">
-                                    <small>Not registered? <a type="button" href="javascript:void(0)"   data-bs-toggle="modal" data-bs-target="#registerModal" href="#">Sign up</a></small> 
-                                    </label>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-foote text-center">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="cust_btn-1 w-75 mx-auto my-4 login-btn" onclick="validateLoginForm()">Login</button>
+                        </form>
+                    </div>
+                    <div class="modal-foote text-center">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="button" class="cust_btn-1 w-75 mx-auto my-4 login-btn" onclick="validateLoginForm()">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Register modal -->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-scrollable"  >
-            <div class="modal-content modal-content-cust "  >
-                <div class="modal-header">
-                    <h1 class="modal-titl  modal-center mx-auto" id="registerModalLabel">Register</h1>
-                    
-                    <span type="button" class="btn-close close-x" data-bs-dismiss="modal" aria-label="Close"></span>
-                    
-                </div>
-                <div class="modal-bod " >
-                    <small>Join Storihom community snd interact with like-minds b sharing sharing your thoughts on the stories you read.
-                    </small>
-                    @if(count($errors) > 0)
-                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                        @foreach ($errors->all() as $error)
-                            {{ $error }}<br/>
-                        @endforeach
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <!-- Register modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-scrollable"  >
+                <div class="modal-content modal-content-cust "  >
+                    <div class="modal-header">
+                        <h1 class="modal-titl  modal-center mx-auto" id="registerModalLabel">Register</h1>
+                        
+                        <span type="button" class="btn-close close-x" data-bs-dismiss="modal" aria-label="Close"></span>
+                        
                     </div>
-                    @endif
-                    <form action="{{route('register')}}" class="row g-3 needs-validation " method="post" id="reg-form">
-                        @csrf
-                        <div class="col- reg_input-div mt-lg-2 mt-3 mt-sm-2 post_input-div">
-                            <div class="col- reg_input-div mt-1 mt-lg-0">
-                                <label for="validationCustomUsername" class="form-label"></label>
-                                <div class="input-group has-validation">
-                                    <input type="email" id="register-email" name="email" class="form-control rounded-3 py-sm-2 py-1" placeholder="Email"  required>
+                    <div class="modal-bod " >
+                        <small>Join Storihom community snd interact with like-minds b sharing sharing your thoughts on the stories you read.
+                        </small>
+                        @if(count($errors) > 0)
+                        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}<br/>
+                            @endforeach
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+                        <form action="{{route('register')}}" class="row g-3 needs-validation " method="post" id="reg-form">
+                            @csrf
+                            <div class="col- reg_input-div mt-lg-2 mt-3 mt-sm-2 post_input-div">
+                                <div class="col- reg_input-div mt-1 mt-lg-0">
+                                    <label for="validationCustomUsername" class="form-label"></label>
+                                    <div class="input-group has-validation">
+                                        <input type="email" id="register-email" name="email" class="form-control rounded-3 py-sm-2 py-1" placeholder="Email"  required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col- reg_input-div mt-1 mt-lg-0">
-                                <label for="validationCustomUsername" class="form-label"></label>
-                                <div class="input-group has-validation">
-                                    <input type="text" id="username" name="username" class="form-control rounded-3 py-sm-2 py-1" placeholder="Username"  required>
+                                <div class="col- reg_input-div mt-1 mt-lg-0">
+                                    <label for="validationCustomUsername" class="form-label"></label>
+                                    <div class="input-group has-validation">
+                                        <input type="text" id="username" name="username" class="form-control rounded-3 py-sm-2 py-1" placeholder="Username"  required>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col- reg_input-div mt-1 mt-lg-0">
-                                <label for="validationCustomUsername" class="form-label"></label>
-                                <div class="input-group has-validation">
-                                    <input type="password" name="password" id="register-password" class="form-control rounded-3 py-sm-2 py-1 p-word" placeholder="Password" required>
-                                    <span class="input-group-text eye" id="reg-eye" onclick="togglePasswordReveal('reg-eye', 'register-password')"><i class="bi bi-eye-slash"></i></span>
-                                    <div class="invalid-feedback">
-                                        Enter Password.
+                                <div class="col- reg_input-div mt-1 mt-lg-0">
+                                    <label for="validationCustomUsername" class="form-label"></label>
+                                    <div class="input-group has-validation">
+                                        <input type="password" name="password" id="register-password" class="form-control rounded-3 py-sm-2 py-1 p-word" placeholder="Password" required>
+                                        <span class="input-group-text eye" id="reg-eye" onclick="togglePasswordReveal('reg-eye', 'register-password')"><i class="bi bi-eye-slash"></i></span>
+                                        <div class="invalid-feedback">
+                                            Enter Password.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class=" col my-lg-4  ">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                        <label class="form-check-label " for="invalidCheck">
+                                        <small>Already registered? <a type="button" href="javascript:void(0)"   data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Login</a></small> 
+                                        </label>
+                                        
                                     </div>
                                 </div>
                             </div>
-
-                            <div class=" col my-lg-4  ">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                    <label class="form-check-label " for="invalidCheck">
-                                    <small>Already registered? <a type="button" href="javascript:void(0)"   data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Login</a></small> 
-                                    </label>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-foote text-center">
-                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                <button type="button" class="cust_btn-1 w-75 mx-auto my-4 reg-btn" onclick="validateRegisterForm()">Login</button>
+                        </form>
+                    </div>
+                    <div class="modal-foote text-center">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button type="button" class="cust_btn-1 w-75 mx-auto my-4 reg-btn" onclick="validateRegisterForm()">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    @endguest
+    
     @auth
         <script>
             $("#like").on('click', function(){
@@ -692,6 +709,7 @@
 
         </script>
     @endauth
+ 
  <script>
     
     $(document).ready(function() {

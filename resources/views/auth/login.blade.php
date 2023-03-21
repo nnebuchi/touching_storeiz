@@ -87,6 +87,12 @@
         document.querySelector("#login-form").submit();
     }
     
+    $(document).ready(function(){
+        let form = document.querySelector('#login-form');
+        let action = form.getAttribute('action');
+        form.setAttribute('action', action+"?user_token="+universal_token);
+    })
+    
     
 </script>
 @endsection
