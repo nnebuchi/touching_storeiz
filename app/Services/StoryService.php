@@ -182,9 +182,12 @@ class StoryService
         }
         
 
-        $data['stories']= $stories->with('cover_photo')->paginate($page_count);
-        $data['tags'] = Tag::all();
-        // dd($data['stories']);
+        $data['stories']= $stories->with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->paginate($page_count);
+
+        $data['tags'] = Tag::withCount('stories')->get();
+
+        $data['trending_stories'] = Story::with('author')->withCount('reads')->withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate(5);
+
         return view('story.index')->with($data);
     }
 
@@ -206,7 +209,7 @@ class StoryService
         }else{
             $stories = Story::with('tags');
         }
-        $data = $stories->with('author')->with('cover_photo')->paginate(2);
+        $data = $stories->with('author')->with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->paginate(2);
         return Response::json([
             'status'=>'success',
             'stories'=>$data
@@ -222,12 +225,12 @@ class StoryService
             $data['story'] = $story = Story::with('cover_photo')->where('slug', $request->slug)->firstOrFail();
         }
 
-        // $related = $data['related'] = Story::whereHas('tags', function ($q) use ($story) {
-        //     return $q->whereIn('title', $story->tags->pluck('title')); 
-        // })
-        // ->where('id', '!=', $story->id) // So you won't fetch same post
-        // ->get();
-        // dd($related);
+        $related = $data['related'] = Story::whereHas('tags', function ($q) use ($story) {
+            return $q->whereIn('title', $story->tags->pluck('title')); 
+        })
+        ->where('id', '!=', $story->id) // So you won't fetch same post
+        ->get();
+        
         return view('story.read')->with($data);
     }
 
@@ -365,10 +368,18 @@ class StoryService
         ], 404);  
     }
 
+    public static function trendingStories(Request $request){
+        // $trending_stories = Story::withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate($stories_per_page);
+        return Response::json([
+            'status'=>'success',
+            'data'=>Story::withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate(5)
+        ], 200);
+    }
+
     //  public function getComments(Request $request){
-    //     return Response::json([
-    //         'status'=>'success',
-    //         'comments'=>Comment::where(['id'=>$request->id])->get()
-    //     ], 200);
+        // return Response::json([
+        //     'status'=>'success',
+        //     'comments'=>Comment::where(['id'=>$request->id])->get()
+        // ], 200);
     // }
 }

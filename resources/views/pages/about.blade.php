@@ -46,8 +46,8 @@
                                 
                                 <p class="card-text cust_card-tex mt-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod, in? Lorem ipsum dolor sit amet </p>
                             <div class=" card_btns d-flex flex-column-reverse d-md-flex flex-md-column-reverse   d-sm-flex flex-sm-row d-xl-block">
-                                <span class="card-text  mt-2 mt-lg-0 ms-2 ms-md-0 ms-lg-0 "><small class="text-mute"> <span><i class="bi bi-book"></i></span> 6,000 Reads</small></span> 
-                                <a href="" class="ts-btn-md ts-btn-primary ts-btn ms-lg-3 ms-xl-1 ms-sm-3 ms-md-0">Read</a>
+                                <span class="card-text  mt-2 mt-lg-0 ms-2 ms-md-0 ms-lg-0 "><small class="text-mute"> <span><i class="bi bi-book"></i></span> {{number_format($story->reads_count)}} Reads</small></span> 
+                                <a href="{{route('read-story', $story->slug)}}" class="ts-btn-md ts-btn-primary ts-btn ms-lg-3 ms-xl-1 ms-sm-3 ms-md-0">Read</a>
                             </div>
                             
                             </div>

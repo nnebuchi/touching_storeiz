@@ -182,7 +182,7 @@
                                 </small>
                                 
                             </div>
-                            <div class="custom-card_text comment-text mt-2">{{stripslashes($comment->content)}} </div>
+                            <div class="custom-card_text comment-text mt-2"><?=  stripslashes(html_entity_decode((str_replace('\n', '<br/>',$comment->content)))) ?> </div>
                         </div>
                         
                         
@@ -203,72 +203,22 @@
                 <div class="mt-5">
                     <h3 class="text-capitalize reaction">similiar stories</h3>
                     <div style="max-height:600px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
+                        @foreach($related as $similar)
                         <div class="card similiar_card mb-3" >
                             <div class="row g-0">
                             <div class="col-4">
-                                <img src="../assets/img/readstory/Rectangle_0.svg" class="img-fluid rounded-start similiar_card-img " alt="...">
+                                <img src="{{asset('storage/'.$similar->cover_photo[0]->file)}}" class="img-fluid rounded-start similiar_card-img " alt="...">
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
-                                <h5 class="card-title">Ben Did It</h5>
-                                <p class="card-text">Harry Okonkwo</p> 
+                                <h5 class="card-title similar-story-title"><a href="{{route('read-story', $similar->slug)}}">{{$similar->title}}</a></h5>
+                                <p class="card-text">{{$similar->author->pen_name}} </p> 
                                 </div>
                             </div>
                             </div>
                         </div>
-                        <div class="card similiar_card mb-3" >
-                            <div class="row g-0">
-                            <div class="col-4">
-                                <img src="../assets/img/readstory/Rectangle_1.svg" class="img-fluid rounded-start similiar_card-img " alt="...">
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                <h5 class="card-title">Scream Louder</h5>
-                                <p class="card-text">Harry Okonkwo</p> 
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="card similiar_card mb-3" >
-                            <div class="row g-0">
-                            <div class="col-4">
-                                <img src="../assets/img/readstory/Rectangle_2.svg" class="img-fluid rounded-start similiar_card-img " alt="...">
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                <h5 class="card-title">Covenant Broken</h5>
-                                <p class="card-text">Harry Okonkwo</p> 
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="card similiar_card mb-3" >
-                            <div class="row g-0">
-                            <div class="col-4">
-                                <img src="../assets/img/readstory/Rectangle_3.svg" class="img-fluid rounded-start similiar_card-img " alt="...">
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                <h5 class="card-title">Whisper Once More</h5>
-                                <p class="card-text">Harry Okonkwo</p> 
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="card similiar_card mb-3" >
-                        </div>
+                        @endforeach
                    
-                        <div class="row g-0">
-                          <div class="col-4">
-                            <img src="../assets/img/readstory/Rectangle_4.svg" class="img-fluid rounded-start similiar_card-img " alt="...">
-                          </div>
-                          <div class="col-8">
-                            <div class="card-body">
-                              <h5 class="card-title">Hi</h5>
-                              <p class="card-text">Harry Okonkwo</p> 
-                            </div>
-                          </div>
-                        </div>
                     </div>
                     
                 </div>

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class Story extends Model
 {
@@ -45,5 +46,9 @@ class Story extends Model
 
     public function reads(){
         return $this->hasMany(StoryRead::class);
+    }
+
+    public function recent_reads(){
+        return $this->hasMany(StoryRead::class)->where('created_at', '>=', Carbon::now()->subDays(6)->toDateTimeString());
     }
 }

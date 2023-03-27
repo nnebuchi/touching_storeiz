@@ -276,6 +276,14 @@ body a{
     width: 30%;
 }
 
+.similar-story-title a{
+    color: rgb(33, 37, 41)!important;
+}
+
+.similar-story-title a:hover{
+    color: var(--secondaryColor-1)!important;
+}
+
 
  
 /* nav ends */
@@ -380,15 +388,17 @@ main {
     font-size: 16px;
     color: var(--greyShade-3);
 }
-/* .story-slider-dot{
-    color: var(--primaryColor-1)!important;
-    font-size: 28px!important;
-} */
+
+.story-slider-dot  {
+    color: var(--accentColor-1)!important
+}
 
 .cust_card-text .story-slider-dot  {
     color: var(--primaryColor-1)!important;
     font-size: 28px!important;
 }
+
+
 
 .cust_card-text .story-card-dot  {
     color: var(--primaryColor-1)!important;

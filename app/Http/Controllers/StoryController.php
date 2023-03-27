@@ -114,4 +114,8 @@ class StoryController extends Controller
         }
         return StoryService::updateReadRecord($request);
     }
+
+    public function trendingStories(Request $request){
+        return StoryService::trendingStories($request);
+    }
 }
