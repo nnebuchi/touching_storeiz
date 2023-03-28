@@ -88,7 +88,7 @@ class UserService
         return redirect()->route('add-story-form');
     }
 
-    public function updateUserRead(String $token){
+    public static function updateUserRead(String $token){
         $reads = StoryRead::where('browser_cookie', $token)->whereNull('user_id')->get();
         // dd($reads);
         foreach($reads as $read){

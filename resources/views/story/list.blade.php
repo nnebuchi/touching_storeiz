@@ -3,145 +3,137 @@
 <!-- chart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <div class="container">
-    <section class="publication">
-       <div class="row">
-          <div class="col-xl-9  ">
-             <h1 class="publication_title feed_title">Publications</h1>
-                <div class="input-group mt-5">
-                   <input type="search" class="form-control search_input" id="" placeholder="Search">
-                   <div class="input-group-text bg-white custgrp_text">
-                      <span><i class="bi bi-search "></i></span>
-                   </div>
-                 </div>
-              
-          </div>
-          <div class="col-xl-3  mt-4">
-            <h1 class="publisher_name popular"><span><i class="bi bi-person "></i></span> Jennifer Rowland</h1>
-          
-                <div class="input-group mt-5">
-                  <input type="search" class="form-control filter_input" id="" placeholder="Filter">
-                  <div class="input-group-text bg-white custgrp_text">
-                      <span><i class="bi bi-funnel "></i></span>
-                  </div>
 
-                </div>
-          
-          </div>
-       </div>
-      
-        
-        <div class="row my-5" >
-          <div class="col-xl-9 col-lg-12"  >
-               
-             <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col" width="300" class="text-center">Title </th>
-                    <th scope="col" width="300" class="text-center">Category </th>
-                    <th scope="col" width="200" class="text-center">Reads </th>
-                    <th scope="col" width="200" class="text-center">Likes </th>
-                    <th scope="col" width="200" class="text-center">Dislikes </th>
-                    <th scope="col" width="200" class="text-center">Comments </th>
-                    <th scope="col" width="300" class="text-center">Date Published </th>
-                    
-                  </tr>
-                </thead>
-               
-              </table>
-                     
-                     
-          </div>
-          
+            
+  <section class="publication">
+     <div class="row">
+        <div class="col-xl-9 col-md-7">
+           <h1 class="publication_title feed_title">Publications</h1>
         </div>
-        <div class="row " style="border-top: 1px solid #D9AD89;">
-          <div class="col-xl-9 col-lg-12   " style="padding: 30px 0;">
-             <table class="table cust_table">
-               
-                <tbody class="">
-                   <tr class="table_hover">
-                      <td width="150">Seasons of Horror</td>
-                      <td width="150" class="text-cente">Horror</td>
-                      <td width="100">6,000</td>
-                      <td width="100">2,000</td>
-                      <td width="110">500</td>
-                      <td width="150">450</td>
-                      <td width="100" >25-10-22</td>
-                    </tr>
-                    <tr style="height: 30px;"> 
-                    </tr>
-                   <tr class="table_hover">
-                      <td width="150">Seasons of Horror</td>
-                      <td width="150" class="text-cente">Horror</td>
-                      <td width="100">6,000</td>
-                      <td width="100">2,000</td>
-                      <td width="110">500</td>
-                      <td width="150">450</td>
-                      <td width="100" >25-10-22</td>
-                    </tr>
-                    <tr style="height: 30px;"> 
-                    </tr>
-                   <tr class="table_hover">
-                      <td width="150">Seasons of Horror</td>
-                      <td width="150" class="text-cente">Horror</td>
-                      <td width="100">6,000</td>
-                      <td width="100">2,000</td>
-                      <td width="110">500</td>
-                      <td width="150">450</td>
-                      <td width="100" >25-10-22</td>
-                    </tr>
-                    <tr style="height: 30px;"> 
-                    </tr>
-                   
-                </tbody>
-              </table>
+        <div class="col-xl-3 col-md-5 mt-4 text-md-end">
+          <h1 class="publisher_name popular"><span><i class="bi bi-person "></i></span> Jennifer Rowland</h1>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-xl-9">
+          <div class="input-group mt-5">
+            <input type="search" class="form-control search_input" id="" placeholder="Search">
+            <div class="input-group-text bg-white custgrp_text">
+              <span><i class="bi bi-search "></i></span>
+            </div>
           </div>
-          <div class="col-xl-3 col-lg-12 cust-border" >
-            <div class="row">
-              <div class="col-xl-12 col-lg-12">
-                <h2 class="analytics-reactions text-capitalize" >Reactions</h2>
-                <div id="donut_single"> </div>
-              </div>
-              <div class="col-xl-12 col-lg-12">
-                <h2 class="analytics-reactions text-capitalize" >engagements</h2>
-                <div id="curve_chart"></div>
-              </div>
-              
-               <div class="col-xl-12">
-                  <h2 class="analytics-reactions text-capitalize">Comments</h2>
-                  <div class="custom_card border border-1 rounded-2 px-3 py-2 my-4">
-                    <div class="d-flex justify-content-between">
-                         <div class="card-title">
-                             John Michael
-                         </div>
-                         <small class="text-mut">
-                             2 days ago
-                         </small>
-                        
-                     </div>
-                     <div class="custom-card_text mt-2">
-                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non incidunt expedita perspiciatis ullam id voluptatibus.
-                     </div>
-                 </div>
-               </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="input-group mt-5">
+            <input type="search" class="form-control filter_input" id="" placeholder="Filter">
+            <div class="input-group-text bg-white custgrp_text">
+                <span><i class="bi bi-funnel "></i></span>
+            </div>
+
+          </div>
+        </div>
+     </div>
+    
+      <div class="row mt-5" style="border-top: 1px solid #D9AD89;">
+        <div class="col-xl-9 col-lg-12 table-responsive " style="padding: 30px 0;">
+           <table class="table cust_table">
+            <thead>
+              <tr>
+                <th scope="col" width="150" class="text-start">Title </th>
+                <th scope="col" width="150" class="text-start">Tags </th>
+                <th scope="col" width="50" class="text-start">Reads </th>
+                <th scope="col" width="50" class="text-start">Likes </th>
+                <th scope="col" width="50" class="text-start">Dislikes </th>
+                <th scope="col" width="50" class="text-start">Comments </th>
+                <th scope="col" width="100" class="text-start">Read Hour </th>
+                
+              </tr>
+            </thead>
+              <tbody class="">
+                @foreach($stories as $story)
+                 <tr class="table_hover story-row">
+                    <td class="text-start title" width="150">{{$story->title}}</td>
+                    <td class="text-start tags" width="150" class="text-cente">
+                      @foreach($story->tags as $t_key=> $tag)
+                      <small class="text-mute" style="font-size:13px;">
+                        {{$tag->title}} @if($t_key < count($story->tags)) &nbsp;<span class="bi bi-dot story-slider-dot"> </span>@endif
+                      </small>
+                      @endforeach
+                    </td>
+                    <td class="text-start reads" width="50">{{number_format($story->reads_count)}}</td>
+                    <td class="text-start likes" width="50">{{number_format($story->likes_count)}}</td>
+                    <td class="text-start dislikes" width="50">{{number_format($story->dislikes_count)}}</td>
+                    <td class="text-start comments" width="50">{{number_format($story->comments_count)}}</td>
+                    <td class="text-start time_spent" width="100" >{{formatReadTimeCount($story->reads->sum('time_spent'))}}</td>
+                  </tr>
+                @endforeach
+                 
+              </tbody>
+            </table>
+        </div>
+        <div class="col-xl-3 col-lg-12 cust-border d-none d-md-block" >
+          <div class="row story-analitics" id="analitics-{{$story->id}}">
+            <div class="col-xl-12 col-lg-12">
+              <h2 class="analytics-reactions text-capitalize" >Reactions</h2>
+              <div id="donut_single"> </div>
+            </div>
+            <div class="col-xl-12 col-lg-12">
+              <h2 class="analytics-reactions text-capitalize" >engagements</h2>
+              <div id="curve_chart"></div>
             </div>
             
-           
+             {{-- <div class="col-xl-12">
+                <h2 class="analytics-reactions text-capitalize">Comments</h2>
+                <div class="custom_card border border-1 rounded-2 px-3 py-2 my-4">
+                  <div class="d-flex justify-content-between">
+                       <div class="card-title">
+                           John Michael
+                       </div>
+                       <small class="text-mut">
+                           2 days ago
+                       </small>
+                      
+                   </div>
+                   <div class="custom-card_text mt-2">
+                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non incidunt expedita perspiciatis ullam id voluptatibus.
+                   </div>
+               </div>
+             </div> --}}
           </div>
+          
+         
         </div>
-       
-    </section>
-</div>
+      </div>
+     
+  </section>
 
 <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
+   $('.story-row').on('click', function(){
+      const likes =$(this).find('.likes').text();
+      const dislikes =$(this).find('.dislikes').text();
+      const comments =$(this).find('.comments').text();
+      const reads =$(this).find('.reads').text();
+      const time_spent =$(this).find('.time_spent').text();
+
+      console.log(likes);
+      google.charts.setOnLoadCallback(drawChart({
+        likes: likes,
+        dislikes: dislikes
+      }));
+
+      google.charts.setOnLoadCallback(drawEngagementGraph);
+
+
+   });
+  
+    function drawChart(story_data) {
 
       var data = google.visualization.arrayToDataTable([
         ['Effort', 'Amount given'],
-        ['Likes',     80],
-        ['Dislikes',     20]
+        ['Likes',     parseInt(story_data.likes)],
+        ['Dislikes',     parseInt(story_data.dislikes)]
       ]);
 
       var chart = new google.visualization.PieChart(document.getElementById('donut_single'));
@@ -156,6 +148,8 @@
           color: 'black',
         }
       });
+
+      
     }
    
 
@@ -163,9 +157,9 @@
    <script type="text/javascript">
     
     google.charts.load('current', {'packages':['line']});
-    google.charts.setOnLoadCallback(drawChart);
+    
 
-    function drawChart() {
+    function drawEngagementGraph() {
       var data = google.visualization.arrayToDataTable([
         ['Month', 'Likes', 'Comments'],
         ['Jan',  350, 200],
@@ -187,6 +181,21 @@
 
       chart.draw(data, options);
     }
+
+    $(document).ready(function(){
+      setTimeout(() => {
+        google.charts.load('current', {'packages':['corechart']});
+
+        google.charts.setOnLoadCallback(drawChart({
+          likes: $('.likes').text(),
+          dislikes: $('.dislikes').text()
+        }));
+
+        google.charts.setOnLoadCallback(drawEngagementGraph);
+
+      }, 1000);
+    ;
+    })
   </script>
 
   @endsection

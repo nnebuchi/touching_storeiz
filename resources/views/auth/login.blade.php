@@ -42,7 +42,7 @@
                             
                             <div class=" mt-lg-4 mb-lg-5 mb-sm-3 text-center">
                                 <button class=" cust_btn-1 w-75 text-capitalize login-btn" type="button" onclick="validateLoginForm()">Login</button>
-                                <p>Not Registered ? <a href="{{route('become-a-writer')}}">Sign Up</a></p> 
+                                <p>Not Registered ? <a href="{{route('register')}}">Sign Up</a></p> 
                             </div>
                             
                         </form>
@@ -90,7 +90,7 @@
     $(document).ready(function(){
         let form = document.querySelector('#login-form');
         let action = form.getAttribute('action');
-        form.setAttribute('action', action+"?user_token="+universal_token);
+        form.setAttribute('action', action+"?user_token="+usercookie.token);
     })
     
     

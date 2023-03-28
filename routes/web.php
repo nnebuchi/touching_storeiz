@@ -49,6 +49,8 @@ Route::group(['prefix' => 'story'], function () {
 
             Route::post('/add', [StoryController::class, 'add'])->name('add-story');
 
+            Route::get('/mine', [StoryController::class, 'list'])->name('my-stories');
+
             Route::get('/mine/{slug}', [StoryController::class, 'ManageStory'])->name('manage-story');
 
             Route::get('/mine/{slug}/edit', [StoryController::class, 'EditStory'])->name('edit-story');

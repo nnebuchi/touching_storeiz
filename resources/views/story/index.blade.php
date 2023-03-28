@@ -10,6 +10,7 @@
                     <div class="item">
                        <div>
                            <img src="{{asset('assets/img/readstory/coca-cola.png')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
+                           
                        </div>
                              
                     </div>
@@ -92,7 +93,7 @@
                 @endforeach
                     
             </div>
-            <div class="col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5 position-absolute" style="right:10px;top:0!important;">
+            <div class="col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5" style="right:10px;top:0!important;">
                 
                 <div class="mt-lg-0 mt-4" style="max-height:600px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
                     <div class="titles d-flex justify-content-between mb-4 mt-5">

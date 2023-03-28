@@ -118,4 +118,8 @@ class StoryController extends Controller
     public function trendingStories(Request $request){
         return StoryService::trendingStories($request);
     }
+
+    public function list(){
+        return StoryService::list();
+    }
 }

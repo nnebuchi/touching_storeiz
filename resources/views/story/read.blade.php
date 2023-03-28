@@ -88,6 +88,7 @@
                     </div>
                     
                 </div>
+                
                 @if($story->blurb != null)
                 <div class="row mt-2 mt-lg-4">
                     <div class="col-12 col-lg-10 col-xl-11">
@@ -115,29 +116,29 @@
                     </div>
                 </div>
                 @endif
+
+                <div class="row story_stats-section" style="border-bottom:2px solid #EBD6C3;padding-bottom: 40px;">
+                    <div class=" col-12 col-md-6 story_stats">
+                        <small class=""><i class="bi bi-book fs-6"></i> {{number_format($story->reads->count())}} Reads</small> 
+                        
+                        <small><i class="bi bi-clock fs-6 ms-3"></i>
+                            {{formatReadTimeCount($story->reads()->sum('time_spent'))}}
+                        </small>
+                        <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">{{($story->comments->count())}}</span> comments</small>
+                    </div>
+                    
+                    <div class="col-lg-6 col-12 col-md-6  mt-lg-0 mt-3 ms-0 mt-md-0 " >
+                        <button type="button" class="cust-btn-outline  px-4" id="share-icon" data-bs-toggle="modal" data-bs-target="#shareModal"> <i class="bi bi-share"></i> Share</button>
+                        <button type="button" class="cust_btn-1 ms-lg-4 ms-5 px-4 px-md-2 px-lg-4 ms-md-2"  data-bs-toggle="modal" @auth data-bs-target="#commentModal" @else data-bs-target="#loginModal"  @endauth><i class="fa fa-comment"></i> Comment</button>
+                    </div>
+                    
+                </div>
                 
                 <div class="row mt-2">
                     <div class="col-lg-11 col-12" >
                         <div class="row">
                             <div class="col-12 col-md-11 col-lg-12 full_story" style="font-family:Oswald-Regular!important;">
                                 <?=$story->content ?>
-
-                                <div class="row story_stats-section" style="border-bottom:2px solid #EBD6C3;padding-bottom: 40px;">
-                                    <div class=" col-12 col-md-6 story_stats">
-                                        <small class=""><i class="bi bi-book fs-6"></i> {{number_format($story->reads->count())}} Reads</small> 
-                                        
-                                        <small><i class="bi bi-clock fs-6 ms-3"></i>
-                                            {{formatReadTimeCount($story->reads()->sum('time_spent'))}}
-                                        </small>
-                                        <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">{{($story->comments->count())}}</span> comments</small>
-                                    </div>
-                                    
-                                    <div class="col-lg-6 col-12 col-md-6  mt-lg-0 mt-3 ms-0 mt-md-0 " >
-                                        <button type="button" class="cust-btn-outline  px-4" id="share-icon" data-bs-toggle="modal" data-bs-target="#shareModal"> <i class="bi bi-share"></i> Share</button>
-                                        <button type="button" class="cust_btn-1 ms-lg-4 ms-5 px-4 px-md-2 px-lg-4 ms-md-2"  data-bs-toggle="modal" @auth data-bs-target="#commentModal" @else data-bs-target="#loginModal"  @endauth><i class="fa fa-comment"></i> Comment</button>
-                                    </div>
-                                    
-                                </div>
                             </div>
                         </div>
                     
@@ -177,7 +178,7 @@
                                     {{$comment->created_at->diffForHumans()}} 
                                     @auth
                                     &nbsp; &nbsp;&nbsp; 
-                                    <span class="comment-action-toggle ms-3 three-dot" style="font-weight:normal;" ><i class="fa fa-ellipsis-v comment-action-toggle"></i></span>
+                                    <span class="comment-action-toggle ms-3 three-dot" onclick="handleCommentControl(event)" style="font-weight:normal;" ><i class="fa fa-ellipsis-v comment-action-toggle"></i></span>
                                     @endauth
                                 </small>
                                 
@@ -319,7 +320,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         @endif
-                        <form action="{{route('sign-in')}}" class="row g-3 needs-validation " method="post" id="login-form">
+                        <form action="{{route('sign-in')}}" class="row g-3 needs-validation " method="post" id="login-form" >
                             @csrf
                             <div class="col- reg_input-div mt-lg-2 mt-3 mt-sm-2 post_input-div">
                                 <div class="col- reg_input-div mt-1 mt-lg-0">
@@ -429,6 +430,7 @@
     
     @auth
         <script>
+            let story = <?=json_encode($story)?>;
             $("#like").on('click', function(){
                 let $this = $(this);
 
@@ -553,23 +555,50 @@
 
             const updateCommentComponents = (comments, comment_dates) =>{
                 let commentElement = ``;
+                let author_label ='';
                 comments.forEach((comment, index)=>{
+                   if(story.user_id === comment.user_id){
+                        author_label = '<small style="font-size: 10px;">Author</small>';
+                   }
                     commentElement += `
-                    <div class="custom_card border border-1 rounded-2 px-3 py-2 my-4 comment-item">
+                    <div class="border rounded py-3 text-end comment-action-box" id="comment-action-box-${comment.id}" target-id="${comment.id}">
+                            
+                        <div class="comment-action py-2 px-2"> 
+                            <span class="edit-comment" target-input="comment-edit-input-${comment.id}" target-comment="comment-item-${comment.id}"> Edit <i class="fa fa-edit"></i></span>
+                            &nbsp; &nbsp;&nbsp;
+                            <span class="delete-comment">Remove <i class="fa fa-trash"></i></span>
+                        </div>
+                    </div>
+                    <div class="custom_card border border-1 rounded-2 px-3 py-2 my-4 comment-item" id="comment-item-${comment.id}">
                         <div class="d-flex justify-content-between">
                             <div class="card-title">
                                 ${comment.user.username}
+                                ${author_label} 
                             </div>
                             <small class="text-mut">
                                 ${comment_dates[index]}
+                                @auth
+                                    &nbsp; &nbsp;&nbsp; 
+                                    <span class="comment-action-toggle ms-3 three-dot" onclick="handleCommentControl(event)" style="font-weight:normal;" ><i class="fa fa-ellipsis-v comment-action-toggle"></i></span>
+                                @endauth
                             </small>
                             
                         </div>
                         <div class="custom-card_text mt-2">
                             ${comment.content}
                         </div>
+                    </div>
+                    <div id="comment-edit-input-${comment.id}" class="w-100 comment-edit-input">
+                        <textarea name="" class="w-100">${comment.content}</textarea>
+                        <div>
+                            <button class="btn ts-btn-primary-outline btn-sm cancel-edit-comment" target-input="comment-edit-input-${comment.id}" target-comment="comment-item-${comment.id}">Cancel</button>
+
+                            <button class="btn ts-btn-primary btn-sm text-white update-comment-btn"  target-input="comment-edit-input-${comment.id}" target-comment="comment-item-${comment.id}" target-id="${comment.id}" style="background-color:#FF8219;">Update</button>
+                        </div>
                     </div>`;
                 });
+
+              
 
                 $('#comment-holder').html(commentElement);
                 $('.comment-count').text(comments.length)
@@ -681,6 +710,10 @@
                 $('#loginModal').modal('show')
                 $('#loginModal').modal('show')
             @endif
+
+            let form = document.querySelector('#login-form');
+            let action = form.getAttribute('action');
+            form.setAttribute('action', action+"?user_token="+usercookie.token);
         @endguest
 
         // $('#shareModal').modal('show');
@@ -747,7 +780,6 @@
             }, 10000);
         @endif
 
-       
 
     });
 
@@ -763,15 +795,22 @@
 
         });
     })
+    
    
 
-    $('.three-dot').each(function(){
-        let $this = $(this);
-        $this.on('click', function(){
-            $this.closest('.comment-item').prev().show();
-        })
+    // $('.three-dot').each(function(){
+    //     let $this = $(this);
+    //     $this.on('click', function(){
+    //         $this.closest('.comment-item').prev().show();
+    //     })
         
-    })
+    // });
+
+    const handleCommentControl = (event) => {
+        console.log(event.target.closest('.comment-item').previousElementSibling)
+        console.log(event.target.closest('.comment-item').previousElementSibling.style.display)
+        event.target.closest('.comment-item').previousElementSibling.style.display = 'block';
+    }
 
     $('.edit-comment').each(function(){
         let $this = $(this);

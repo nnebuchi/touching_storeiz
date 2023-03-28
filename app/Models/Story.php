@@ -33,7 +33,11 @@ class Story extends Model
     }
 
     public function likes(){
-        return $this->hasMany(StoryLike::class);
+        return $this->hasMany(StoryLike::class)->where('like_type', 'positive');
+    }
+
+    public function dislikes(){
+        return $this->hasMany(StoryLike::class)->where('like_type', 'negative');
     }
 
     public function current_user_like(){
@@ -46,6 +50,10 @@ class Story extends Model
 
     public function reads(){
         return $this->hasMany(StoryRead::class);
+    }
+
+    public function read_hours(){
+        return $this->hasMany(StoryRead::class)->sum('time_spent');
     }
 
     public function recent_reads(){

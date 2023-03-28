@@ -181,8 +181,13 @@ class StoryService
             $stories = Story::with('author')->with('tags');
         }
         
-
-        $data['stories']= $stories->with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->paginate($page_count);
+        $stories = $stories->with('cover_photo')->with('likes')->with('comments')->with('reads');
+        
+        if(Auth::check()){
+            $stories = $stories->with('current_user_like');
+        }
+        
+        $data['stories']  = $stories->paginate($page_count);
 
         $data['tags'] = Tag::withCount('stories')->get();
 
@@ -374,6 +379,11 @@ class StoryService
             'status'=>'success',
             'data'=>Story::withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate(5)
         ], 200);
+    }
+
+    public static function list(){
+        $data['stories'] = Story::withCount('likes')->withCount('dislikes')->withCount('comments')->withCount('reads')->with('reads')->with('tags')->where('user_id', Auth::user()->id)->paginate(5);
+        return view('story.list')->with($data);
     }
 
     //  public function getComments(Request $request){

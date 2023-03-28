@@ -65,7 +65,7 @@
 <section class="faq-section">
     <div class="container">
      
-        <h2 class="trending_hero-title text-center text-capitalize mt-1 mb-5">What can you do on African Wattpad ?</h2>
+        <h2 class="trending_hero-title text-center text-capitalize mt-1 mb-5">What can you do on {{env("APP_NAME")}} ?</h2>
         <div class="position-relative donut-container d-none d-md-block">
           <img src="{{asset('assets/img/landing_page/donuts.svg')}}" alt="" class="donuts">
           <img src="{{asset('assets/img/landing_page/donuts.svg')}}" alt="" class="donuts">

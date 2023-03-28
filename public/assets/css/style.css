@@ -117,6 +117,9 @@ body a{
     text-decoration: none;
     color: var(--primaryColor-1);
 }
+body input[type="checkbox"]:checked, outline{
+    background-color: var(--primaryColor-1);
+}s
 
 /* width */
 ::-webkit-scrollbar {
@@ -652,7 +655,7 @@ main {
 
 /* story feed starts */
 .feed_section{
-    margin: 80px 0px;
+    margin: 80px 0 0 0;
     padding-top: 6rem;
 }
 .feed_title{
@@ -978,9 +981,13 @@ main {
     font-size: 1.3rem;
     color: #000000 !important;
 }
-tbody .table_hover td{
-    /* padding:40px 0; */
+.table-col{
+    padding: 30px 0 !important;
 }
+.table-row{
+    border-top: 1px solid #D9AD89;
+}
+
 .table_hover:hover{
     background-color: var(--primaryColor-4);
     box-shadow: -1px 1px 8px .3px var(--greyShade-4);
@@ -1005,17 +1012,15 @@ tbody .table_hover td{
 }
 #donut_single{
      height: 400px;
-     width: 100%;
 }
 #curve_chart{
      height: 400px;
-     width: 100%;
 }
+
 .three-dot{
-    
     cursor: pointer!important;
-    width: 10px;
-    height: 10px;
+    width: 30px;
+    height: 30px;
 }
 .three-dot:hover{
     color: var(--primaryColor-1);
@@ -1296,11 +1301,34 @@ tbody .table_hover td{
     footer{
         margin-top: 0rem !important;
     }
+
+    .table-col{
+        padding: 30px 0 !important;
+    }
+    .table-row{
+        border-top: none !important;
+    }
+
+    .cust-border{
+        border: none;
+    }
+
+    #donut_single{
+        height: 400px;
+        width: 100% !important;
+    }
+    #curve_chart{
+        height: 400px;
+        width: 100% !important;
+    }
 }
 
 
 
 @media (max-width:993px){
+    .cust_navbar-nav{
+        margin-left: 0px!important;
+    }
     .main-div{
         margin-top:0px!important;
     }
@@ -1426,29 +1454,38 @@ tbody .table_hover td{
     }
 
     /* ticket starts */
-.ticket_img-container{
-    height: 800px;
-}
-.ticket_hero-img{
-    width: 100%;
-    padding: 10rem 3rem;
-}
-.ticket_section{
-    margin: 0rem 0;
-}
-.ticket_reg{
-    margin-top: 4rem !important;
-}
+    .ticket_img-container{
+        height: 800px;
+    }
+    .ticket_hero-img{
+        width: 100%;
+        padding: 10rem 3rem;
+    }
+    .ticket_section{
+        margin: 0rem 0;
+    }
+    .ticket_reg{
+        margin-top: 4rem !important;
+    }
 
-/* Register  */
-.register_section{
-    margin: 10rem 2rem 5rem 2rem;
-}
+    /* Register  */
+    .register_section{
+        margin: 10rem 2rem 5rem 2rem;
+    }
 
-/* login  */
-.login_section{
-    margin: 10rem 2rem 5rem 2rem;
-}
+    /* login  */
+    .login_section{
+        margin: 10rem 2rem 5rem 2rem;
+    }
+
+    #donut_single{
+        height: 400px;
+        width: 100% !important;
+    }
+    #curve_chart{
+        height: 400px;
+        width: 100% !important;
+    }
     
 
 }
@@ -1788,6 +1825,22 @@ tbody .table_hover td{
 }
 .login_reg-subtitle{
     font-size: 1.1rem;
+}
+
+.table-col{
+    padding: 30px 0 !important;
+}
+.table-row{
+    border-top: none !important;
+}
+
+#donut_single{
+    height: 400px;
+    width: 100% !important;
+}
+#curve_chart{
+    height: 400px;
+    width: 100% !important;
 }
  
 }
