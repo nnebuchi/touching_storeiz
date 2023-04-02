@@ -235,7 +235,7 @@ class StoryService
         })
         ->where('id', '!=', $story->id) // So you won't fetch same post
         ->get();
-        
+     
         return view('story.read')->with($data);
     }
 

@@ -4,7 +4,7 @@
       $message=session('msg');
       $myalert=session('alert');
     @endphp
-    
+   
     <div class="alert alert-{{ session('alert') }} alert-dismissible fade show mt-3" role="alert">
       <?= session('msg') ?>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -17,4 +17,15 @@
       @endphp
   @endif 
   
+  
+  
   </div>
+  <script>
+    $(document).ready(function(){
+      setTimeout(() => {
+        $('.alert-msg').empty()
+      }, 10000);
+    })
+    
+   
+  </script>

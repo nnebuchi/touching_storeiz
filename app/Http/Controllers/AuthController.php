@@ -25,6 +25,10 @@ class AuthController extends Controller
         return AuthService::register($request);
     }
 
+    public function resendVerificationMail(){
+        return AuthService::resendVerificationMail();
+    }
+
     // public function saveUserToken(Request $request){
     //     return AuthService::saveUserToken($user);
     // }

@@ -13,12 +13,10 @@ Route::get('/', [StoryController::class, 'index'])->name('home');
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 
 Route::get('/unverified-email', function () {
-   dd('Verify Email');
+   return view('auth.verify_email');
 })->name('unverified-email');
 
-Route::post('/request-verification-link', function () {
-   dd('Verify Email');
-})->name('request-verification-link');
+Route::post('/request-verification-link', [AuthController::class, 'resendVerificationMail'])->name('request-verification-link');
 
 Route::get('/verify-email/{email}/{code}', [UserController::class, 'verifyEmail'])->name('verify-email');
 

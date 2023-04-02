@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Services\UserService;
+use App\Event\WriterCreated;
+use Illuminate\Support\Str;
 
 class AuthService
 {
@@ -32,5 +34,15 @@ class AuthService
         if(Auth::attempt(['email'=>$user->email, 'password'=>sanitize_input($request->password)], true)){
             return redirect()->back();
        }
+    }
+
+    public function resendVerificationMail(){
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->verification_code = Str::random(25);
+        $user->verification_expiry_date = strtotime('+3 days');
+        $user->save();
+        WriterCreated::dispatch($user);
+        Session(['msg'=>'verification link sent.', 'alert'=>'success']);
+        return redirect()->back();
     }
 }

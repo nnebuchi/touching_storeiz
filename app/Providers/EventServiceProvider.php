@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
+use App\Event\EmailVerified;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Listeners\SendWelcomeEmail;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
@@ -20,7 +22,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Event\WriterCreated' => [
             'App\Listeners\SendVerificationEmail'
-          ]
+        ],
+        EmailVerified::class => [
+            SendWelcomeEmail::class
+        ]
     ];
 
     /**
