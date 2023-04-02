@@ -150,9 +150,11 @@ body input[type="checkbox"]:checked, outline{
 }
 
 .become-left{
-    padding-top: 230px;
+    margin-top: -15px!important;
+    padding-top: 100px;
     height: 100%;
 }
+
 .cust_nav{
     background-color: var(--bg-grey);
 }
@@ -759,8 +761,13 @@ main {
 
 .become_section{
     /* margin: 5rem 0 ; */
-    min-height: 1000px;
+    min-height: 500px;
 }
+/* .become-bg{
+    min-height:500px;
+    background-size: cover;
+    background-position: right;
+} */
 .img_container{
     background-color: #F2F2F2;
     /* min-height: 850px; */
@@ -789,15 +796,15 @@ main {
     color: var(--greyShade-1);
     font-size: 1.1rem;
 }
-.input_label{
+/* .input_label{
     cursor: pointer;
     background-color: #F2F2F2;
     border-radius: 25px; 
-    height: 270px; 
+    height: 70px; 
     width: 100%; 
     text-align: center; 
     line-height: 200px;
-}
+} */
 .input_div + .input_div{
     margin-top: -5px !important;
 }
@@ -1366,9 +1373,9 @@ main {
         min-height: 500px;
     }
 
-    .input_label{
-        height: 200px;
-    }
+    /* .input_label{
+        height: 70px;
+    } */
 
     .cust-container{
         padding: 0 2rem !important;
@@ -1428,12 +1435,12 @@ main {
 
     .become_section{
         /* margin-top: 10rem; */
-        min-height: 1000px;
+        min-height: 500px;
         padding-top: 20px;
     }
     .become-left{
-        padding-top: 200px;
-       
+        padding-top: 50px;
+        margin-top: -5px;
     }
     /* .img_container{
         background-color: #F2F2F2;
@@ -1589,9 +1596,7 @@ main {
 
     /* become starts */
 
-    .become_section{
-        /* margin: 5rem 0; */
-    }
+    
     .become_reg{
         margin: 4rem 0rem !important;
         min-height: 600px;

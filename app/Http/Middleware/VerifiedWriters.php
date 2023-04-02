@@ -17,8 +17,10 @@ class VerifiedWriters
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->is_writer || Auth::user()->email_verified_at === NULL){
+        if(Auth::user()->email_verified_at === NULL){
             return redirect(route('unverified-email'));
+        }elseif(!Auth::user()->is_writer){
+            return redirect(route('become-a-writer'));
         }
         return $next($request);
     }

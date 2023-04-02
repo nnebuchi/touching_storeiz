@@ -10,7 +10,11 @@
                     <p class="hero_desc-text mt-3 d-none d-md-block">Browse through thousands of short stories from writers around the world. find what picks your fancy and dive in. Become a writer, share your work and earn while entertaining.</p>
                 </div>
                 <div class="hero_btns mt-4 d-lg-block d-md-flex">
-                    <a href=""  class="ts-btn-lg ts-btn-primary-outline ts-btn ">Sign Up</a>
+                    @guest
+                    <a href="{{route('stories')}}"  class="ts-btn-lg ts-btn-primary-outline ts-btn ">Sign Up</a>
+                    @else
+                    <a href="{{route('add-story-form')}}"  class="ts-btn-lg ts-btn-primary-outline ts-btn ">Start Writing</a>
+                    @endguest
                     <a href="{{route('stories')}}"  class="ts-btn-lg ts-btn-primary ts-btn ms-lg-5 ms-2 "><strong>Start Reading</strong></a>
                 </div>
             </div>

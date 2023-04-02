@@ -3,17 +3,16 @@
 <div class="container-fluid">
 
     <section class="become_section" >
-      <div class="row" style="height:100%;">
-        <div class="col-md-6 offset-md-0 col-sm-5 offset-sm-0 px-sm-0 col-12 px-4 bg-grey-5 become-left d-none d-sm-block">
-            <div class="img_container d-flex justify-content-center">
-                    <img src="../assets/img/become/novelist.svg" alt="novelist" class="become_hero-img">
+      <div class="row">
+        <div class="col-md-6 offset-md-0 col-sm-5 offset-sm-0 px-sm-0 col-12 px-4 bg-grey-5 become-left d-none d-sm-block bg-grey">
+            <div class="img_container d-flex justify-content-center become-bg" >
+                <img src="../assets/img/become/novelist.svg" alt="novelist" class="become_hero-img">
             </div>
           
         </div>
-        <div class="col-12 col-sm-7 offset-sm-0 col-md-6 offset-md-0 d-non py-5" style="height:100%">
+        <div class="col-12 col-sm-7 offset-sm-0 col-md-6 offset-md-0 d-non py-5 py-lg-0" style="heigh:100%">
             <div class="containe">
               <div class="become_reg">
-            
                   <div class="row">
                       <div class="col-lg-12 mx-md-auto px-md-3 col-sm-12 px-sm-4 offset-sm-0  col-10 offset-1">
                         <h2 class="text-capitalize become_reg-title text-md-center text-lg-start">become a writer</h2>
@@ -27,14 +26,18 @@
                           <form action="{{ route('writer.new') }}" class="row g-3" method="post" enctype="multipart/form-data" id="writer-form">
                             @csrf
                             
-                            <label for="inputTag" class="input_label">
-                              
-                              <span><i class=" fs-1 bi bi-camera"></i> <small class="" id="cover-upload-text">Click here to upload</small></span>
+                            <label for="inputTag"  style="height:100px; background-color:#F2F2F2; cursor:pointer;"  class="rounded text-center py-2 input_label">
+                              <span>
+                                <i class="bi bi-camera fa-2x"></i> <br>
+                                <small>Click here to upload</small>
+                              </span>
                             </label>
-                            <input type="file" name="cover_photo" id="inputTag" onchange="uploadCoverPhoto(event)"/>
+                            <div>
+                              <input type="file" name="cover_photo" id="inputTag" onchange="uploadCoverPhoto(event)"/>
+                            </div>
 
                               
-                            <div class="col- input_div mb-2 mt-lg-5 mt-3 mt-sm-5">
+                            <div class="col- input_div mb-2 mt-lg-2 mt-3 mt-sm-5">
                               <label for="validationCustom01" class="form-label"></label>
                               <input type="text" name="first_name" class="form-control rounded-3 py-2" id="first_name" placeholder="First name" @guest value="{{ old('first_name') }}" @endguest required>
                               <div class="text-danger" >
@@ -67,7 +70,7 @@
                             <div class="col- input_div mb-2">
                               <label for="validationCustomUsername" class="form-label"></label>
                               <div class="input-group has-validation">
-                                <input type="email" name="email" class="form-control rounded-3 py-2" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" @guest value="{{ old('email') }}" @endguest required>
+                                <input type="email" name="email" class="form-control rounded-3 py-2" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" @guest value="{{ old('email') }}" @else value="{{auth()->user()->email}}" disabled @endguest required>
                                 
                               </div>
                               <div class="text-danger" >
@@ -87,9 +90,7 @@
                                     {{ $message }}
                                   @enderror
                                 </div>
-                                {{-- <div class="invalid-feedback">
-                                  Password must be 8 characters
-                                </div> --}}
+                               
                               </div>
                             </div>
                             @endguest
@@ -149,10 +150,6 @@
               rules: {'required':true, 'email':true}
           },
           {
-              id:'password',
-              rules:{'required':true, 'min_length':8, 'has_special_character':true}
-          },
-          {
               id:"first_name",
               rules: {'required':true}
           },
@@ -164,6 +161,11 @@
               id:"pen_name",
               rules: {'required':true}
           },
+          {
+            id:"inputTag",
+            alias:"Cover Photo",
+            rules:{"required":true}
+          }
           
       ]);
       
