@@ -4,7 +4,7 @@
 
     <section class="become_section" >
       <div class="row">
-        <div class="col-md-6 offset-md-0 col-sm-5 offset-sm-0 px-sm-0 col-12 px-4 bg-grey-5 become-left d-none d-sm-block bg-grey">
+        <div class="col-md-6 offset-md-0 col-sm-5 offset-sm-0 px-sm-0 col-12 px-4 bg-grey-5 become-left d-none d-sm-block bg-gre">
             <div class="img_container d-flex justify-content-center become-bg" >
                 <img src="../assets/img/become/novelist.svg" alt="novelist" class="become_hero-img">
             </div>

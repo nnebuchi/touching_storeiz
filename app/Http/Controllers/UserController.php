@@ -17,7 +17,7 @@ class UserController extends Controller
             'last_name'=>'required',
             'pen_name'=>'required|unique:users',
             'email'=> Auth::check() ? 'required|email' : 'required|email|unique:users',
-            'cover_photo'=>'mimes:jpeg,jpg,png|max:1024',
+            'cover_photo'=>'mimes:jpeg,jpg,png',
             'password'=>'min:8'
         ];
 

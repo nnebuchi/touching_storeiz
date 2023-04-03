@@ -152,6 +152,7 @@ body input[type="checkbox"]:checked, outline{
 .become-left{
     margin-top: -15px!important;
     padding-top: 100px;
+    padding-bottom: 175px!important;
     height: 100%;
 }
 
@@ -763,11 +764,7 @@ main {
     /* margin: 5rem 0 ; */
     min-height: 500px;
 }
-/* .become-bg{
-    min-height:500px;
-    background-size: cover;
-    background-position: right;
-} */
+
 .img_container{
     background-color: #F2F2F2;
     /* min-height: 850px; */
