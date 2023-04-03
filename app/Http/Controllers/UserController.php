@@ -17,10 +17,10 @@ class UserController extends Controller
             'last_name'=>'required',
             'pen_name'=>'required|unique:users',
             'email'=> Auth::check() ? 'required|email' : 'required|email|unique:users',
-            'cover_photo'=>'required|mimes:jpeg,jpg,png|max:1024',
+            'cover_photo'=>'mimes:jpeg,jpg,png|max:1024',
             'password'=>'min:8'
         ];
-        
+
         $request->validate($data);
         // dd($request);
        return UserService::becomeAWriter($request);

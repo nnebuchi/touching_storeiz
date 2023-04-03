@@ -160,11 +160,6 @@
           {
               id:"pen_name",
               rules: {'required':true}
-          },
-          {
-            id:"inputTag",
-            alias:"Cover Photo",
-            rules:{"required":true}
           }
           
       ]);
