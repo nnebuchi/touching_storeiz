@@ -29,7 +29,9 @@
           </div>
     </section>
     <section class="story_detials position-relative">
-       <h1 class="feed_title my-5 my-sm-2">{{isset($request_tag) ? $request_tag:''}} Stories</h1>
+        @isset($request_tag)
+            <h1 class="feed_title my-5 my-sm-2">{{$request_tag}} Stories</h1>
+        @endisset
         
         <div class="row position">
             <div class="col-12 px-4 col-md-10 offset-md-1 px-md-2 col-lg-10  col-xl-8 offset-xl-0" id="story-box">
