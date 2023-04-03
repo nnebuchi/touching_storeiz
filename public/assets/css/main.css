@@ -119,7 +119,7 @@ body a{
 }
 body input[type="checkbox"]:checked, outline{
     background-color: var(--primaryColor-1);
-}s
+}
 
 /* width */
 ::-webkit-scrollbar {
