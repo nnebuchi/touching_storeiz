@@ -145,6 +145,12 @@ body input[type="checkbox"]:checked, outline{
 
 
 /* nav */
+
+.navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 var(--primaryColor-1)!important;
+}
 .bg-grey-5{
     background-color: var(--greyShade-5);
 }
@@ -171,6 +177,8 @@ body input[type="checkbox"]:checked, outline{
     font-size: 1.2rem !important;
     font-family: var(--primaryFont-regular);
 }
+
+
 
 .main-div{
     margin-top:90px;
@@ -1726,7 +1734,7 @@ main {
     font-size: .9rem;
   }
   .footer_container{
-    width: 80% !important;
+    width: 100% !important;
     margin: 0 auto;
   }
   /* readstory */
@@ -1841,6 +1849,10 @@ main {
 #curve_chart{
     height: 400px;
     width: 100% !important;
+}
+
+footer .cust_nav-link{
+    font-size: 1rem !important;
 }
  
 }
