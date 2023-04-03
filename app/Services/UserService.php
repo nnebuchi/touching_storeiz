@@ -60,6 +60,8 @@ class UserService
         $user->verification_expiry_date = strtotime('+3 days');
         WriterCreated::dispatch($user);
         $user->save();
+        WriterCreated::dispatch($user);
+        return redirect(route('writer-dashboard'));
     }
 
     public static function verifyEmail($request){

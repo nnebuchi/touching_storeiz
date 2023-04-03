@@ -11,14 +11,17 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function becomeWriter(Request $request){
-        $request->validate([
+        
+        $data = [
             'first_name'=>'required',
             'last_name'=>'required',
             'pen_name'=>'required|unique:users',
-            'email'=>'required|email|unique:users',
+            'email'=> Auth::check() ? 'required|email' : 'required|email|unique:users',
             'cover_photo'=>'required|mimes:jpeg,jpg,png|max:1024',
             'password'=>'min:8'
-        ]);
+        ];
+        
+        $request->validate($data);
         // dd($request);
        return UserService::becomeAWriter($request);
     }

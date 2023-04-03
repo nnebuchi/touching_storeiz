@@ -70,7 +70,7 @@
                             <div class="col- input_div mb-2">
                               <label for="validationCustomUsername" class="form-label"></label>
                               <div class="input-group has-validation">
-                                <input type="email" name="email" class="form-control rounded-3 py-2" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" @guest value="{{ old('email') }}" @else value="{{auth()->user()->email}}" disabled @endguest required>
+                                <input type="email" name="email" class="form-control rounded-3 py-2" id="email" placeholder="Email" aria-describedby="inputGroupPrepend" @guest value="{{ old('email') }}" @else value="{{auth()->user()->email}}" readonly @endguest required>
                                 
                               </div>
                               <div class="text-danger" >
