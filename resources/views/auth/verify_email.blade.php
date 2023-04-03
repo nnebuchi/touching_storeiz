@@ -7,7 +7,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 mt-lg-0 mt-5">
                         <div class="card mt-5">
-                            <div class="card-header text-center" style="background-color: rgba(0,0,0,.03);">{{ __('Verify Your Email Address') }}<span class="text-dark" style="font-weight: bold;"> ( {{auth()->user()->email }} ) </span></div>
+                            <div class="card-header text-center" style="background-color: rgba(0,0,0,.03);">{{ __('Verify Your Email Address') }} <span class="text-dark" style="font-weight: bold;"> <br class="d-lg-none"> ( {{auth()->user()->email }} ) </span></div>
 
                             <div class="card-body">
                                 {{-- @if (session('resent'))

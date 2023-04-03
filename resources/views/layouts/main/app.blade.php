@@ -5,7 +5,7 @@
         @include('layouts.main.navbar')
 
         <main style="min-height: 380px;">
-            <div class="text-center main-div bg-success">
+            <div class="text-center main-div">
                 @include('layouts.shared.alert')
             </div>
             @yield('content')
