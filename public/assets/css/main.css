@@ -156,7 +156,7 @@ body input[type="checkbox"]:checked, outline{
 }
 
 .cust_nav{
-    background-color: var(--primaryColor-1);
+    background-color: #fef4eb;
 }
 .cust__navbar-brand{
     color: var(--primaryColor-1) !important;
