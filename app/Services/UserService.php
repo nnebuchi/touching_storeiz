@@ -80,7 +80,6 @@ class UserService
             Session(['email'=>$email, 'alert'=>'danger', 'msg'=>'Verification link expired. Kindly request a new verification link by clicking the button below']);
             return redirect(route('unverified-email'));
         }
-        $user->is_verified = true;
         $user->email_verified_at = date('Y-m-d h:m:i', time());
         $user->save();
         

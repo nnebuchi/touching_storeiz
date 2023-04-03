@@ -81,6 +81,7 @@ Route::group(['prefix' => 'tickets', 'middleware' => ['auth']], function () {
 Route::group([], function () {
 
     Route::get('/register', function () {
+        Session(['register_route'=>'routine']);
         return view('auth.register');
     })->name('signup');
 

@@ -32,7 +32,13 @@ class AuthService
         $user->save();
 
         if(Auth::attempt(['email'=>$user->email, 'password'=>sanitize_input($request->password)], true)){
-            return redirect()->back();
+            
+            if(session()->has('register_route') && session('register_route') === 'routine'){
+                return redirect()->route('home');
+            }else{
+                return redirect()->back();
+            }
+            
        }
     }
 
