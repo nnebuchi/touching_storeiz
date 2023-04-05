@@ -16,8 +16,9 @@ class StoryController extends Controller
         $request->validate([
             'title'=>'required',
             'tags'=>'required',
+            'genre'=>'required',
             'story'=>'required|min:200',
-            'cover_photo'=>'required|mimes:jpeg,jpg,png|max:1024'
+            'cover_photo'=>'required|mimes:jpeg,jpg,png'
         ]);
         return StoryService::add($request);
     }

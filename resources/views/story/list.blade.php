@@ -2,20 +2,19 @@
 @section('content')
 <!-- chart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<div class="container">
+<div class="container" style="margin-top:-60px!important">
 
-            
   <section class="publication">
      <div class="row">
-        <div class="col-xl-9 col-md-7">
+        <div class="col-xl-9 col-sm-6">
            <h1 class="publication_title feed_title">Publications</h1>
         </div>
-        <div class="col-xl-3 col-md-5 mt-4 text-md-end">
-          <h1 class="publisher_name popular"><span><i class="bi bi-person "></i></span> Jennifer Rowland</h1>
+        <div class="col-xl-3 col-sm-6 mt-3 text-sm-end d-none d-sm-block">
+          <h1 class="publisher_name popular"><span><i class="bi bi-person "></i></span>{{auth()->user()->first_name.' '.auth()->user()->last_name}}</h1>
         </div>
      </div>
      <div class="row">
-        <div class="col-xl-9">
+        <div class="col-sm-9">
           <div class="input-group mt-5">
             <input type="search" class="form-control search_input" id="" placeholder="Search">
             <div class="input-group-text bg-white custgrp_text">
@@ -23,7 +22,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3">
+        <div class="col-sm-3 d-none d-sm-block">
           <div class="input-group mt-5">
             <input type="search" class="form-control filter_input" id="" placeholder="Filter">
             <div class="input-group-text bg-white custgrp_text">
@@ -39,13 +38,13 @@
            <table class="table cust_table">
             <thead>
               <tr>
-                <th scope="col" width="150" class="text-start">Title </th>
-                <th scope="col" width="150" class="text-start">Tags </th>
-                <th scope="col" width="50" class="text-start">Reads </th>
-                <th scope="col" width="50" class="text-start">Likes </th>
-                <th scope="col" width="50" class="text-start">Dislikes </th>
-                <th scope="col" width="50" class="text-start">Comments </th>
-                <th scope="col" width="100" class="text-start">Read Hour </th>
+                <th scope="col" width="150" class="text-start story-data-heading">Title </th>
+                <th scope="col" width="150" class="text-start story-data-heading">Tags </th>
+                <th scope="col" width="50" class="text-start story-data-heading">Reads </th>
+                <th scope="col" width="50" class="text-start story-data-heading">Likes </th>
+                <th scope="col" width="50" class="text-start story-data-heading">Dislikes </th>
+                <th scope="col" width="50" class="text-start story-data-heading">Comments </th>
+                <th scope="col" width="100" class="text-start story-data-heading"> <span class="d-none d-lg-inline">Read</span>  Hour </th>
                 
               </tr>
             </thead>
@@ -53,7 +52,7 @@
                 @foreach($stories as $story)
                  <tr class="table_hover story-row">
                     <td class="text-start title" width="150">{{$story->title}}</td>
-                    <td class="text-start tags" width="150" class="text-cente">
+                    <td class="text-start tags" width="150">
                       @foreach($story->tags as $t_key=> $tag)
                       <small class="text-mute" style="font-size:13px;">
                         {{$tag->title}} @if($t_key < count($story->tags)) &nbsp;<span class="bi bi-dot story-slider-dot"> </span>@endif
@@ -108,6 +107,20 @@
   </section>
 
 <script type="text/javascript">
+
+$(document).ready(function(){
+    $('.search_input').on('keyup',function(){
+        var searchTerm = $(this).val().toLowerCase();
+        $('.story-row').each(function(){
+            var lineStr = $(this).text().toLowerCase();
+            if(lineStr.indexOf(searchTerm) === -1){
+                $(this).hide();
+            }else{
+                $(this).show();
+            }
+        });
+    });
+});
     google.charts.load('current', {'packages':['corechart']});
 
    $('.story-row').on('click', function(){

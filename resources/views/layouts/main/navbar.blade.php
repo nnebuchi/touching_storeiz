@@ -34,9 +34,10 @@
                     Browse
                   </a>
                   <ul class="dropdown-menu me-5 me-lg-0">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    @foreach (genres() as $genre)
+                        <li><a class="dropdown-item" href="{{ route('stories').'?genre='.$genre->slug}}">{{$genre->title}}</a></li>
+                    @endforeach
+                    
                   </ul>
                 </li>
                 <li class="nav-item">

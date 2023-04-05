@@ -16,25 +16,17 @@ class StoryCategorySeeder extends Seeder
     {
         $categories = [
             [
-                'title' => "Romance",
-                'slug' => 'romance',
-            ],
-            [
-                'title' => "Action",
-                'slug' => 'action',
-            ],
-            [
-                'title' => "Tragedy",
-                'slug' => 'tragedy',
-            ],
-            [
-                'title' => "Comedy",
-                'slug' => 'comedy',
-            ],
-            [
                 'title' => "Drama",
                 'slug' => 'drama',
             ],
+            [
+                'title' => "Prose",
+                'slug' => 'prose',
+            ],
+            [
+                'title' => "Poetry",
+                'slug' => 'poetry',
+            ]
             
         ];
 

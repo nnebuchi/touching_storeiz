@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Story;
 use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\Str;
+use App\Models\StoryCategory;
 
 if (!function_exists('generateOTP')) {
     /**
@@ -45,5 +47,9 @@ if (!function_exists('generateOTP')) {
         }else{
             return number_format((float)($value/60), 2,'.', ',')." hours";
         }
+    }
+
+    function genres(){
+        return StoryCategory::all();
     }
 }

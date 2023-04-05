@@ -201,10 +201,14 @@
                 value: pageCount
             }
         ];
-        if(params.hasOwnProperty('tag')){
-            url_params.push({key: "tag", value:params.tag});
-             
+
+        for(x in params){
+            url_params.push({key: x, value:params[x]});
         }
+        // if(params.hasOwnProperty('tag')){
+        //     url_params.push({key: "tag", value:params.tag});
+             
+        // }
 
         url_params.forEach((par, index)=>{
             route += index === 0 ? `?${par.key}=${par.value}` : `&${par.key}=${par.value}`;

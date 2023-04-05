@@ -28,6 +28,10 @@ class Story extends Model
         
     }
 
+    public function story_category(){
+        return $this->belongsTo(StoryCategory::class);
+    }
+
     public function author(){
         return $this->belongsTo(User::class, 'user_id');
     }

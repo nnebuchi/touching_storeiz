@@ -57,7 +57,6 @@ Route::group(['prefix' => 'story'], function () {
         });
     });
 
-    
 
     Route::get('/', [StoryController::class, 'index'])->name('stories');
 

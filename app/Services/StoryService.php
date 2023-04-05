@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\StoryLike;
 use App\Models\StoryRead;
 use App\Models\StoryTag;
+use App\Models\StoryCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -19,6 +20,7 @@ class StoryService
 {
     public static function showAddForm(){
         $data['tags'] = Tag::all();
+        $data['categories'] = StoryCategory::all();
         return view('story.add')->with($data);
     }
 
@@ -34,6 +36,7 @@ class StoryService
         $story->title = sanitize_input($request->title);
         $story->slug = slugify($request->title);
         $story->content = $request->story;
+        $story->story_category_id = sanitize_input($request->genre);
         $story->save();
 
         self::add_story_media($story, $story_cover, true);
@@ -166,19 +169,35 @@ class StoryService
     }
 
     public static function index(Request $request, Int $page_count){
+        
+        $stories = Story::with('author')->with('tags');
+        
         if($request->tag){
             $tag = Tag::where('slug', $request->tag)->first();
             if($tag){
                 $data['request_tag'] = $tag->title;
-                $stories = Story::whereHas('tags', function ($q) use($tag) {
+                $stories = $stories->whereHas('tags', function ($q) use($tag) {
                     return $q->whereIn('slug', $tag); 
                 })
                 ->with(array('author'=>function($query){
                     $query->select('id', 'pen_name');
                 }));
             }
-        }else{
-            $stories = Story::with('author')->with('tags');
+        }
+
+        if($request->genre){
+            
+            $genre = StoryCategory::where('slug', $request->genre)->first();
+            
+            if($genre){
+                $data['request_genre'] = $genre->title;
+                $stories = $stories->whereHas('story_category', function ($q) use($genre) {
+                    return $q->whereIn('slug', $genre); 
+                });
+                // ->with(array('author'=>function($query){
+                //     $query->select('id', 'pen_name');
+                // }));
+            }
         }
         
         $stories = $stories->with('cover_photo')->with('likes')->with('comments')->with('reads');
@@ -198,22 +217,35 @@ class StoryService
 
     //   public static function moreStory($currentPage, $lastPage, $totalItem, $perPage){
     public static function moreStory(Request $request){
+        $stories = Story::with('tags');
         if($request->tag){
             
             $tag = Tag::where('slug', $request->tag)->first();
             
             if($tag){
                 $data['request_tag'] = $tag->title;
-                $stories = Story::whereHas('tags', function ($q) use($tag) {
+                $stories = $stories->whereHas('tags', function ($q) use($tag) {
                     return $q->whereIn('slug', $tag); 
                 });
                 // ->with(array('author'=>function($query){
                 //     $query->select('id', 'pen_name');
                 // }));
             }
-        }else{
-            $stories = Story::with('tags');
         }
+       
+
+        if($request->genre){
+            
+            $genre = StoryCategory::where('slug', $request->genre)->first();
+            
+            if($genre){
+                $data['request_genre'] = $genre->title;
+                $stories = $stories->whereHas('story_category', function ($q) use($genre) {
+                    return $q->whereIn('slug', $genre); 
+                });
+            }
+        }
+        
         $data = $stories->with('author')->with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->paginate(2);
         return Response::json([
             'status'=>'success',

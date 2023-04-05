@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <section class="post_section" >
        <div class="row">
-            <div class="col-lg-6 offset-lg-0 col-sm-10 offset-sm-1 px-sm-0   col-12 px-2 ">
+            <div class="col-lg-6 offset-lg-0 col-sm-10 offset-sm-1 px-sm-0 col-12 px-2 ">
                 <div class="post_img-container">
                     <img src="{{asset('assets/img/become/post.svg')}}" alt="novelist" class="post_hero-img">
                 </div>
@@ -21,11 +21,14 @@
                             <p class="mt-lg-4 mt-md-3 mt-3 post_reg-subtitle  text-lg-start ">Upload a Cover Image</p>
                             <form action="{{route('add-story')}}" class="row g-3" method="post" id="story-form" enctype="multipart/form-data">
                                 @csrf
-                                <label for="inputTag" class="input_label" >
-                                    <span><i class=" fs-1 bi bi-camera"></i></span>
+                                <label for="inputTag"  style="height:100px; background-color:#F2F2F2; cursor:pointer;"  class="rounded text-center py-2 input_label">
+                                    <span>
+                                        <i class="bi bi-camera fa-2x"></i> <br>
+                                        <small>Click here to upload</small>
+                                    </span>
                                 </label>
                                 <div>
-                                    <input id="inputTag" name="cover_photo" type="file"  onchange="uploadCoverPhoto(event)" />
+                                    <input type="file" name="cover_photo" id="inputTag" onchange="uploadCoverPhoto(event)"/>
                                 </div>
                                 <div class="text-danger backend-msg">
                                     @error('cover_photo')
@@ -42,24 +45,38 @@
                                     </div>
                                 </div>
                                 <div class="col- post_input-div">
+                                    <label for="" class="form-label">Genre</label>
+                                    <select class="form-control" name="genre" id="genre">
+                                        <option value="">Pick a Genre</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{$category->id}}" @if(old('category') && old('category') == $category->id) selected  @endif>{{$category->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    
+                                    <div class="text-danger backend-msg">
+                                        @error('category')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col- post_input-div">
                                     <label for="validationCustom02" class="form-label">Tags</label>
-                                    <select class="js-example-basic-multiple  form-control" name="tags[]" id="tags" multiple="multiple" style="width: 100%;">
-                                        {{-- <option value="" selected disabled>tag</option> --}}
+                                    <select class="js-example-basic-multiple  form-contro" name="tags[]" id="tags" multiple="multiple" style="width: 100%; border:2px solid grey!important;">
+                                        
                                         @foreach ($tags as $tag)
                                             <option value="{{$tag->id}}" @if(old('tags') && old('tags') == $tag->id) selected  @endif>{{$tag->title}}</option>
                                         @endforeach
                                     </select>
-                                    {{-- <select name="tag" id="tag"  class="form-control rounded-3" required>
-                                        
-                                    </select> --}}
+                                    
                                     <div class="text-danger backend-msg">
                                         @error('tag')
                                             {{ $message }}
                                         @enderror
                                     </div>
                                 </div>
+                                
                                 <div class="col- post_input-div">
-                                    <label for="validationCustom03" class="form-label"></label>
+                                    <label for="validationCustom03" class="form-label">Story Content</label>
                                     <input type="hidden" name="story" id="story">
                                     {{-- <textarea name="story" id="story" cols="30" rows="10" class="form-control rounded-3" placeholder="Write your story. . ." id="validationCustom03" required>{{old('story')}}</textarea> --}}
                                     <div id="toolbar" style="border:2px solid silver!important" class="rounded"></div>
@@ -175,7 +192,12 @@
             },
             {
                 id:"story",
+                alias:"Story Content",
                 rules: {'required':true, min_length:200}
+            },
+            {
+                id:"genre",
+                rules:{'required':true}
             },
             {
                 id:"inputTag",

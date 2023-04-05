@@ -1159,6 +1159,10 @@ main {
     background: #FCEB00 !important;
 } */
 
+/* Story Table */
+.story-row{
+    cursor: pointer;
+}
 
 
 @media (max-width:1400px){
@@ -1335,8 +1339,6 @@ main {
     }
 }
 
-
-
 @media (max-width:993px){
     .cust_navbar-nav{
         margin-left: 0px!important;
@@ -1503,6 +1505,15 @@ main {
 }
 
 @media (max-width:769px){
+    .feed_title{
+        font-size: 2rem!important;
+    }
+    .publisher_name{
+        font-size: 1.1rem!important;
+    }
+    .story-data-heading{
+        font-size: 13px;
+    }
     .hero_section{
         margin: 50px 0;
     }
@@ -1670,8 +1681,13 @@ main {
 
 }
 
-
 @media (max-width:576px){
+    .feed_title{
+        font-size: 1.5rem!important;
+    }
+    .publisher_name{
+        font-size: 1rem!important;
+    }
     .owl-theme .owl-dots .owl-dot span{
         height: 10px!important;
         width: 10px!important;
