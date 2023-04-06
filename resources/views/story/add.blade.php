@@ -6,9 +6,9 @@
 <div class="container-fluid">
     <section class="post_section" >
        <div class="row">
-            <div class="col-lg-6 offset-lg-0 col-sm-10 offset-sm-1 px-sm-0 col-12 px-2 ">
-                <div class="post_img-container">
-                    <img src="{{asset('assets/img/become/post.svg')}}" alt="novelist" class="post_hero-img">
+            <div class="col-lg-6 offset-lg-0 col-sm-10 offset-sm-1 px-sm-0 col-12 px-2" style="background-color: #f2f2f2;">
+                <div class="post_img-container d-flex justify-content-center">
+                    <img src="{{asset('assets/img/become/post.svg')}}" alt="novelist" class="post_hero-img align-self-center">
                 </div>
             
             </div>
@@ -16,7 +16,7 @@
                 <div class="post_reg">
                     <div class="row">
 
-                        <div class=" col-lg-12 px-lg-4 col-md-8 col-sm-10 mx-sm-auto px-sm-0 offset-sm-0  col-10 offset-1">
+                        <div class=" col-lg-12 px-lg-4 col-md-8 col-sm-10 mx-sm-auto px-sm-0 col-12  offset-sm-1">
                             <h2 class="text-capitalize post_reg-title  text-lg-start  ">post a story</h2>
                             <p class="mt-lg-4 mt-md-3 mt-3 post_reg-subtitle  text-lg-start ">Upload a Cover Image</p>
                             <form action="{{route('add-story')}}" class="row g-3" method="post" id="story-form" enctype="multipart/form-data">

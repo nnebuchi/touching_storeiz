@@ -15,13 +15,11 @@
           <li class="nav-item">
             <a class="cust_nav-link nav-link ms-lg-5 ms-2" href="#">Privacy</a>
           </li>
-          <li class="nav-item">
-            <a class="cust_nav-link nav-link ms-lg-5 ms-2" href="#">About</a>
-          </li>
+         
         </div>
   
         <div class="col-12 col-lg-4  pt-2 pt-xl-2  pt-lg-0 px-4 px-lg-0 text-lg-end">
-          <p class="copyright">© {{env('APP_NAME')}}. <script>document.write(new Date().getFullYear());</script>. Recreating your world!
+          <p class="copyright">© {{env('APP_NAME')}}. <script>document.write(new Date().getFullYear());</script>.
           </p>
         </div>
       </div>

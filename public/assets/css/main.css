@@ -834,7 +834,6 @@ main {
     /* width: 100%;*/
     height: 800px;
     padding: 10rem 3rem;
-    margin-top: 100px; 
     
 }
 .post_section{
@@ -1340,6 +1339,7 @@ main {
 }
 
 @media (max-width:993px){
+
     .cust_navbar-nav{
         margin-left: 0px!important;
     }
@@ -1404,11 +1404,26 @@ main {
         font-size: 25px;
      
     }
-      
+    
+    /* post starts */
+    .post_img-container{
+        width: 100%;
+        background-color: #f2f2f2 ;
+        height: 500px !important;
+        padding: 0px !important;
+        margin-top: -50px !important;
+       
+    }
+    .post_hero-img{
+        width: 450px !important;
+    }
+       /*  .post_section{
+        margin: 0rem 0;
+    } */
     
     .trending_hero-title{
-    padding-top: 50px !important;
-    font-size: 1.2rem;
+        padding-top: 50px !important;
+        font-size: 1.2rem;
     }
     .what{
         margin-bottom: 12rem ;
@@ -1638,7 +1653,7 @@ main {
 }
 .post_hero-img{
     width: 100%;
-    padding: 6rem 3rem;
+    padding: 1rem .5rem;
 }
 .post_section{
     margin: 9rem 0;
@@ -1732,145 +1747,179 @@ main {
         font-size: 30px;
      
     }
- 
-  .trending_hero-title{
-   padding-top: 50px !important;
-   font-size: 1.2rem;
-  }
-  .what{
-    margin-bottom: 12rem ;
-    padding-top: .5rem ;
-}
-
-  .sn{
-    font-size: 4rem !important;
-  }
-  .faq_desc{
-    text-align: left;
-    font-size: .9rem;
-  }
-  .footer_container{
-    width: 100% !important;
-    margin: 0 auto;
-  }
-  /* readstory */
-  .story_title{
-    font-size: 1.7rem;
-  }
-  .author{
-    font-size: 1.1rem;
-  }
-  .quote_text{
-    font-size: 1rem !important;
-
-  }
-  .similiar_card-img{
-    margin-bottom: 10px !important;
-  }
-
-  /* become starts */
-
-.img_container{
-    background-color: transparent !important;
-    /* min-height: 200px !important; */
-    margin-top: 0px;
-}
-.become_hero-img{
-    padding: 1rem 0;
-    width: 100%;
-    height: 100%;
-}
-.become_reg{
-    margin: 3rem 0rem;
-    min-height: 600px;
-}
-/* become ends */
-
-/* post starts */
-.post_img-container{
-    width: 100%;
-    background-color: transparent !important;
-    height: 600px !important;
-}
-.post_hero-img{
-    width: 100% !important;
-    padding: 10rem 3rem !important;
-}
-.post_section{
-    margin: 1rem 0;
-}
-.post_reg{
-    margin-top: 4rem !important;
-}
-/* ticket starts */
-.ticket_img-container{
-    width: 100%;
-    background-color: transparent !important;
-    height: 600px !important;
-}
-.ticket_hero-img{
-    width: 100% !important;
-    padding: 10rem 3rem !important;
-}
-.ticket_section{
-    margin: 1rem 0;
-}
-.ticket_reg{
-    margin-top: 2rem !important;
-}
-
-/* Register  */
-.register_section{
-    margin: 10rem 1rem 5rem 1rem;
-}
-.register_reg{
-    padding: 2rem 2rem;
-
-}
-.register_reg-title {
-    font-size: 1.8rem;
     
-}
-.register_reg-subtitle{
-    font-size: 1.1rem;
+    .trending_hero-title{
+    padding-top: 50px !important;
+    font-size: 1.2rem;
+    }
+    .what{
+        margin-bottom: 12rem ;
+        padding-top: .5rem ;
+    }
 
-}
-/* login  */
-.login_section{
-    margin: 10rem 1rem 5rem 1rem;
-}
-.login_reg{
-    padding: 2rem 2rem;
+    .sn{
+        font-size: 4rem !important;
+    }
+    .faq_desc{
+        text-align: left;
+        font-size: .9rem;
+    }
+    .footer_container{
+        width: 100% !important;
+        margin: 0 auto;
+    }
+    /* readstory */
+    .story_title{
+        font-size: 1.7rem;
+    }
+    .author{
+        font-size: 1.1rem;
+    }
+    .quote_text{
+        font-size: 1rem !important;
 
-}
-.login_reg-title {
-    font-size: 1.8rem;
-    
-}
-.login_reg-subtitle{
-    font-size: 1.1rem;
-}
+    }
+    .similiar_card-img{
+        margin-bottom: 10px !important;
+    }
 
-.table-col{
-    padding: 30px 0 !important;
-}
-.table-row{
-    border-top: none !important;
-}
+    /* become starts */
 
-#donut_single{
-    height: 400px;
-    width: 100% !important;
-}
-#curve_chart{
-    height: 400px;
-    width: 100% !important;
-}
+    .img_container{
+        background-color: transparent !important;
+        /* min-height: 200px !important; */
+        margin-top: 0px;
+    }
+    .become_hero-img{
+        padding: 1rem 0;
+        width: 100%;
+        height: 100%;
+    }
+    .become_reg{
+        margin: 3rem 0rem;
+        min-height: 600px;
+    }
+    /* become ends */
 
-footer .cust_nav-link{
-    font-size: 1rem !important;
+    /* post starts */
+    .post_img-container{
+        width: 100%;
+        background-color: transparent !important;
+        height: 650px !important;
+    }
+    .post_hero-img{
+        width: 100% !important;
+        padding: 10rem 3rem !important;
+        margin-top: 120px!important;
+    }
+    .post_section{
+        margin: 1rem 0;
+    }
+    .post_reg{
+        margin-top: 4rem !important;
+    }
+    /* ticket starts */
+    .ticket_img-container{
+        width: 100%;
+        background-color: transparent !important;
+        height: 600px !important;
+    }
+    .ticket_hero-img{
+        width: 100% !important;
+        padding: 10rem 3rem !important;
+    }
+    .ticket_section{
+        margin: 1rem 0;
+    }
+    .ticket_reg{
+        margin-top: 2rem !important;
+    }
+
+    /* Register  */
+    .register_section{
+        margin: 10rem 1rem 5rem 1rem;
+    }
+    .register_reg{
+        padding: 2rem 2rem;
+
+    }
+    .register_reg-title {
+        font-size: 1.8rem;
+        
+    }
+    .register_reg-subtitle{
+        font-size: 1.1rem;
+
+    }
+    /* login  */
+    .login_section{
+        margin: 10rem 1rem 5rem 1rem;
+    }
+    .login_reg{
+        padding: 2rem 2rem;
+
+    }
+    .login_reg-title {
+        font-size: 1.8rem;
+        
+    }
+    .login_reg-subtitle{
+        font-size: 1.1rem;
+    }
+
+    .table-col{
+        padding: 30px 0 !important;
+    }
+    .table-row{
+        border-top: none !important;
+    }
+
+    #donut_single{
+        height: 400px;
+        width: 100% !important;
+    }
+    #curve_chart{
+        height: 400px;
+        width: 100% !important;
+    }
+
+    footer .cust_nav-link{
+        font-size: 1rem !important;
 }
  
+}
+
+
+@media(max-width:504px){
+    .post_img-container{
+        
+        height: 450px !important;
+        /* margin-top: 80px !important; */
+    }
+    .post_hero-img{
+        /* height: 300px!important; */
+        width: 80% !important;
+       /*  padding: 10rem 3rem !important;
+        margin-top: -100px!important; */
+    }
+    /* .post_section{
+        margin: 0rem 0;
+    } */
+}
+
+@media(max-width:450px){
+    .post_img-container{
+        
+        height: 400px !important;
+        /* margin-top: 80px !important; */
+    }
+    .post_hero-img{
+        width: 90% !important;
+    }
+    .story-form-padding{
+        padding:0 20px!important;
+    }
+   
 }
 
 @media (max-width:376px){
@@ -2012,19 +2061,31 @@ footer .cust_nav-link{
 
 /* post starts */
 .post_img-container{
-    width: 100%;
-    background-color: #f2f2f2 ;
-    height: 400px !important;
-    padding: 0 !important;
-    margin-top: -150px !important;
+    /* width: 100%; */
+    /* background-color: #f2f2f2 ; */
+    height: 350px !important;
+    margin-top: 0px !important;
 }
 .post_hero-img{
-    width: 100% !important;
-    padding: 0 !important;
+    width: 95% !important;
+    margin-bottom: 5px;
+    /* padding: 10rem 3rem !important; */
+    /* margin-top: -100px!important; */
 }
 .post_section{
     margin: 0rem 0;
 }
+
+/* .post_img-container{
+    width: 100%;
+    background-color: transparent !important;
+    height: 650px !important;
+} */
+/* .post_hero-img{
+    width: 100% !important;
+    padding: 10rem 3rem !important;
+    margin-top: 120px!important;
+} */
 
 /* TICKET starts */
 .ticket_img-container{
