@@ -43,7 +43,7 @@ class StoryService
 
         self::add_story_tags($story, sanitize_input($request->tags));
         
-        return redirect()->route('manage-story', $story->slug);
+        return redirect()->route('my-stories', $story->slug);
     }
 
 
@@ -245,7 +245,7 @@ class StoryService
                 });
             }
         }
-        
+
         $data = $stories->with('author')->with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->paginate(2);
         return Response::json([
             'status'=>'success',
