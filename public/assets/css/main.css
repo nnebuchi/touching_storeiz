@@ -595,7 +595,7 @@ main {
 
 }
 .story_stats-section{
-    margin-top:6rem !important;
+    margin-top:2rem !important;
 }
 .reaction{
     font-family: var(--secondaryFont-bold) !important;
@@ -1081,7 +1081,7 @@ main {
     list-style: none;
     width: 60px;
     height: 60px;
-    margin: 0px 20px;
+    margin: 20px 20px;
 }
 .share-holder ul li:before{
     content: '';
@@ -1697,6 +1697,12 @@ main {
 }
 
 @media (max-width:576px){
+    .share-holder ul li {
+        
+        width:50px;
+        height:50px;
+        margin: 10px 10px;
+    }
     .feed_title{
         font-size: 1.5rem!important;
     }

@@ -240,7 +240,7 @@
         </div>
         <div class="modal-bod" >
           <div class="share-holder ts-border-2x pe-3 rounded">
-            <ul class="share-list"> 
+            <ul class="share-list d-flex flex-wrap justify-content-center"> 
                 {{-- <li>
                   <a href="#">
                     <span></span>
@@ -693,16 +693,16 @@
     
     $(document).ready(function() {
         $('.ad-banner-carousel').owlCarousel({
-        loop: true,
-        margin: 20,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-                loop: true,
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    loop: true,
+                }
+            
             }
-           
-        }
         })
 
         @guest
