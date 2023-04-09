@@ -65,11 +65,11 @@
                 
                     
                         <div class="row mt-lg-0 mt-3">
-                            <div class="col-12 col-md-11 col-lg-12 feed_story">
+                            <div class="col-12 col-lg-12 feed_story">
                                 @if($story->blurb)
-                                    <?= substr($story->blurb, 0, 100) ?> ...
+                                    <?= substr($story->blurb, 0, 200) ?> ...
                                 @else
-                                    <?= substr($story->content, 0, 100) ?> ...
+                                    <?= substr($story->content, 0, 200) ?> ...
                                 @endif
                                 
                             </div>
@@ -297,11 +297,11 @@
 
             // initialise the story blurb variable
             let intro;
-            // determine story blurb content and trim the characters to 100
+            // determine story blurb content and trim the characters to 200
             if(story.blurb == null){
-                intro = story.content.slice(0, 100);
+                intro = story.content.slice(0, 200);
             }else{
-                intro = story.blurb.slice(0, 100);
+                intro = story.blurb.slice(0, 200);
             }
 
             // url for story detail
@@ -328,7 +328,7 @@
             
             
                     <div class="row mt-lg-0 mt-3">
-                        <div class="col-12 col-md-11 col-lg-12 feed_story"> ${intro} </div>
+                        <div class="col-12 col-lg-12 feed_story"> ${intro} </div>
                     </div>
                 
                     
