@@ -15,7 +15,7 @@
             </a>
             <ul class="dropdown-menu me-5 me-lg-0">
             
-              <li><a class="dropdown-item" href="route('my-stories')">My Stories</a></li>
+              <li><a class="dropdown-item" href="{{route('my-stories')}}">My Stories</a></li>
               <li><a class="dropdown-item" href="{{route('add-story-form')}}">Create a new story</a></li>
               <li><a class="dropdown-item" href="{{route('new-ticket')}}">Raise Ticket</a></li>
               <li><a class="dropdown-item text-danger" href="javascript::void()" onclick="logout()">Logout</a></li>
@@ -74,7 +74,7 @@
               </a>
               <ul class="dropdown-menu me-5 me-lg-0">
                
-                <li><a class="dropdown-item" href="route('my-stories')">My Stories</a></li>
+                <li><a class="dropdown-item" href="{{route('my-stories')}}">My Stories</a></li>
                 <li><a class="dropdown-item" href="{{route('new-ticket')}}">Raise Ticket</a></li>
                 <li><a class="dropdown-item text-danger" href="javascript::void()" onclick="logout()">Logout</a></li>
               </ul>

@@ -44,7 +44,7 @@ class StoryController extends Controller
     }
 
     public function index(Request $request){
-        return StoryService::index($request, 2);
+        return StoryService::index($request, env('STORIES_PER_PAGE'));
     }
 
     public function read(Request $request){

@@ -184,7 +184,7 @@
 </div>
 <script>
     // initialise page count variable for laravel pagination to be used to fetch more stories using ajax
-    var pageCount = <?=env('STORIES_PER_PAGE')?>;
+    var pageCount = 1;
     // save the intial value of the Y scroll distance
     var oldScrollY = window.scrollY;
     var scrolled = false;

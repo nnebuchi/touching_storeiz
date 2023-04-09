@@ -246,7 +246,7 @@ class StoryService
             }
         }
 
-        $data = $stories->with('author')->with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->paginate(2);
+        $data = $stories->with('author')->with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->paginate(env('STORIES_PER_PAGE'));
         return Response::json([
             'status'=>'success',
             'stories'=>$data
@@ -406,7 +406,6 @@ class StoryService
     }
 
     public static function trendingStories(Request $request){
-        // $trending_stories = Story::withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate($stories_per_page);
         return Response::json([
             'status'=>'success',
             'data'=>Story::withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate(5)
@@ -414,7 +413,7 @@ class StoryService
     }
 
     public static function list(){
-        $data['stories'] = Story::withCount('likes')->withCount('dislikes')->withCount('comments')->withCount('reads')->with('reads')->with('tags')->where('user_id', Auth::user()->id)->paginate(5);
+        $data['stories'] = Story::withCount('likes')->withCount('dislikes')->withCount('comments')->withCount('reads')->with('reads')->with('tags')->where('user_id', Auth::user()->id)->paginate(env('STORIES_PER_PAGE'));
         return view('story.list')->with($data);
     }
 
