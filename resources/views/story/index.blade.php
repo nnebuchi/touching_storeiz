@@ -67,9 +67,9 @@
                         <div class="row mt-lg-0 mt-3">
                             <div class="col-12 col-md-11 col-lg-12 feed_story">
                                 @if($story->blurb)
-                                    <?= substr($story->blurb, 0, 500) ?> ...
+                                    <?= substr($story->blurb, 0, 100) ?> ...
                                 @else
-                                    <?= substr($story->content, 0, 500) ?> ...
+                                    <?= substr($story->content, 0, 100) ?> ...
                                 @endif
                                 
                             </div>
@@ -299,9 +299,9 @@
             let intro;
             // determine story blurb content and trim the characters to 500
             if(story.blurb == null){
-                intro = story.content.slice(0, 500);
+                intro = story.content.slice(0, 100);
             }else{
-                intro = story.blurb.slice(0, 500);
+                intro = story.blurb.slice(0, 100);
             }
 
             // url for story detail
