@@ -297,7 +297,7 @@
 
             // initialise the story blurb variable
             let intro;
-            // determine story blurb content and trim the characters to 500
+            // determine story blurb content and trim the characters to 100
             if(story.blurb == null){
                 intro = story.content.slice(0, 100);
             }else{
