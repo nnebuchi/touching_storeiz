@@ -42,7 +42,7 @@ class AuthService
        }
     }
 
-    public function resendVerificationMail(){
+    public static function resendVerificationMail(){
         $user = User::where('id', Auth::user()->id)->first();
         $user->verification_code = Str::random(25);
         $user->verification_expiry_date = strtotime('+3 days');

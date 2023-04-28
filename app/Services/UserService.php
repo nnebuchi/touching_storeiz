@@ -93,8 +93,13 @@ class UserService
         $reads = StoryRead::where('browser_cookie', $token)->whereNull('user_id')->get();
         // dd($reads);
         foreach($reads as $read){
-            $read->user_id = Auth::user()->id;
-            $read->save();
+            if($read->writer->id !== Auth::user()->id){
+                $read->user_id = Auth::user()->id;
+                $read->save();
+            }else{
+                $read->delete();
+            }
+            
         }
         return;
     }

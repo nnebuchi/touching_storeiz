@@ -51,6 +51,10 @@ class StoryController extends Controller
         return StoryService::read($request);
     }
 
+    public function getStoryDetail(Request $request){
+        return StoryService::getStoryDetail($request);
+    }
+
     public function moreStory(Request $request){
         return StoryService::moreStory($request);
     }

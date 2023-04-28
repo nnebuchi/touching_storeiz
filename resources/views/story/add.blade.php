@@ -15,9 +15,8 @@
             <div class="col-12 col-sm-12 offset-sm-0 col-md-12 offset-md-0  col-lg-6 offset-lg-0 story-form-padding">
                 <div class="post_reg">
                     <div class="row">
-
                         <div class=" col-lg-12 px-lg-4 col-md-8 col-sm-10 mx-sm-auto px-sm-0 col-12  offset-sm-1">
-                            <h2 class="text-capitalize post_reg-title  text-lg-start  ">post a story</h2>
+                            <h2 class="text-capitalize post_reg-title  text-lg-start">post a story</h2>
                             <p class="mt-lg-4 mt-md-3 mt-3 post_reg-subtitle  text-lg-start ">Upload a Cover Image</p>
                             <form action="{{route('add-story')}}" class="row g-3" method="post" id="story-form" enctype="multipart/form-data">
                                 @csrf

@@ -63,6 +63,8 @@ Route::group(['prefix' => 'story'], function () {
     Route::get('/more', [StoryController::class, 'moreStory'])->name('more-story');
 
     Route::get('/{slug}', [StoryController::class, 'read'])->name('read-story');
+    
+    Route::get('/{slug}/detail', [StoryController::class, 'getStoryDetail'])->name('story-detail');
 
     Route::post('/{slug}/record/read', [StoryController::class, 'recordRead'])->name('record-story-read');
     

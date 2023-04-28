@@ -49,14 +49,14 @@ class StoryService
 
     public static function add_story_media(Story $story, File $media, $is_cover = false){
         
-         $story_media = new FileStory;
-         $story_media->story_id = $story->id;
-         $story_media->user_id = $story->user_id;
-         $story_media->is_cover = $is_cover;
-         $story_media->file_id = $media->id;
-         $story_media->save();
-        
-         return;
+        $story_media = new FileStory;
+        $story_media->story_id = $story->id;
+        $story_media->user_id = $story->user_id;
+        $story_media->is_cover = $is_cover;
+        $story_media->file_id = $media->id;
+        $story_media->save();
+
+        return;
     }
 
     private static function add_story_tags(Story $story, Array $tags){
@@ -147,6 +147,7 @@ class StoryService
 
         if($request->hasFile('cover_photo')){
             $uploaded_photo = FileService::upload($request, 'cover_photo', 'public', 'stories_cover_photos');
+
             $story_cover = FileService::addmedia($uploaded_photo);
         }
         
@@ -254,22 +255,33 @@ class StoryService
     }
 
     public static function read(Request $request){
+        return view('story.detail');
+    }
 
+    public static function getStoryDetail(Request $request){
+        $story = Story::with('author')->with('cover_photo')->with('likes')->with('comments')->with('reads')->where('slug', $request->slug);
         if(Auth::check()){
-            $data['story'] = $story = Story::with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->where('slug', $request->slug)->firstOrFail();
+            $story = $story->with('current_user_like');
             $data['user_id'] = Auth::user()->id; 
-        }else{
-            $data['story'] = $story = Story::with('cover_photo')->where('slug', $request->slug)->firstOrFail();
+            $data['user'] = Auth::user();
         }
+        
+        $data['story'] =$story =  $story->firstOrFail();
 
-        $related = $data['related'] = Story::whereHas('tags', function ($q) use ($story) {
+        $data['related'] = Story::with('cover_photo')->whereHas('tags', function ($q) use ($story) {
             return $q->whereIn('title', $story->tags->pluck('title')); 
         })
         ->where('id', '!=', $story->id) // So you won't fetch same post
         ->get();
-     
-        return view('story.read')->with($data);
+
+    
+        return Response::json([
+            'status'=>'success',
+            'data'=>$data
+        ], 200);
     }
+
+
 
     public static function like(Request $request){
         // check for existing like 
@@ -295,7 +307,8 @@ class StoryService
 
         
         return Response::json([
-            'status'=>'success'
+            'status'=>'success',
+            'user_like'=> $story_like 
         ], 200);
     }
 
@@ -306,19 +319,18 @@ class StoryService
         $comment->content = sanitize_input($request->content);
         $comment->save();
 
-        $recent_comments =  Comment::where('story_id', $comment->story_id)->with('user')->where('deleted', 0)->orderBy('created_at', 'Desc')->paginate(50);
-        $comment_readable_time = [];
-        foreach($recent_comments as $key=>$comment){
-            $comment_readable_time[$key] = $comment->created_at->diffForHumans();
+        // $recent_comments =  Comment::where('story_id', $comment->story_id)->with('user')->where('deleted', 0)->orderBy('created_at', 'Desc')->paginate(50);
+        // $comment_readable_time = [];
+        // foreach($recent_comments as $key=>$comment){
+        //     $comment_readable_time[$key] = $comment->created_at->diffForHumans();
 
-        }
+        // }
 
 
         // $recent_comments_f =array_map('formatTime', $recent_comments);
         return Response::json([
             'status'=>'success',
-            'comments'=>$recent_comments,
-            'comment_dates'=>$comment_readable_time
+            'comment'=>$comment,
         ], 200);
     }
 

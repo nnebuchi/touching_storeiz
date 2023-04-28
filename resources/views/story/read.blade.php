@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
     </section>
     <section class="story_detials">
@@ -41,7 +41,7 @@
                         <img src="{{asset('assets/img/feedstory/Rectangle.jpg')}}" alt="" class="horror py-4 story-card-img">
                         @endif
                     </div>
-                  <div class="col-8">
+                    <div class="col-8">
                         <h1 class="story_title">
                             {{$story->title}}
                         </h1>
@@ -141,15 +141,12 @@
                                 <?=$story->content ?>
                             </div>
                         </div>
-                    
-                    
                     </div>
                 </div>
             </div>
             <div class="col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5">
                 @if($story->comments->count() > 0)
                 <div>
-
                     <div class="titles d-flex justify-content-between">
                         <h3 class="reaction">Reactions</h3>
                         <h5 class="ms-auto more">See more</h5>
@@ -241,15 +238,7 @@
         <div class="modal-bod" >
           <div class="share-holder ts-border-2x pe-3 rounded">
             <ul class="share-list d-flex flex-wrap justify-content-center"> 
-                {{-- <li>
-                  <a href="#">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span class="fa fa-facebook"></span>
-                  </a> 
-                </li> --}}
+                
             </ul>  
           </div>
         </div>
@@ -963,7 +952,32 @@
     const copyShareLink = () => {
         navigator.clipboard.writeText(window.location.href);
         alert("Story Link Copied");
-    }    
+    } 
+
+
+
+
+    const relativeTimePeriods = [
+        [31536000, 'year'],
+        [2419200, 'month'],
+        [604800, 'week'],
+        [86400, 'day'],
+        [3600, 'hour'],
+        [60, 'minute'],
+        [1, 'second']
+    ];
+    
+    function relativeTime(date, isUtc=true) {
+        if (!(date instanceof Date)) date = new Date(date * 1000);
+        const seconds = (new Date() - date) / 1000;
+        for (let [secondsPer, name] of relativeTimePeriods) {
+            if (seconds >= secondsPer) {
+                const amount = Math.floor(seconds / secondsPer);
+                return `${amount} ${name}${amount ? 's' : ''}s ago`;
+            }
+        }
+        return 'Just now';
+    }
 </script>
 
 @endsection

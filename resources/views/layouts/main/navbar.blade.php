@@ -1,12 +1,12 @@
 <header>
   <nav class="navbar navbar-expand-lg py-2 cust_nav fixed-top">
       <div class="container">
-        <a class="navbar-brand cust__navbar-brand" href="{{route('home')}}"><img src="{{asset('assets/img/logo/logo_1.png')}}" alt="" style="width:150px; height:50px; object-fit:cover;"></a>
+        <a class="navbar-brand cust__navbar-brand" href="{{route('home')}}"><img src="{{asset('assets/img/logo/logo.png')}}" alt="" ></a>
         @auth
           <div class="nav-item dropdown ms-auto me-3 d-lg-none">
             <a class="cust_nav-link nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <span class="d-lg-inline">
-                @if(auth()->user()->is_writer && auth()->user()->cover_photo)
+                @if(auth()->user()->is_writer && auth()->user()->cover_photo && is_file(asset('storage/'.auth()->user()->cover_photo)))
                   <img src="{{asset('storage/'.auth()->user()->cover_photo)}}" height="40" class="rounded-circle" alt="Avatar">
                 @else
                   <img src="{{asset('assets/img/avatars/avatar.png')}}" height="40" class="rounded-circle" alt="Avatar">
@@ -49,7 +49,7 @@
             
             <div class="nav-item dropdown ms-auto d-none d-lg-inline">
               <a class="cust_nav-link nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                @if(Auth::user()->cover_photo == null) 
+                @if(Auth::user()->cover_photo == null || !is_file(asset('storage/'.auth()->user()->cover_photo))) 
                 {{Auth::user()->pen_name}}
                 <span class="d-lg-inline"><img src="{{asset('assets/img/avatars/avatar.png')}}" height="40" class="rounded-circle" alt="Avatar"></span>
                 @else

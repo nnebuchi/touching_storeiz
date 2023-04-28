@@ -139,7 +139,7 @@
                         <div>
                             <div class="d-flex justify-content-between">
                                 <div class="card-body feed-card" >
-                                    <h5 class="card-title">{{$trending->title}}</h5>
+                                    <h5 class="card-title"> <a href="{{route('read-story', $trending->slug)}}">{{$trending->title}}</a> </h5>
                                 </div>
                                 <div class="story_genre">
                                     <span class="text-mut">

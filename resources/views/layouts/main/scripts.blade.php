@@ -34,5 +34,14 @@
     }
 
 </script>
+
+<script src="{{asset('assets/bootstrap/js/bootstrap.bundle.js')}}"></script>
 <script src="{{asset('assets/plugins/owl-carousel/vendors/highlight.js')}}"></script>
 <script src="{{asset('assets/plugins/owl-carousel/js/app.js')}}"></script>
+<script src="{{ asset('js/manifest.js') }}"></script>
+<script src="{{ asset('js/vendor.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
+
+
+
