@@ -170,7 +170,7 @@ class StoryService
     }
 
     public static function index(Request $request, Int $page_count){
-        
+    
         $stories = Story::with('author')->with('tags');
         
         if($request->tag){
@@ -207,7 +207,9 @@ class StoryService
             $stories = $stories->with('current_user_like');
         }
         
-        $data['stories']  = $stories->paginate($page_count);
+        $data['stories']  = $stories->latest()->paginate($page_count);
+
+        // dd($data['stories']);
 
         $data['tags'] = Tag::withCount('stories')->get();
 
@@ -247,7 +249,11 @@ class StoryService
             }
         }
 
-        $data = $stories->with('author')->with('cover_photo')->with('likes')->with('current_user_like')->with('comments')->with('reads')->paginate(env('STORIES_PER_PAGE'));
+        $stories->with('author')->with('cover_photo')->with('likes')->with('comments')->with('reads');
+        if(Auth::check()){
+           $stories->with('current_user_like');
+        }
+        $data =  $stories->latest()->paginate(env('STORIES_PER_PAGE'));
         return Response::json([
             'status'=>'success',
             'stories'=>$data

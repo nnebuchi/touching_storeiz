@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 export default function Comments({story, related, user, toggleCommentControl, showEditComment, flagCommentForDeletion, hideEditComment, updateComment, setEditComment}){
 
     return(
-        <div className="col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5">
+        <div className="col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 offset-xl-0 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5">
                         
             {story?.comments?.length > 0 &&
                 <div>

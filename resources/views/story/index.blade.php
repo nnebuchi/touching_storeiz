@@ -3,8 +3,8 @@
 <div class="container">
 
     <section class="feed_section pt-5">
-        <div class="feed_hero">
-            <div class="cust_container-feed">
+        <div class="feed_hero row">
+            <div class="cust_container-feed col-12 col-md-8">
                 <div class="owl-carousel owl-theme ad-banner-carousel">
                      
                     <div class="item">
@@ -26,79 +26,9 @@
                     </div>
                 </div>
             </div>
-          </div>
-    </section>
-    <section class="story_detials position-relative">
-        @isset($request_tag)
-            <h1 class="feed_title my-5 my-sm-2">{{$request_tag}} Stories</h1>
-        @endisset
-        
-        <div class="row position">
-            <div class="col-12 px-4 col-md-10 offset-md-1 px-md-2 col-lg-10  col-xl-8 offset-xl-0" id="story-box">
-                @foreach ($stories as $story)
-                    <div class="card px-4 my-5 rounded-4">
-                        <div class="row">
-                            <div class="cover_img ">
-                            @if($story->cover_photo()->count() > 0)
-                            <img src="{{asset('storage/'.$story->cover_photo[0]->file)}}" alt="" class="horror py-4 story-card-img">
-                            @else
-                            <img src="{{asset('assets/img/feedstory/Rectangle.jpg')}}" alt="" class="horror py-4 story-card-img">
-                            @endif
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <h1 class="feedStory_title">
-                                    {{$story->title}}
-                                </h1>
-                                <h5 class="my-lg-3 my-2 story-author"> {{$story->author->pen_name}}</h5>
-                            </div>
-                            <div class=" col-12 col-lg-5 offset-lg-1">
-                                
-                                @foreach ($story->tags(3) as $key=>$tag)
-                                <p class="card-text cust_card-text d-inline text-capitalize">{{$tag->title}} 
-                                    @if($key < (count($story->tags(3)) - 1)) 
-                                        <span class="bi bi-dot story-slider-dot"> </span> 
-                                    @endif
-                                </p>
-                                @endforeach
-                            </div>
-                        </div>
-                
-                    
-                        <div class="row mt-lg-0 mt-3">
-                            <div class="col-12 col-lg-12 feed_story">
-                                @if($story->blurb)
-                                    <?= substr($story->blurb, 0, 200) ?> ...
-                                @else
-                                    <?= substr($story->content, 0, 200) ?> ...
-                                @endif
-                                
-                            </div>
-                        </div>
-                    
-                        
-                        <div class="row feed_stats-section mb-4" >
-                            <div class=" col-12 col-md-6 story_stats">
-                                <small class=""><i class="bi bi-book fs-6"></i> {{number_format($story->reads->count())}} Reads</small> 
-                                
-                                <small><i class="bi bi-clock fs-6 ms-3"></i>
-                                    {{formatReadTimeCount($story->reads()->sum('time_spent'))}}
-                                </small>
-                                <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">{{($story->comments->count())}}</span> comments</small>
-                            </div>
-                            
-                            <div class="col-lg-6 col-12 col-md-6  mt-lg-0 mt-3 ms-0 mt-md-0" >
-                                <a href="{{route('read-story', $story->slug)}}" class="ts-btn ts-btn-md ts-btn-primary" >Read</a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                @endforeach
-                    
-            </div>
-            <div class="col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5" style="right:10px;top:0!important;">
-                
-                <div class="mt-lg-0 mt-4" style="max-height:600px; overflow-y:scroll; border-bottom:2px solid #c5844d;">
-                    <div class="titles d-flex justify-content-between mb-4 mt-5">
+            <div class="col-md-4 mx-lg-auto mx-xl-0 col-12 reaction_card px-2 px-xl-4 mt-lg-0 mt-md-5 mt-lg-5 lg-right-bar d-none d-md-block">
+                <div class="mt-lg-0 lg-right-bar-top-section">
+                    <div class="titles d-flex justify-content-between mb-4 mt-2 px-2">
                         <h3 class="popular">Popular Categories</h3>
                         <h5 class="ms-auto more">See more</h5>
                     </div>
@@ -130,7 +60,7 @@
                 </div>
 
                 @if($stories->count() > 1)
-                <div class="mt-3" style="max-height:600px;overflow-y:scroll; border-bottom:2px solid #c5844d;">
+                <div class="mt-3 px-2" style="max-height:600px;overflow-y:scroll; border-bottom:2px solid #c5844d; border-radius: 7px; background-color:#fef4eb; box-shadow: 0 0 5px #ccc;">
                     <div class="titles d-flex justify-content-between">
                         <h3 class="popular my-3 my-sm-3 my-lg-5">See What People are Reading</h3>
                     </div>
@@ -151,7 +81,7 @@
                             </div>
                         </div>
                         <div>
-                            <div class="d-flex justify-content-between">
+                            <div class="d-lg-flex justify-content-between">
                                 <div class="card-body feed-card" >
                                     <p class="card-text my-1">{{$trending->author->pen_name}}</p> 
                                 </div>
@@ -176,6 +106,77 @@
                 </div>
                 @endif
             </div>
+        </div>
+    </section>
+    <section class="story_detials position-relative">
+        @isset($request_tag)
+            <h1 class="feed_title my-5 my-sm-2">{{$request_tag}} Stories</h1>
+        @endisset
+        
+        <div class="row position">
+            <div class="col-12 px-4 col-md-8 px-md-2 offset-xl-0" id="story-box">
+                @foreach($stories as $story)
+                    <div class="card px-4 my-5 rounded-4" id="{{$story->slug}}">
+                        <div class="row">
+                            <div class="cover_img ">
+                                @if($story->cover_photo()->count() > 0)
+                                <img src="{{asset('storage/'.$story->cover_photo[0]->file)}}" alt="" class="horror py-4 story-card-img">
+                                @else
+                                <img src="{{asset('assets/img/feedstory/Rectangle.jpg')}}" alt="" class="horror py-4 story-card-img">
+                                @endif
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <h1 class="feedStory_title">
+                                    {{$story->title}}
+                                </h1>
+                                <h5 class="my-lg-3 my-2 story-author"> {{$story->author->pen_name}}</h5>
+                            </div>
+                            <div class=" col-12 col-lg-5 offset-lg-1">
+                                
+                                @foreach ($story->tags(3) as $key=>$tag)
+                                <p class="card-text cust_card-text d-inline text-capitalize">{{$tag->title}} 
+                                    @if($key < (count($story->tags(3)) - 1)) 
+                                        <span class="bi bi-dot story-slider-dot"> </span> 
+                                    @endif
+                                </p>
+                                @endforeach
+                            </div>
+                        </div>
+                
+                        <div class="row mt-lg-0 mt-3">
+                            <div class="col-12 feed_story">
+                                <div>
+                                    @if($story->blurb)
+                                        <?= substr(strip_tags($story->blurb), 0, 200) ?> ...
+                                    @else
+                                        <?= substr(strip_tags($story->content), 0, 200) ?> ...
+                                    @endif
+                                </div>
+                               
+                            </div>
+                        </div>
+                    
+                        
+                        <div class="row feed_stats-section mb-4" >
+                            <div class=" col-12 col-md-9 story_stats">
+                                <small class=""><i class="bi bi-book fs-6"></i> {{number_format($story->reads->count())}} Reads</small> 
+                                
+                                <small><i class="bi bi-clock fs-6 ms-3"></i>
+                                    {{formatReadTimeCount($story->reads()->sum('time_spent'))}}
+                                </small>
+                                <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">{{($story->comments->count())}}</span> comments</small>
+                            </div>
+                            
+                            <div class="col-lg-6 col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
+                                <a href="{{route('read-story', $story->slug)}}" class="ts-btn ts-btn-md ts-btn-primary" >Read</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                @endforeach
+                    
+            </div>
+           
                 
         </div>
         
@@ -184,7 +185,7 @@
 </div>
 <script>
     // initialise page count variable for laravel pagination to be used to fetch more stories using ajax
-    var pageCount = 1;
+    var pageCount = 2;
     // save the intial value of the Y scroll distance
     var oldScrollY = window.scrollY;
     var scrolled = false;
@@ -229,14 +230,13 @@
                 
                 if(response.stories.next_page_url != null){
                     splitNextPageURL= response.stories.next_page_url.split("?page=");
-                    nextPageNumber = splitNextPageURL[1][0];
+                    nextPageNumber = splitNextPageURL[1];
                     pageCount = nextPageNumber;
                     console.log(nextPageNumber)
                 }else{
                     more_exists = false
                 }
                 
-               
                 
             },
             error:function(par1, par2, par3){
@@ -247,23 +247,24 @@
     }
 
     const handleInfiniteScroll =  () => { 
+        
         if(!scrolled){
+
             scrolled = true;
             // check if a downward scroll has occured
             if (oldScrollY < window.scrollY) {
+                
                 // check if we are close to the bottom of the story page
                 const endOfPage = window.innerHeight + window.pageYOffset >= document.querySelector('#story-box').offsetHeight;
-                if (endOfPage && more_exists) { 
-                    
-                    loadMoreStories(pageCount);
-                
+                if (endOfPage && more_exists) {  
+                    loadMoreStories();
                 }
-                // update the vertical sroll offset
+                // update the vertical scroll offset
                 oldScrollY = window.scrollY;
                 // delay to prevent multiple scroll detection per time
                 setTimeout(() => {
                     scrolled = false;
-                }, 250);
+                }, 1000);
             }
         }
         
@@ -272,6 +273,7 @@
 
     const addStoryToDom = (data) => {
         data.forEach(function(story, index){
+            
             let cover_photo_url;
             // set cover photo to be displaed
             if(story.cover_photo.length > 0){
@@ -299,9 +301,9 @@
             let intro;
             // determine story blurb content and trim the characters to 200
             if(story.blurb == null){
-                intro = story.content.slice(0, 200);
+                intro = story.content.replace( /(<([^>]+)>)/ig, '').slice(0, 200);
             }else{
-                intro = story.blurb.slice(0, 200);
+                intro = story.blurb.replace( /(<([^>]+)>)/ig, '').slice(0, 200);
             }
 
             // url for story detail
@@ -310,11 +312,11 @@
             let story_read_time = story?.reads?.reduce((accumulator, object) => {
                                         return accumulator + object.time_spent;
                                     }, 0);
-                story_read_time = formatReadTimeCount(story_read_time);
+            story_read_time = formatReadTimeCount(story_read_time);
             // "formatReadTimeCount($story->reads()->sum('time_spent'))";
-
+                                    
             $('#story-box').append(`
-                <div class="card px-4 my-5 rounded-4">
+                <div class="card px-4 my-5 rounded-4"  id="${story.slug}">
                     <div class="row">
                         <div class="cover_img ">
                             <img src="${cover_photo_url}" alt="" class="horror py-4 story-card-img">
@@ -344,13 +346,14 @@
                             <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">${story.comments.length}</span> comments</small>
                         </div>
                         
-                        <div class="col-lg-6 col-12 col-md-6  mt-lg-0 mt-3 ms-0 mt-md-0" >
+                        <div class="col-lg-6 col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
                             <a href="${story_url}" class="ts-btn ts-btn-md ts-btn-primary" >Read</a>
                         </div>
                         
                     </div>
                 </div>
             `);
+            
         })
     }
 

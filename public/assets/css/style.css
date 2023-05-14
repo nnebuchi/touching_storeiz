@@ -146,6 +146,8 @@ body input[type="checkbox"]:checked, outline{
 
 /* nav */
 
+
+
 .navbar-toggler:focus {
     text-decoration: none;
     outline: 0;
@@ -233,9 +235,7 @@ body input[type="checkbox"]:checked, outline{
 }
 
 .story-card-img{
-    height: 275px;
-    object-fit: cover;
-    object-position: center;
+    height: 200px;
 }
 
 .tag-link{
@@ -718,7 +718,7 @@ main {
     width: 100%;
 }
 .popular_card-img{
-    width: 90%; 
+    width: 80%; 
     object-fit: cover; 
     margin: 10px 0 0 10px;
 }
@@ -1164,6 +1164,23 @@ main {
     cursor: pointer;
 }
 
+.lg-right-bar{
+    right:10px;
+    top:0!important;
+    padding-top:34px!important;
+    position: absolute;
+
+}
+.lg-right-bar-top-section{
+    max-height:600px;
+    overflow-y:scroll;
+    border-bottom:2px solid #c5844d;
+    border-radius: 7px;
+    background-color:#fef4eb;
+    margin-top: 53px!important;
+    box-shadow: 0 0 5px #ccc;
+    }
+
 
 @media (max-width:1400px){
     .sn{
@@ -1341,6 +1358,21 @@ main {
 
 @media (max-width:993px){
 
+    .story-card-img{
+        height: 275px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .ts-btn-md{
+        padding: 5px 15px;
+        font-size: 14px;
+    }
+    .popular{
+        font-size: 1rem !important;
+    }
+    .popular_card .card-title{
+        font-size: 1.2rem;
+    }
     .cust_navbar-nav{
         margin-left: 0px!important;
     }

@@ -6698,7 +6698,7 @@ function Comments(_ref) {
     updateComment = _ref.updateComment,
     setEditComment = _ref.setEditComment;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5",
+    className: "col-lg-9  mx-lg-auto mx-xl-0 offset-lg-1 col-md-8 offset-md-2 offset-xl-0 col-12 col-xl-4 reaction_card px-4 px-lg-0 px-xl-4 mt-lg-0 mt-3 mt-md-5 mt-lg-5",
     children: [(story === null || story === void 0 ? void 0 : (_story$comments = story.comments) === null || _story$comments === void 0 ? void 0 : _story$comments.length) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "titles d-flex justify-content-between",
