@@ -1,6 +1,6 @@
 @extends('layouts.main.app')
 @section('content')
-<div class="container">
+<div class="container parent-container">
 
     <section class="feed_section pt-5">
         <div class="feed_hero row">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-md-4 mx-lg-auto mx-xl-0 col-12 reaction_card px-2 px-xl-4 mt-lg-0 mt-md-5 mt-lg-5 lg-right-bar d-none d-md-block">
-                <div class="mt-lg-0 lg-right-bar-top-section">
+                <div class="lg-right-bar-top-section">
                     <div class="titles d-flex justify-content-between mb-4 mt-2 px-2">
                         <h3 class="popular">Popular Categories</h3>
                         <h5 class="ms-auto more">See more</h5>
@@ -60,7 +60,7 @@
                 </div>
 
                 @if($stories->count() > 1)
-                <div class="mt-3 px-2" style="max-height:600px;overflow-y:scroll; border-bottom:2px solid #c5844d; border-radius: 7px; background-color:#fef4eb; box-shadow: 0 0 5px #ccc;">
+                <div class="mt-3 px-2 lg-right-bar-lower-section">
                     <div class="titles d-flex justify-content-between">
                         <h3 class="popular my-3 my-sm-3 my-lg-5">See What People are Reading</h3>
                     </div>
@@ -158,7 +158,7 @@
                     
                         
                         <div class="row feed_stats-section mb-4" >
-                            <div class=" col-12 col-md-9 story_stats">
+                            <div class="col-12 col-md-9 story_stats">
                                 <small class=""><i class="bi bi-book fs-6"></i> {{number_format($story->reads->count())}} Reads</small> 
                                 
                                 <small><i class="bi bi-clock fs-6 ms-3"></i>
@@ -167,7 +167,7 @@
                                 <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">{{($story->comments->count())}}</span> comments</small>
                             </div>
                             
-                            <div class="col-lg-6 col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
+                            <div class="col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
                                 <a href="{{route('read-story', $story->slug)}}" class="ts-btn ts-btn-md ts-btn-primary" >Read</a>
                             </div>
                             
@@ -255,7 +255,7 @@
             if (oldScrollY < window.scrollY) {
                 
                 // check if we are close to the bottom of the story page
-                const endOfPage = window.innerHeight + window.pageYOffset >= document.querySelector('#story-box').offsetHeight;
+                const endOfPage = window.innerHeight + window.pageYOffset >= (document.querySelector('#story-box').offsetHeight)*0.8;
                 if (endOfPage && more_exists) {  
                     loadMoreStories();
                 }
@@ -337,7 +337,7 @@
                     <div class="row feed_stats-section mb-4" >
                         
 
-                        <div class=" col-12 col-md-6 story_stats">
+                        <div class="col-12 col-md-9 story_stats">
                             <small class=""><i class="bi bi-book fs-6"></i> ${story.reads.length} Reads</small> 
                             
                             <small><i class="bi bi-clock fs-6 ms-3"></i>
@@ -346,7 +346,7 @@
                             <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">${story.comments.length}</span> comments</small>
                         </div>
                         
-                        <div class="col-lg-6 col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
+                        <div class="col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
                             <a href="${story_url}" class="ts-btn ts-btn-md ts-btn-primary" >Read</a>
                         </div>
                         
@@ -357,8 +357,37 @@
         })
     }
 
+    const handleLeftSideBarScroll = () => {
+        
+        // console.log(containerDivHeight, fixedDivHeight)
+        var scrollHeight = window.pageYOffset
+        if(scrollHeight >= fixedDivHeight*0.65){
+            fixedDiv.style.removeProperty('top')
+            fixedDiv.style.position = 'fixed';
+            fixedDiv.style.bottom = '0px';
+        }else{
+            fixedDiv.style.removeProperty('bottom')
+            fixedDiv.style.position = 'absolute';
+            fixedDiv.style.top = '0px';
+        }
+
+
+        // container.addEventListener('scroll', function() {
+           
+        // });
+    }
+    var container = document.querySelector('.parent-container');
+    var fixedDiv = document.querySelector('.lg-right-bar');
+    fixedDivHeight = getComputedStyle(fixedDiv).height
+    // containerDivHeight = getComputedStyle(container).height
     
-    window.addEventListener("scroll", handleInfiniteScroll);
+    fixedDivHeight = parseInt(fixedDivHeight.slice(0, -2));
+
+    fixedDiv.style.removeProperty('bottom')
+    fixedDiv.style.position = 'absolute';
+    fixedDiv.style.top = '0px';
+    window.addEventListener("scroll", handleInfiniteScroll, false);
+    window.addEventListener("scroll", handleLeftSideBarScroll, false);
 
     // carousel for ad banner
     $(document).ready(function() {

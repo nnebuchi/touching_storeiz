@@ -1,3 +1,6 @@
+const getOriginalWordFromCompoundWord = (compound_word) => {
+    return compound_word.replace('_', ' ').replace('-', ' ');
+}
 const buchi_validate = (input, constraints, alias=null) => {
     console.log(input);
     // Remove existing validation message
@@ -31,6 +34,10 @@ const buchi_validate = (input, constraints, alias=null) => {
             pass: constraints.has_special_character === true ? specialCharsRegex.test(input.value) : true,
             message:alias ===null ?  input.getAttribute('id').replace('_', ' ')+" must have special character" : alias+" must have special character"
         },
+        match:{
+            pass:constraints.hasOwnProperty('match') ? input.value === document.querySelector(`#${constraints.match}`).value : true,
+            message:alias === null ? input.getAttribute('id').replace('_', ' ')+" does not match the "+constraints.match.replace('_', ' ') : `${alias} does not match the `
+        }
         // max_size:{
         //     pass:input.getAttribute('type') == 'file' ? (input.files.length > 0 ? input.files[0].size <= constraints.max_size : true): true,
         //     message:alias === null ? input.getAttribute('id').replace('_', ' ') +" must not exceed "+constraints.max_size+" kb" : alias+" must not exceed "+constraints.max_size+" kb"

@@ -235,7 +235,9 @@ body input[type="checkbox"]:checked, outline{
 }
 
 .story-card-img{
-    height: 200px;
+    height: 220px;
+    object-fit: cover;
+    /* object-position: center; */
 }
 
 .tag-link{
@@ -718,14 +720,14 @@ main {
     width: 100%;
 }
 .popular_card-img{
-    width: 80%; 
+    width: 60%; 
     object-fit: cover; 
     margin: 10px 0 0 10px;
 }
 
 .popular_card .card-title{
     font-family: var(--primaryFont-regular);
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 .popular_card .card-text{
     font-family: var(--secondaryFont-regular);
@@ -1163,13 +1165,22 @@ main {
 .story-row{
     cursor: pointer;
 }
+.feed-hero{
+    align-items: flex-start;
+}
 
 .lg-right-bar{
     right:10px;
-    top:0!important;
+    /* top:0!important; */
+    /* bottom: 0!important; */
     padding-top:34px!important;
-    position: absolute;
+    /* position: absolute; */
+    /* overflow-y: scroll; */
+    /* height: 100vh;     */
+}
 
+#scrollingDiv.stopScroll {
+    position: relative;
 }
 .lg-right-bar-top-section{
     max-height:600px;
@@ -1179,7 +1190,17 @@ main {
     background-color:#fef4eb;
     margin-top: 53px!important;
     box-shadow: 0 0 5px #ccc;
-    }
+}
+
+.lg-right-bar-lower-section{
+    max-height:600px;
+    overflow-y:scroll;
+    border-bottom:2px solid #c5844d;
+    border-radius: 7px;
+    background-color:#fef4eb;
+    box-shadow: 0 0 5px #ccc;
+    
+}
 
 
 @media (max-width:1400px){
