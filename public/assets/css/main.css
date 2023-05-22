@@ -1170,6 +1170,7 @@ main {
 }
 
 .lg-right-bar{
+    /* margin-top: 200px; */
     right:10px;
     /* top:0!important; */
     /* bottom: 0!important; */

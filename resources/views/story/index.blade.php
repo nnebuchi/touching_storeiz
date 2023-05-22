@@ -3,7 +3,7 @@
 <div class="container parent-container">
 
     <section class="feed_section pt-5">
-        <div class="feed_hero row">
+        <div class="feed_hero row ">
             <div class="cust_container-feed col-12 col-md-8">
                 <div class="owl-carousel owl-theme ad-banner-carousel">
                      
@@ -358,24 +358,37 @@
     }
 
     const handleLeftSideBarScroll = () => {
+        // if (sideScrollY < window.scrollY) {
+            var scrollHeight = window.pageYOffset
+            // scrollDiff = window.pageYOffset - initialPoint
+            // fixedDiv.style.marginBottom ='0px';
+            // fixedDiv.style.marginTop = (scrollHeight-fixedDivHeight).toString()+"px";
+            if(scrollHeight >= fixedDivHeight*0.65){
+                fixedDiv.style.removeProperty('top')
+                fixedDiv.style.position = 'fixed';
+                fixedDiv.style.bottom = '0px';
+            }else{
+                fixedDiv.style.removeProperty('bottom')
+                fixedDiv.style.position = 'absolute';
+                fixedDiv.style.top = '0px';
+            }
+            sideScrollY= window.scrollY
+        // }else{
+            
+           
+        //     var scrollHeight = window.pageYOffset 
+        //     fixedDiv.style.position = 'absolute';
+        //     fixedDiv.style.top = (scrollHeight).toString()+"px";
+        // }
         
-        // console.log(containerDivHeight, fixedDivHeight)
-        var scrollHeight = window.pageYOffset
-        if(scrollHeight >= fixedDivHeight*0.65){
-            fixedDiv.style.removeProperty('top')
-            fixedDiv.style.position = 'fixed';
-            fixedDiv.style.bottom = '0px';
-        }else{
-            fixedDiv.style.removeProperty('bottom')
-            fixedDiv.style.position = 'absolute';
-            fixedDiv.style.top = '0px';
-        }
-
+        // initialPoint = 
 
         // container.addEventListener('scroll', function() {
            
         // });
     }
+
+    var sideScrollY = window.scrollY;
     var container = document.querySelector('.parent-container');
     var fixedDiv = document.querySelector('.lg-right-bar');
     fixedDivHeight = getComputedStyle(fixedDiv).height
