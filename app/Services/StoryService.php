@@ -213,7 +213,7 @@ class StoryService
 
         $data['tags'] = Tag::withCount('stories')->get();
 
-        $data['trending_stories'] = Story::with('author')->withCount('reads')->withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate(5);
+        $data['trending_stories'] = trendingStories(5);
 
         return view('story.index')->with($data);
     }
@@ -261,7 +261,9 @@ class StoryService
     }
 
     public static function read(Request $request){
-        return view('story.detail');
+        $data['story'] = $story = Story::with('author')->with('cover_photo')->with('likes')->with('comments')->with('reads')->where('slug', $request->slug)->first();
+        $data['social_photo'] =  asset('storage/'.$story->cover_photo[0]->file);
+        return view('story.detail')->with($data);
     }
 
     public static function getStoryDetail(Request $request){
@@ -432,6 +434,7 @@ class StoryService
 
     public static function list(){
         $data['stories'] = Story::withCount('likes')->withCount('dislikes')->withCount('comments')->withCount('reads')->with('reads')->with('tags')->where('user_id', Auth::user()->id)->paginate(env('STORIES_PER_PAGE'));
+        $data['title'] = 'Publications';
         return view('story.list')->with($data);
     }
 

@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
@@ -48,6 +49,11 @@ class FileService
             return $directory.'/'.$uploadFileToDb;
             
         }
+    }
+
+    public static function delete($filePath, $disk){
+        return Storage::disk($disk)->delete($filePath);
+        //  'success';
     }
 
     public static function addMedia(String $file){

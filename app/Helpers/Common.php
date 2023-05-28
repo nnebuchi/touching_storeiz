@@ -52,4 +52,12 @@ if (!function_exists('generateOTP')) {
     function genres(){
         return StoryCategory::all();
     }
+
+    function trendingStories($count){
+        return Story::with('cover_photo')->with('tags')->with('author')->withCount('reads')->withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate($count);
+    }
+
+    function php_to_html($string){
+        return stripslashes(str_ireplace(array("\r","\n",'\r','\n'),"\n\r", $string));
+    }
 }

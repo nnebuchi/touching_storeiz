@@ -5,9 +5,10 @@ use App\Models\Story;
 
 class PagesService
 {
-    public function about(){
-        $data['stories'] = Story::with('cover_photo')->with('tags')->withCount('reads')->where(['published'=>0, 'approval_status'=>'approved'])->orderBy('id', 'desc')->limit(10)->get();
+    public static function about(){
+        $data['stories'] = trendingStories(10);
         // dd($data['stories']);
+        // trendingStories(5)
         return view('pages.about')->with($data);
     }
 }

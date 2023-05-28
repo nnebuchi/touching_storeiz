@@ -25,5 +25,13 @@
       </div>
     </section>
    
+    <section class="d-md-none py-2" id="bottom-nav">
+        <div class="row">
+          <div class="col"><i class="fa fa-home"></i></div>
+          <div class="col"><i class="fa fa-search" onclick="toogleMobileRightSideBar()"></i></div>
+          <div class="col"><i class="fa fa-bell"></i></div>
+          <div class="col"><i class="fa fa-envelope"></i></div>
+        </div>
+    </section>
 
   </footer>

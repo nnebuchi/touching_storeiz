@@ -306,11 +306,9 @@ export default function Detail(){
                         <div className="row">
                             <div className="cover_img">
                                 
-                                {story?.cover_photo?.length > 0 ?
+                                {story?.cover_photo?.length > 0 &&
 
                                     <img src={`${url}/storage/${story.cover_photo[0].file}`} alt="Cover photo" className="horror py-4 story-card-img" />
-                                :
-                                    <img src={`${url}/public/assets/img/logo/logo_alt.png`} alt="Cover Photo" className="horror py-4 story-card-img"/>
                                 }
                                 
                                 

@@ -272,21 +272,21 @@
 
    <!--Delete Comment  Modal -->
    <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-dialog-scrollable"  >
-      <div class="modal-content modal-content-cust "  >
-        <div class="modal-head d-flex">
-          <h1 class="modal-titl  modal-center mx-auto my-3" id="deleteCommentModalLabel">Delete Comment?</h1>
-          <span type="button" class="btn-close close-x my-3" data-bs-dismiss="modal" aria-label="Close"></span>
+        <div class="modal-dialog modal-dialog-scrollable"  >
+            <div class="modal-content modal-content-cust "  >
+                <div class="modal-head d-flex">
+                    <h1 class="modal-titl  modal-center mx-auto my-3" id="deleteCommentModalLabel">Delete Comment?</h1>
+                    <span type="button" class="btn-close close-x my-3" data-bs-dismiss="modal" aria-label="Close"></span>
+                </div>
+                <div class="modal-bod" >
+                    Are you sure you want to delete this comment ?
+                    <div class="modal-foote text-center">
+                        <button type="button" class="btn ts-btn-primary-outline" data-bs-dismiss="modal">No</button>
+                        <button id="delete-comment-btn" type="button" class="cust_btn-1 ts-btn-primary mx-auto my-4 comment-btn" target-id="" onclick="deleteComment(event)">Delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-bod" >
-          Are you sure you want to delete this comment ?
-        <div class="modal-foote text-center">
-            <button type="button" class="btn ts-btn-primary-outline" data-bs-dismiss="modal">No</button>
-            <button id="delete-comment-btn" type="button" class="cust_btn-1 ts-btn-primary mx-auto my-4 comment-btn" target-id="" onclick="deleteComment(event)">Delete</button>
-        </div>
-      </div>
-    </div>
-  </div>
    </div>
 
     @guest

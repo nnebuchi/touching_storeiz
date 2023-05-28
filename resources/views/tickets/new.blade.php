@@ -3,8 +3,8 @@
 <div class="container-fluid">
     <section class="ticket_section" >
         <div class="row">
-                 <div class="col-lg-6 offset-lg-0 col-sm-10 offset-sm-1 px-sm-0   col-12 px-2  ">
-                     <div class="ticket_img-container">
+                 <div class="col-lg-6 offset-lg-0 col-sm-10 offset-sm-1 px-sm-0 col-12 px-2 ">
+                     <div class="ticket_img-container d-none d-lg-block">
                              <img src="../assets/img/become/rafiki.svg" alt="novelist" class="ticket_hero-img">
                      </div>
                  
@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="col- ticket_input-div">
                                             <label for="validationCustom02" class="form-label"></label>
-                                            <textarea name="description" id="description" cols="30" rows="10" class="form-control rounded-3" placeholder="Description. . ." id="validationCustom03" required>{{old('description')}}</textarea> 
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control rounded-3" placeholder="Description. . ." id="validationCustom03" required>{{old('description')}}</textarea> 
                                             <div class="text-danger backend-msg">
                                                 @error('description')
                                                     {{ $message }}
@@ -86,12 +86,7 @@
             {
                 id:"description",
                 rules: {'required':true, min_length:10}
-            },
-            {
-                id:"inputTag",
-                alias:"Attachment",
-                rules:{'required':true}
-            },
+            }
             
         ]);
 

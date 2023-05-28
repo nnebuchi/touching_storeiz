@@ -74,7 +74,9 @@ Route::group(['prefix' => 'story'], function () {
 Route::group(['prefix' => 'tickets', 'middleware' => ['auth']], function () {
     Route::get('/new', [TicketController::class, 'new'])->name('new-ticket');
     Route::post('/submit', [TicketController::class, 'submit'])->name('submit-ticket');
+    Route::post('/update', [TicketController::class, 'update'])->name('update-ticket');
     Route::get('/', [TicketController::class, 'all'])->name('tickets');
+    Route::get('/{id}/delete', [TicketController::class, 'delete'])->name('delete-ticket');
 });
 
 

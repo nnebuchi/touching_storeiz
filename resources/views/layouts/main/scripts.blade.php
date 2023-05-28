@@ -35,12 +35,63 @@
 
 </script>
 
-<script src="{{asset('assets/bootstrap/js/bootstrap.bundle.js')}}"></script>
+{{-- <script src="{{asset('assets/bootstrap/js/bootstrap.bundle.js')}}"></script> --}}
 <script src="{{asset('assets/plugins/owl-carousel/vendors/highlight.js')}}"></script>
 <script src="{{asset('assets/plugins/owl-carousel/js/app.js')}}"></script>
 <script src="{{ asset('js/manifest.js') }}"></script>
 <script src="{{ asset('js/vendor.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+
+{{-- Table search scripts --}}
+<script>
+
+  $(document).ready(function(){
+    $('.search_input').on('keyup',function(){
+        var searchTerm = $(this).val().toLowerCase();
+        $('.story-row').each(function(){
+            var lineStr = $(this).text().toLowerCase();
+            if(lineStr.indexOf(searchTerm) === -1){
+                $(this).hide();
+            }else{
+                $(this).show();
+            }
+        });
+    });
+
+    $('.story-row').on('click', function(){
+      let $this = $(this);
+      $('.story-row').each(function(){
+        $(this).removeClass('active')
+      })
+      $('.ticket-ci').each(function(){
+        if($(this).hasClass('d-none') === false){
+          $(this).addClass('d-none')
+        }
+      })
+      $('#'+$this.attr('ci-target')).removeClass('d-none')
+      $this.addClass('active')
+      
+    })
+ 
+  });
+
+  const toogleMobileRightSideBar = () => {
+    console.log('jj')
+        const sideBar = $('.sm-right-bar');
+        if(sideBar.hasClass('d-none')){
+            sideBar.removeClass('d-none')
+            sideBar.addClass('d-md-none')
+        }else{
+            sideBar.removeClass('d-md-none')
+            sideBar.addClass('d-none')
+        }
+    }
+
+ 
+</script>
+
+
+
 
 
 
