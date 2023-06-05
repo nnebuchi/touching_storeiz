@@ -5,6 +5,27 @@
     @isset($social_photo)
     <meta property="og:image" content="{{$social_photo}}" />
     @endisset
+
+    @isset($social_title)
+      <title>{{$social_title}} - {{env('APP_NAME')}} Stories </title>
+    @else
+        <title>{{env('APP_NAME')}}</title>
+    @endisset
+    
+
+    @isset($social_description)
+      <meta name="description" content="{{$social_description}}">
+    @else
+      <meta name="description" content="Browse through thousands of short stories from writers around the world. find what picks your fancy and dive in. Become a writer, share your work and earn while entertaining.">
+    @endisset
+
+
+    @isset($social_keywords)
+      <meta name="keywords" content="{{$social_keywords}}">
+    @else
+      <meta name="keywords" content="stories, wattpad, african stories, comtemporary stories, epic stories, tragic stoies, decent stories, comedy stories, tragoc-comedy stories, read stories online, write stories and earn, publish stories online"> 
+    @endisset
+    
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/icon_1.ico') }}">
     <!-- stylesheet -->
     <link rel="stylesheet" href="{{asset('assets/css/main_style.css')}}">
@@ -39,5 +60,5 @@
     </script>
     <script src="{{asset('assets/plugins/cookies.js')}}"></script>
     
-    <title>Home</title>
+    
 </head>
