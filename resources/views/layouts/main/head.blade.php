@@ -7,7 +7,7 @@
     @endisset
 
     @isset($social_title)
-      <title>{{$social_title}} - {{env('APP_NAME')}} Stories </title>
+      <title>{{$social_title}}</title>
     @else
         <title>{{env('APP_NAME')}}</title>
     @endisset
