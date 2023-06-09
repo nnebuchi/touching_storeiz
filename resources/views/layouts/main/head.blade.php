@@ -14,9 +14,9 @@
     
 
     @isset($social_description)
-      <meta og:description name="description" content="{{$social_description}}">
+      <meta  property="og:description" name="description" content="{{$social_description}}">
     @else
-      <meta og:description name="description" content="Browse through thousands of short stories from writers around the world. find what picks your fancy and dive in. Become a writer, share your work and earn while entertaining.">
+      <meta  property="og:description" name="description" content="Browse through thousands of short stories from writers around the world. find what picks your fancy and dive in. Become a writer, share your work and earn while entertaining.">
     @endisset
 
 
