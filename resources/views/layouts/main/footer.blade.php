@@ -29,7 +29,7 @@
    
     <section class="d-md-none py-2" id="bottom-nav">
         <div class="row">
-          <div class="col"><i class="fa fa-home"></i></div>
+          <div class="col"><a href="{{route('home')}}" class="text-white"><i class="fa fa-home"></i></a></div>
           <div class="col"><i class="fa fa-search" onclick="toogleMobileCategories()"></i></div>
           <div class="col"><i class="fa fa-bell" onclick="toogleMobileTrending()"></i></div>
           <div class="col"><i class="fa fa-envelope"></i></div>
