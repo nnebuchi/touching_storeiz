@@ -4,6 +4,7 @@ use App\Models\Story;
 use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\Str;
 use App\Models\StoryCategory;
+use App\Models\Tag;
 
 if (!function_exists('generateOTP')) {
     /**
@@ -55,6 +56,10 @@ if (!function_exists('generateOTP')) {
 
     function trendingStories($count){
         return Story::with('cover_photo')->with('tags')->with('author')->withCount('reads')->withCount('recent_reads')->orderBy('recent_reads_count', 'Desc')->paginate($count);
+    }
+
+    function story_tags(){
+        return Tag::withCount('stories')->get();
     }
 
     function php_to_html($string){

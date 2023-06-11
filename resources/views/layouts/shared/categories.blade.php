@@ -9,7 +9,7 @@
         <h3 class="popular">Popular Categories</h3>
         <h5 class="ms-auto more">See more</h5>
     </div>
-    @foreach($tags as $tag)
+    @foreach(story_tags() as $tag)
     <div class="car popular_card mb-3" >
     <a href="{{route('stories').'?tag='.$tag->slug}}" class="tag-link">
         <div class="row g-0 justify-content-center ">

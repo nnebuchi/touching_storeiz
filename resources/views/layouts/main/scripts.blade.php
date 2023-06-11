@@ -75,17 +75,38 @@
  
   });
 
-  const toogleMobileRightSideBar = () => {
-    console.log('jj')
-        const sideBar = $('.sm-right-bar');
-        if(sideBar.hasClass('d-none')){
-            sideBar.removeClass('d-none')
-            sideBar.addClass('d-md-none')
-        }else{
-            sideBar.removeClass('d-md-none')
-            sideBar.addClass('d-none')
-        }
-    }
+  const toogleMobileCategories = () => {
+      // $('.sm-right-bar').each(function(){
+      //   if($(this).hasClass('d-none') == false){
+      //     $(this).removeClass('d-md-none')
+      //     $(this).addClass('d-none')
+      //   }
+      // });
+      
+      const sideBar = $('#mobile-category-bar');
+      if(sideBar.hasClass('d-none')){
+          sideBar.removeClass('d-none')
+          sideBar.addClass('d-md-none')
+          $('#disable-page-overlay').show()
+      }else{
+          sideBar.removeClass('d-md-none')
+          sideBar.addClass('d-none')
+          $('#disable-page-overlay').hide()
+      }
+  }
+
+    // const toogleMobileTrending = () => {
+    
+    //     const sideBar = $('#mobile-trending-bar');
+    //     console.log(sideBar);
+    //     if(sideBar.hasClass('d-none')){
+    //         sideBar.removeClass('d-none')
+    //         sideBar.addClass('d-md-none')
+    //     }else{
+    //         sideBar.removeClass('d-md-none')
+    //         sideBar.addClass('d-none')
+    //     }
+    // }
 
  
 </script>

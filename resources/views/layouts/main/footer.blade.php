@@ -1,3 +1,5 @@
+@include('layouts.shared.mobile_categories')
+@include('layouts.shared.mobile_trending')
 <footer>
     <section class="footer_section fixed-lg-bottom">
       <div class=" row footer_container ps-5 pe-1 pe-lg-5">
@@ -28,10 +30,12 @@
     <section class="d-md-none py-2" id="bottom-nav">
         <div class="row">
           <div class="col"><i class="fa fa-home"></i></div>
-          <div class="col"><i class="fa fa-search" onclick="toogleMobileRightSideBar()"></i></div>
-          <div class="col"><i class="fa fa-bell"></i></div>
+          <div class="col"><i class="fa fa-search" onclick="toogleMobileCategories()"></i></div>
+          <div class="col"><i class="fa fa-bell" onclick="toogleMobileTrending()"></i></div>
           <div class="col"><i class="fa fa-envelope"></i></div>
         </div>
     </section>
+
+    <div id="disable-page-overlay"></div>
 
   </footer>
