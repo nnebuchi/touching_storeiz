@@ -5,7 +5,7 @@
 <div class="container" style="margin-top:-60px!important">
 
   <section class="publication">
-     
+     <div class="alert-holder"></div>
     @include('layouts.shared.writer-table-start')
     
     <div class="row mt-5" style="border-top: 1px solid #D9AD89;">
@@ -20,7 +20,7 @@
               <th scope="col" width="50" class="text-start story-data-heading">Dislikes </th>
               <th scope="col" width="50" class="text-start story-data-heading">Comments </th>
               <th scope="col" width="100" class="text-start story-data-heading"> <span class="d-none d-lg-inline">Read</span>  Hour </th>
-              
+              <th scope="col" width="100">Action</th>
             </tr>
           </thead>
             <tbody class="">
@@ -39,6 +39,17 @@
                   <td class="text-start dislikes" width="50">{{number_format($story->dislikes_count)}}</td>
                   <td class="text-start comments" width="50">{{number_format($story->comments_count)}}</td>
                   <td class="text-start time_spent" width="100" >{{formatReadTimeCount($story->reads->sum('time_spent'))}}</td>
+                  <td class="text_start" width="100">
+                    <div class="d-flex align-items-center">
+                      <a href="{{route('edit-story', $story->slug)}}" class="btn btn-sm ts-btn-secondary me-1"> <span class="action-text d-none">Edit</span> <i class="fa fa-edit"></i></a>
+                      <button type="button" data-bs-toggle="modal" data-bs-target="#deleteStoryModal-{{$story->slug}}" class="btn btn-sm btn-danger me-1"> <span class="action-text d-none">Delete</span>  <i class="fa fa-trash"></i></button>
+                      <div class="form-check form-switch" style="width:100%;">
+                        <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" @if($story->published == 1)  checked @endif style="padding: 10px;" onchange="toggleStatus('{{$story->id}}')">
+                        {{-- <label class="form-check-label" for="flexSwitchCheckChecked">On</label> --}}
+                      </div>
+                    </div>
+                    
+                  </td>
                 </tr>
               @endforeach
                 
@@ -81,8 +92,46 @@
      
   </section>
 
+  @foreach ($stories as $story)
+      <!--Delete Comment  Modal -->
+   <div class="modal fade" id="deleteStoryModal-{{$story->slug}}" tabindex="-1" aria-labelledby="deleteStoryModal-{{$story->slug}}Label" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-scrollable"  >
+        <div class="modal-content modal-content-cust "  >
+            <div class="modal-head d-flex">
+                <h6 class="modal-titl  modal-center mx-auto my-3" id="deleteStoryModal-{{$story->slug}}Label">Delete story ?</h6>
+                <span type="button" class="btn-close close-x my-3" data-bs-dismiss="modal" aria-label="Close"></span>
+            </div>
+            <div class="modal-body text-center" >
+              <p class="modal-title  modal-center mx-auto my-3" id="deleteStoryModal-{{$story->slug}}Label" style="font-size:16px;">Are you sure you want to delete this story ?</p>
+                <div class="modal-foote text-center mt-2">
+                    <button type="button" class="btn ts-btn-primary-outline" data-bs-dismiss="modal">No</button>
+                    <a href="{{route('delete-story', $story->slug)}}" class="btn ts-btn-primary mx-auto my-4 comment-btn" >Delete</a>
+                </div>
+            </div>
+        </div>
+      </div>
+   </div>
+  @endforeach
+
 <script type="text/javascript">
 
+    const toggleStatus = (id)=>{
+      $.ajax({
+        type:"get",
+        url:`${url}/story/mine/${id}/toggle-publish-status`,
+        success:(resp) => {
+          if(resp?.status === 'success'){
+            showAlert('success', resp?.message)
+          }else{
+            showAlert('danger', resp?.error)
+          }
+        },
+        error:(par1, par2, par3)=>{
+          console.log(par3);
+          showAlert('danger', 'something went wrong')
+        }
+      });
+    }
 
     google.charts.load('current', {'packages':['corechart']});
 
@@ -134,6 +183,7 @@
     
     google.charts.load('current', {'packages':['line']});
     
+   
 
     function drawEngagementGraph() {
       var data = google.visualization.arrayToDataTable([
@@ -170,8 +220,10 @@
         google.charts.setOnLoadCallback(drawEngagementGraph);
 
       }, 1000);
-    ;
+    
     })
+
+   
   </script>
 
   @endsection

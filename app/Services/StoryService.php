@@ -166,7 +166,44 @@ class StoryService
             'alert'=>'success'
         ]);
 
-        return redirect()->route('manage-story', $story->slug);
+        return redirect()->route('my-stories');
+    }
+
+    public static function togglePublishStatus($id){
+        $story = Story::where(['id'=>$id, 'user_id'=>Auth::user()->id])->first();
+        if(!$story){
+           return Response::json([
+            'status'=>'fail',
+            'message'=>'Not Found',
+            'error'=>'Story Not found'
+           ], 200);
+        }
+        $story->published = $story->published == 1 ? 0 : 1;
+        $story->save();
+        return Response::json([
+            'status'=>'success',
+            'message'=>'Story status changed'
+           ], 200);
+    }
+
+    public static function delete(Request $request){
+        $story = Story::where(['slug'=>$request->slug, 'user_id'=>Auth::user()->id])->first();
+
+        if($story){
+            $story->comments()->delete();
+            $story->reads()->delete();
+            $story->likes()->delete();
+            $story->dislikes()->delete();
+            $story->delete();
+        }
+
+
+        Session([
+            'msg'=>'story successfully deleted',
+            'alert'=>'success'
+        ]);
+        return redirect()->route('my-stories');
+        
     }
 
     public static function index(Request $request, Int $page_count){

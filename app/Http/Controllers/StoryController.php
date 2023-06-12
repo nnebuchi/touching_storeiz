@@ -43,6 +43,13 @@ class StoryController extends Controller
         return StoryService::update($request);
     }
 
+    public function togglePublishStatus(Request $request){
+        return StoryService::togglePublishStatus($request->id);
+    }
+    public function delete(Request $request){
+        return StoryService::delete($request);
+    }
+
     public function index(Request $request){
         return StoryService::index($request, env('STORIES_PER_PAGE'));
     }

@@ -54,6 +54,9 @@ Route::group(['prefix' => 'story'], function () {
             Route::get('/mine/{slug}/edit', [StoryController::class, 'EditStory'])->name('edit-story');
 
             Route::post('/update', [StoryController::class, 'update'])->name('update-story');
+
+            Route::get('/mine/{slug}/delete', [StoryController::class, 'delete'])->name('delete-story');
+            Route::get('/mine/{id}/toggle-publish-status', [StoryController::class, 'togglePublishStatus'])->name('toggle-publish-status');
         });
     });
 
