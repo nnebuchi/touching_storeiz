@@ -472,7 +472,7 @@ class StoryService
     }
 
     public static function list(){
-        $data['stories'] = Story::withCount('likes')->withCount('dislikes')->withCount('comments')->withCount('reads')->with('reads')->with('tags')->where('user_id', Auth::user()->id)->paginate(env('STORIES_PER_PAGE'));
+        $data['stories'] = Story::withCount('likes')->withCount('dislikes')->withCount('comments')->withCount('reads')->with('reads')->with('tags')->where('user_id', Auth::user()->id)->paginate(50);
         $data['title'] = 'Publications';
         return view('story.list')->with($data);
     }
