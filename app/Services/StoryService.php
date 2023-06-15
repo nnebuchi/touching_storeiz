@@ -195,6 +195,8 @@ class StoryService
             $story->likes()->delete();
             $story->dislikes()->delete();
             $story->delete();
+
+            StoryTag::where('story_id', $story->id)->delete();
         }
 
 
