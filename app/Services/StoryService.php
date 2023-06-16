@@ -477,6 +477,29 @@ class StoryService
         return view('story.list')->with($data);
     }
 
+    public static function search($query){
+
+        $results = Story::with(array('author'=>function($q) {
+                $q->select('id', 'pen_name','cover_photo');
+            }))
+            ->with('cover_photo')
+
+            ->where('title', 'like', '%'.$query.'%')
+
+            // ->orWhere('content', 'like', '%'.$query.'%')
+
+            // ->orWhereHas('author', function($q) use ($query){
+            //     $q->where('pen_name', 'like', '%'.$query.'%');
+            // })
+            ->get();
+
+            return Response::json([
+                'status'=>'success',
+                'message'=>'file search successful',
+                'results'=>$results
+            ], 200);
+    }
+
     //  public function getComments(Request $request){
         // return Response::json([
         //     'status'=>'success',

@@ -134,4 +134,9 @@ class StoryController extends Controller
     public function list(){
         return StoryService::list();
     }
+
+    public function search(Request $request)
+    {
+        return StoryService::search(sanitize_input($request->q));
+    }
 }

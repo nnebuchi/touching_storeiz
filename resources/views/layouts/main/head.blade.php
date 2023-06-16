@@ -60,5 +60,51 @@
     </script>
     <script src="{{asset('assets/plugins/cookies.js')}}"></script>
     
-    
+    <script>
+      
+      var search = () => {
+        const route = "{{route('stories')}}"
+        document.querySelector('.popular').textContent = 'Search Results';
+        const searchQuery = document.querySelector('#search-input').value;
+        $.ajax({
+            type:"get",
+            url:`${url}/search?q=${searchQuery}`,
+            success:function(result){
+              let html = ``;
+              result.results.forEach(story => {
+                html+=`
+                <div class="car popular_card mb-3" >
+                    <a href="${route}?tag=${story.slug}" class="tag-link">
+                    <div class="row g-0 justify-content-center ">
+                        <div class="col-4">
+                        <img src="${url}/public/assets/img/tags/${story?.cover_photo[0].file}" class="img-fluid rounded-start popular_card-img " alt="Story Cover">
+                        </div>
+                        <div class="col-6 align-self-center ">
+                        <div class="card-body  ms-4 ">
+                            <h5 class="card-title">${story?.title}</h5>
+                            <p class="card-text mt-3">${story?.author?.pen_name}</p> 
+                        </div>
+                        </div>
+                        <div class="col-2 align-self-center">
+                        <span class="icon"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                            </svg>
+                        </span>
+                        </div>
+                    </div>
+                    </a>
+                    
+                </div>
+                `;
+              });
+
+              document.querySelector('.cat-container').innerHTML = html
+            },
+            error:function(par1, par2, par3){
+                console.log(par3);
+            }
+        });
+    }
+  </script>
 </head>

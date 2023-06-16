@@ -9,6 +9,7 @@ use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [StoryController::class, 'index'])->name('home');
+Route::get('/search', [StoryController::class, 'search'])->name('search');
 
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 
