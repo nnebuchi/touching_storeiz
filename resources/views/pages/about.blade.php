@@ -90,7 +90,15 @@
                     <div class="col-9">
                         <div class="d-inline">
                             <h2 class="faq_title">Read</h2>
-                            <p class="faq_desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, excepturi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, quasi?</p>
+                            <p class="faq_desc">Storihom is dedicated to preserving and promoting the art of storytelling. </p>
+                            <p class="faq_desc">Founded on the fact that stories can never grow old even as they live with us from generations to generations, Storihom is set to educate, inform, transform, reform, entertain, support morals and exalt God the First and Highest Author. By sharing our experiences and perspectives through storytelling, Storihom connects people and inspire positive changes in the world. </p>
+                            <p class="faq_desc">Discover a world of living imagination, adventure, and inspiration! Our stories will take you on a journey to distant lands, betroth you to real yet captivating characters and keep you on intrigue with twists and turns.</p>
+                            <p class="faq_desc">We value diversity, creativity, and the transformative power of storytelling. 
+                            Our platform features a range of writing genres, from fiction and nonfiction to memoir and drama. From classic tales to modern masterpieces, forklores, Bible stories, poems, we've got a story for every taste and interest whether you're in the mood for relaxation, a heartwarming romance, a thrilling mystery or exciting folktales. </p>
+                            <p class="faq_desc">The best part? You can read our stories from anywhere, anytime! And with new stories added regularly, you'll never run out of exciting tales to explore.</p>
+
+                            <p class="faq_desc"> Dive into our world of stories on spinning wheels today and experience the wonder of reading like never before.</p>   
+                               
                         </div>
                     </div>
                 </div>
@@ -111,7 +119,25 @@
                     <div class="col-9">
                         <div class="d-inline">
                             <h2 class="faq_title">Write</h2>
-                            <p class="faq_desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, excepturi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, quasi?</p>
+                            <p class="faq_desc">Are you one with storytelling? Are you a writer with an explosive passion and drill... with a pen that dances across the page? Do you dream of sharing your unique voice and captivating the hearts and minds of readers worldwide? If so, we have an exciting opportunity for you! You can build a good profile here on storihom. Upload your stories and get people enthralled, you can also direct your clients to your profile here. </p>
+                            
+                            <p class="faq_desc">Unleash your creativity now! Our platform is a haven for writers like you, providing the perfect canvas to paint your thoughts with words. You'll have the freedom to express your unique ideas, explore diverse genres and craft compelling narratives that resonate with readers.</p>
+                            
+                            <p class="faq_desc">Reach a global audience today! Your words deserve to be read by people from all corners of the globe. We offer a vast and engaged community of readers who are hungry for fresh perspectives and captivating stories that promotes Godliness and morals. Connect with them, build your fan-base and leave a lasting impact on readers around the world.
+
+                            </p>
+
+                            <p class="faq_desc">Expand your Imaginative horizons! Writing is a journey of growth and we are here to accompany you every step of the way. Engage in fruitful discussions with fellow writers, learn from industry experts and access valuable resources to enhance your skills. Our platform is a thriving ecosystem that nurtures your talent and encourages continuous development.
+                            </p>
+                            
+                            <p class="faq_desc">You've got flexibility and convenience! We understand that writers have unique schedules and commitments. Our platform offers the flexibility to work at your own pace, allowing you to write whenever and wherever inspiration strikes. No more rigid office hours or mundane routines. Embrace the freedom to create on your terms.
+                            </p>
+                            <p class="faq_desc">Professional exposure is Key! In today's digital age, establishing an online presence is crucial for writers. By joining our platform, you gain access to a powerful promotional engine that boosts your visibility. Showcase your portfolio, receive endorsements from satisfied readers and attract exciting opportunities from publishers, media outlets, and potential clients.
+                            </p>
+                            <p class="faq_desc">Storihom is Supportive community! Writing can sometimes feel like a solitary endeavor, but not anymore. Our vibrant readers and writers stand as a pillar of support, camaraderie and inspiration. Connect with like-minded individuals, receive feedback on your work, and collaborate on exciting projects that push the boundaries of creativity.
+                            </p>
+
+                            
                         </div>
                     </div>
                 </div>
@@ -124,7 +150,14 @@
                         <div class="col-9">
                             <div class="d-inline">
                                 <h2 class="faq_title">Earn</h2>
-                                <p class="faq_desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, excepturi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, quasi?</p>
+                                <p class="faq_desc">Our unique and moral-driven platform is a nest where creativity meets opportunity. Join us and unleash your writing prowess to earn while doing what you love. With our platform, you'll enjoy a multitude of benefits and endless possibilities to showcase your talent.
+                                </p>
+                                <p class="faq_desc">Earn more than what you deserve! We believe in rewarding talent. On our platform, your hard work and dedication translate into financial success. Unlock opportunities to monetize your writing through various avenues such as paid articles and collaborations. Your creativity becomes your currency.
+                                </p>
+                                <p class="faq_desc">Don't let your words go unnoticed in the abyss. Join our platform today and embark on a fulfilling writing journey that rewards your talent and amplifies your voice. It is time to earn while you write and make your mark in the literary world.
+                                </p>
+
+                                
                             </div>
                         </div>
                     </div>
