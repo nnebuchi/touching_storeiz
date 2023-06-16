@@ -77,7 +77,7 @@
                     <a href="${route}?tag=${story.slug}" class="tag-link">
                     <div class="row g-0 justify-content-center ">
                         <div class="col-4">
-                        <img src="${url}/public/assets/img/tags/${story?.cover_photo[0].file}" class="img-fluid rounded-start popular_card-img " alt="Story Cover">
+                        <img src="${url}/public/storage/stories_cover_potos/${story?.cover_photo[0].file}" class="img-fluid rounded-start popular_card-img " alt="Story Cover">
                         </div>
                         <div class="col-6 align-self-center ">
                         <div class="card-body  ms-4 ">
