@@ -65,4 +65,12 @@ if (!function_exists('generateOTP')) {
     function php_to_html($string){
         return stripslashes(str_ireplace(array("\r","\n",'\r','\n'),"\n\r", $string));
     }
+
+    if (! function_exists('locale')) {
+   
+        function locale()
+        {
+            return app()->getLocale();
+        }
+    }
 }
