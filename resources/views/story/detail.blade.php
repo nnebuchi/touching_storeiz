@@ -9,18 +9,18 @@
                      
                     <div class="item">
                        <div>
-                           <img src="{{asset('assets/img/readstory/coca-cola.png')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
+                           <img src="{{asset('assets/img/readstory/cisadoc.jpg')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
                        </div>
                              
                     </div>
                     <div class="item">
                         <div>
-                            <img src="{{asset('assets/img/readstory/coca-cola.png')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
+                            <img src="{{asset('assets/img/readstory/cisadoc.jpg')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
                         </div>
                     </div>
                     <div class="item">
                         <div>
-                            <img src="{{asset('assets/img/readstory/coca-cola.png')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
+                            <img src="{{asset('assets/img/readstory/cisadoc.jpg')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
                         </div>
                     </div>
                 </div>
