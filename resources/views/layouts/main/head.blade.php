@@ -23,7 +23,7 @@
     @isset($social_keywords)
       <meta name="keywords" content="{{$social_keywords}}">
     @else
-      <meta name="keywords" content="stories, wattpad, african stories, comtemporary stories, epic stories, tragic stoies, decent stories, comedy stories, tragoc-comedy stories, read stories online, write stories and earn, publish stories online"> 
+      <meta name="keywords" content="storihom, 'short stories, stories, wattpad, african stories, contemporary stories, epic stories, tragic stories, decent stories, comedy stories, tragic-comedy stories, read stories online, write stories and earn, publish stories online"> 
     @endisset
     
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/icon_1.ico') }}">
