@@ -296,6 +296,7 @@ class StoryService
     public static function read(Request $request){
         $data['story'] = $story = Story::with('author')->with('cover_photo')->with('likes')->with('comments')->with('reads')->where('slug', $request->slug)->first();
         $data['social_photo'] =  asset('storage/'.$story->cover_photo[0]->file);
+        // dd($data['social_photo']);
         $data['social_title'] = $story->title;
         $data['social_description'] = $story->blurb ? php_to_html(substr(strip_tags($story->blurb), 0, 160)) : php_to_html(substr(strip_tags($story->content), 0, 160)) ;
         $tags= json_decode(json_encode($story->tags()->pluck('title')), true);
