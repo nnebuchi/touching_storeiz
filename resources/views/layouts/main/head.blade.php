@@ -28,7 +28,7 @@
     
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/icon_1.ico') }}">
     <!-- stylesheet -->
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     
      <!-- Owl Stylesheets -->
      <link rel="stylesheet" href="{{asset('assets/plugins/owl-carousel/owlcarousel/assets/owl.carousel.min.css')}}">
