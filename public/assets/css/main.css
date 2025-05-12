@@ -92,6 +92,7 @@
     --greyShade-5: #f2f2f2;
     --bg-white: #FFFFFF;
     --bg-grey: #F8F8F8;
+    --blue-grey: rgb(235 238 232);
 
   
     /* font variables */
@@ -242,10 +243,38 @@ body ::-webkit-scrollbar {
     color: #fff !important;
 }
 
+
+.story-link, .story-link:hover{
+    text-decoration: none;
+    color: var(--greyShade-1);
+}
+
+.story-card:hover{
+    background-color: var(--bg-grey)!important;
+}
+.story-card-inner{
+    border-radius: 15px;
+    background-color: var(--bg-grey);
+}
+
 .story-card-img{
-    height: 220px;
+    background-size: cover;
+    height: 300px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+/* .story-detail-card-img{
     object-fit: cover;
-    /* object-position: center; */
+    width: 100%;
+    height: 300px;
+    object-position: top;
+} */
+
+.story-detail-card-inner{
+    border-radius: 15px;
+    background-color: var(--bg-grey);
+    min-height: 300px;
 }
 
 .tag-link{
@@ -324,7 +353,8 @@ body ::-webkit-scrollbar {
     cursor:pointer;
 }
 .reaction:hover img{
-    width: 30%;
+    transform: scale(1.1);
+    /* width: 30%; */
 }
 
 .similar-story-title a{
@@ -338,6 +368,7 @@ body ::-webkit-scrollbar {
 
  
 /* nav ends */
+
 
 /* index starts */
 .cust_btn-2 a:hover{
@@ -603,6 +634,7 @@ main {
 }
 .cover_img{
     width: 100% !important;
+
 }
 .horror{
     width: 100%;
@@ -612,7 +644,7 @@ main {
     display: inline !important;
 }
 .thumbs{
-    width: 25%;
+    width: 35px;
     cursor: pointer;
 }
 .quote-row{
@@ -632,7 +664,7 @@ main {
 }
 .full_story p{
     font-family: var(--primaryFont-regular) !important;
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
 }
 .f-w{
     font-size: 1.5rem;
@@ -1445,7 +1477,6 @@ main {
         position: absolute;
         margin-top: -300px;
         right: 118px;
-        /* top: 30px; */
     } */
     .sn{
         font-size: 4rem !important;
@@ -1493,9 +1524,14 @@ main {
 @media (max-width:993px){
 
     .story-card-img{
+        background-size: cover;
+        height: 300px;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
         height: 275px;
-        object-fit: cover;
-        object-position: center;
+        /* object-fit: cover;
+        object-position: center; */
     }
     .ts-btn-md{
         padding: 5px 15px;
@@ -1614,7 +1650,7 @@ main {
         font-size: 2.2rem;
     }
     .thumbs{
-        width: 22%;
+        width: 30px;
     }
     .similiar_card-img{
         margin-bottom: 12px !important;
@@ -1778,7 +1814,7 @@ main {
         margin-bottom: 12px !important;
       }
     .thumbs{
-        width: 40%;
+        width: 35px;
     }
     .quote{
         width: 50% !important;

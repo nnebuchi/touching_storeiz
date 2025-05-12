@@ -34,10 +34,10 @@
                     </small>
                     @endforeach
                   </td>
-                  <td class="text-start reads" width="50">{{number_format($story->reads_count)}}</td>
-                  <td class="text-start likes" width="50">{{number_format($story->likes_count)}}</td>
-                  <td class="text-start dislikes" width="50">{{number_format($story->dislikes_count)}}</td>
-                  <td class="text-start comments" width="50">{{number_format($story->comments_count)}}</td>
+                  <td class="text-start reads" width="50">{{$story->reads_count}}</td>
+                  <td class="text-start likes" width="50">{{$story->likes_count}}</td>
+                  <td class="text-start dislikes" width="50">{{$story->dislikes_count}}</td>
+                  <td class="text-start comments" width="50">{{$story->comments_count}}</td>
                   <td class="text-start time_spent" width="100" >{{formatReadTimeCount($story->reads->sum('time_spent'))}}</td>
                   <td class="text_start" width="100">
                     <div class="d-flex align-items-center">
@@ -56,8 +56,10 @@
             </tbody>
           </table>
       </div>
+     
       <div class="col-xl-3 col-lg-12 cust-border d-none d-md-block" >
-        <div class="row story-analitics" id="analitics-{{$story ? $story->id : ''}}">
+         {{-- @foreach ($stories as $story) --}}
+        <div class="row story-analitics" >
           <div class="col-xl-12 col-lg-12">
             <h2 class="analytics-reactions text-capitalize" >Reactions</h2>
             <div id="donut_single"> </div>
@@ -85,9 +87,9 @@
               </div>
             </div> --}}
         </div>
-        
-        
+        {{-- @endforeach --}}
       </div>
+      
     </div>
      
   </section>
@@ -136,10 +138,10 @@
     google.charts.load('current', {'packages':['corechart']});
 
    $('.story-row').on('click', function(){
-      const likes =$(this).find('.likes').text();
-      const dislikes =$(this).find('.dislikes').text();
-      const comments =$(this).find('.comments').text();
-      const reads =$(this).find('.reads').text();
+      const likes = parseInt($(this).find('.likes').text());
+      const dislikes = parseInt($(this).find('.dislikes').text());
+      const comments = parseInt($(this).find('.comments').text());
+      const reads = parseInt($(this).find('.reads').text());
       const time_spent =$(this).find('.time_spent').text();
 
       console.log(likes);

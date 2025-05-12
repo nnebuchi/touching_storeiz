@@ -301,95 +301,92 @@ export default function Detail(){
         <>
            <section className="story_detials">
                 <div className="row" >
-                    <div className="col-12 px-4 col-md-10 offset-md-1 px-md-2 col-lg-10  col-xl-8 offset-xl-0 " style={{borderRight:"2px solid #EBD6C3"}} >
+                    <div className="col-12 px-4 col-md-10 offset-md-1 px-md-2 px-lg-5 col-lg-10  col-xl-8 offset-xl-0 pt-5 pt-lg-2" style={{borderRight:"2px solid #EBD6C3"}} >
                         
-                        <div className="row">
-                            <div className="cover_img">
-                                
-                                {story?.cover_photo?.length > 0 &&
-
-                                    <img src={`${url}/storage/${story.cover_photo[0].file}`} alt="Cover photo" className="horror py-4 story-card-img" />
-                                }
-                                
-                                
-                            </div>
-                            <div className="col-8">
+                        <div className="row story-detail-card-inner mx-auto mt-5 mt-lg-0">
+                            {story?.cover_photo?.length > 0 &&
+                                <div className='col-lg-6 story-card-img' style={{backgroundImage: `url('${url}/storage/${story?.cover_photo[0]?.file}')`}}></div>
+                            }
+                            
+                            <div className="col-12 col-lg-6 d-flex flex-column justify-content-center py-3">
                                 <h1 className="story_title">
                                     {story?.title}
                                 </h1>
                                 <h5 className="my-lg-4 my-2 author"><span className="text-muted">Author:</span> {story?.author?.pen_name}</h5>
-                            </div>
-                            <div className="col-3 offset-1 ">
-                        
-                               {
-                                !user ?
-                                <>
-                                    <div className=" icons reaction  not-liked" id="like" onClick={handleLike}>
-                                        {spinners.like_btn === true ?
-                                            <i className="fa fa-spin fa-spinner"></i>
-                                            :
-                                            <img src={`${url}/public/assets/img/readstory/thumbs-up.png`} alt="" className="thumbs" />
-                                        }
-                                        
-                                    </div>
-                                    <div className="icons ms-lg-5 ms-2 ms-md-4 ms-lg-3 reaction not-disliked" id="dislike" onClick={handleLike}>
-                                        <img src={`${url}/public/assets/img/readstory/thumbs-down.png`} alt="" className="thumbs" />
-                                    </div>
-                                </>
-                                    
-                               :
-                                    story?.current_user_like == null ?
-                                    
+                                <div className="">
+                            
+                                {
+                                    !user ?
                                     <>
-                                        <div className="icons reaction  not-liked" id="like">
+                                        <div className=" icons reaction  not-liked" id="like" onClick={handleLike}>
                                             {spinners.like_btn === true ?
-                                                 <i className="fa fa-spin fa-spinner"></i>
-                                            :
-                                                <img src={`${url}/public/assets/img/readstory/thumbs-up.png`} alt="" className="thumbs" onClick={()=>handleLike('like_btn', 'positive')}/>
-                                            }
-                                        </div>
-                                        <div className="icons ms-lg-5 ms-2 ms-md-4 ms-lg-3 reaction not-disliked" id="dislike">
-                                            {spinners.dislike_btn === true ?
-                                                    <i className="fa fa-spin fa-spinner"></i>
+                                                <i className="fa fa-spin fa-spinner"></i>
                                                 :
-                                                    <img src={`${url}/public/assets/img/readstory/thumbs-down.png`} alt="" className="thumbs" onClick={()=>handleLike('dislike_btn', 'negative')} />
+                                                <img src={`${url}/assets/img/readstory/thumbs-up.png`} alt="" className="thumbs" />
                                             }
+                                            
+                                        </div>
+                                        <div className="icons ms-lg-5 ms-2 ms-md-4 ms-lg-3 reaction not-disliked" id="dislike" onClick={handleLike}>
+                                            <img src={`${url}/assets/img/readstory/thumbs-down.png`} alt="" className="thumbs" />
                                         </div>
                                     </>
-                                    :
-                                    
-                                        story?.current_user_like?.like_type === 'positive' ?
+                                        
+                                :
+                                        story?.current_user_like == null ?
+                                        
                                         <>
-                                            <div className="icons reaction liked" id="like">
+                                            <div className="icons reaction  not-liked" id="like">
+                                                
                                                 {spinners.like_btn === true ?
                                                     <i className="fa fa-spin fa-spinner"></i>
                                                 :
-                                                    <img src={`${url}/public/assets/img/readstory/thumbs-up-filled.png`} alt="" className="thumbs" onClick={()=>handleLike('like_btn', 'positive')} />
+                                                    <img src={`${url}/assets/img/readstory/thumbs-up.png`} alt="" className="thumbs" onClick={()=>handleLike('like_btn', 'positive')}/>
                                                 }
-
                                             </div>
-                                            <div className="icons ms-lg-5 ms-2 ms-md-4 ms-lg-3 reaction not-disliked" id="dislike" style={{pointerEvents:"none"}}>
+                                            <div className="icons ms-lg-5 ms-2 ms-md-4 ms-lg-3 reaction not-disliked" id="dislike">
                                                 {spinners.dislike_btn === true ?
                                                         <i className="fa fa-spin fa-spinner"></i>
                                                     :
-                                                    <img src={`${url}/public/assets/img/readstory/thumbs-down.png`} alt="" className="thumbs" onClick={()=>handleLike('dislike_btn', 'negative')} />
+                                                        <img src={`${url}/assets/img/readstory/thumbs-down.png`} alt="" className="thumbs" onClick={()=>handleLike('dislike_btn', 'negative')} />
                                                 }
                                             </div>
                                         </>
-                                        
                                         :
-                                      
                                         
-                                        <>
-                                            <div className=" icons reaction not-liked" id="like" onClick={handleLike}  style={{pointerEvents:"none"}}>
-                                                <img src={`${url}/public/assets/img/readstory/thumbs-up.png`} alt="" className="thumbs" onClick={()=>handleLike('like_btn', 'positive')}  />
-                                            </div>
-                                            <div className="icons ms-lg-5 ms-2 ms-md-4 ms-lg-3 reaction disliked" id="dislike">
-                                                <img src={`${url}/public/assets/img/readstory/thumbs-down-filled.png`} alt="" className="thumbs" onClick={()=>handleLike('dislike_btn', 'negative')} />
-                                            </div>
-                                        </>
-                                    }
+                                            story?.current_user_like?.like_type === 'positive' ?
+                                            <>
+                                                <div className="icons reaction liked" id="like">
+                                                    {spinners.like_btn === true ?
+                                                        <i className="fa fa-spin fa-spinner"></i>
+                                                    :
+                                                        <img src={`${url}/assets/img/readstory/thumbs-up-filled.png`} alt="" className="thumbs" onClick={()=>handleLike('like_btn', 'positive')} />
+                                                    }
+
+                                                </div>
+                                                <div className="icons ms-lg-5 ms-2 ms-md-4 ms-lg-3 reaction not-disliked" id="dislike" style={{pointerEvents:"none"}}>
+                                                    {spinners.dislike_btn === true ?
+                                                            <i className="fa fa-spin fa-spinner"></i>
+                                                        :
+                                                        <img src={`${url}/assets/img/readstory/thumbs-down.png`} alt="" className="thumbs" onClick={()=>handleLike('dislike_btn', 'negative')} />
+                                                    }
+                                                </div>
+                                            </>
+                                            
+                                            :
+                                        
+                                            
+                                            <>
+                                                <div className=" icons reaction not-liked" id="like" onClick={handleLike}  style={{pointerEvents:"none"}}>
+                                                    <img src={`${url}/assets/img/readstory/thumbs-up.png`} alt="" className="thumbs" onClick={()=>handleLike('like_btn', 'positive')}  />
+                                                </div>
+                                                <div className="icons ms-lg-5 ms-2 ms-md-4 ms-lg-3 reaction disliked" id="dislike">
+                                                    <img src={`${url}/assets/img/readstory/thumbs-down-filled.png`} alt="" className="thumbs" onClick={()=>handleLike('dislike_btn', 'negative')} />
+                                                </div>
+                                            </>
+                                        }
+                                </div>
                             </div>
+                            
                                 
                         </div>
 
@@ -398,7 +395,7 @@ export default function Detail(){
                                 <div className="col-12 col-lg-10 col-xl-11">
                                     <div className="row quote-row" >
                                         <div className="col-2 col-lg-2  align-self-start">
-                                            <img src={`${url}/public/assets/img/readstory/double-quotes (2).png`} alt="" className="quote" />
+                                            <img src={`${url}/assets/img/readstory/double-quotes (2).png`} alt="" className="quote" />
                                         </div>
                                         <div className="col-8 col-lg-8  align-self-center quote_text">
                                             {story?.blurb}
@@ -406,7 +403,7 @@ export default function Detail(){
 
                                         </div>
                                         <div className="col-2 col-lg-2 align-self-end">
-                                            <img src={`${url}/public/assets/img/readstory/double-quotes (1).png`} alt="" className="quote" />
+                                            <img src={`${url}/assets/img/readstory/double-quotes (1).png`} alt="" className="quote" />
 
                                         </div>
                                     </div>
@@ -418,7 +415,7 @@ export default function Detail(){
                             <div className=" col-12 col-md-6 story_stats">
                                 <small className=""><i className="bi bi-book fs-6"></i> {(story?.reads?.length)} Reads</small> 
                                 
-                                <small><i className="bi bi-clock fs-6 ms-3"></i> {storyReadTime} </small>
+                                {/* <small><i className="bi bi-clock fs-6 ms-3"></i> {storyReadTime} </small> */}
                                 <small className="ms-3"><i className="bi bi-chat-left fs-6"></i> <span className="comment-count">{story?.comments?.length}</span> comments</small>
                             </div>
                             

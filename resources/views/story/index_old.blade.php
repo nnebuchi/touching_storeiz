@@ -1,13 +1,13 @@
 @extends('layouts.main.app')
 @section('content')
-<div class="container-lg parent-container">
+<div class="container parent-container">
 
     <section class="feed_section pt-5">
         <div class="feed_hero row ">
-            <div class="col-12 col-md-8">
-                {{-- @include('layouts.shared.ads') --}}
+            {{-- <div class="col-12 col-md-8">
+                @include('layouts.shared.ads')
 
-            </div>
+            </div> --}}
             <div class="col-md-4 mx-lg-auto mx-xl-0 col-12 reaction_card px-2 px-xl-4 mt-lg-0 mt-md-5 mt-lg-5 lg-right-bar d-none d-md-block">
                 
                 @include('layouts.shared.categories')
@@ -24,38 +24,46 @@
         @endisset
         
         <div class="row position">
-            <div class="col-12 col-md-8 offset-xl-0" id="story-box">
+            <div class="col-12 px-4 col-md-8 px-md-2 offset-xl-0" id="story-box">
                 @foreach($stories as $story)
-                <a href="{{route('read-story', $story->slug)}}" class="story-link">
-                    <div class="card story-card px-4 mb-5 rounded-4 pt-3" id="{{$story->slug}}">
-                        <div class="row story-card-inner">
-                            <div class="col-lg-6  story-card-img" style="background-image: url('{{asset('storage/'.$story->cover_photo[0]->file)}}')"></div>
-                            <div class="col-12 col-lg-6 d-flex flex-column justify-content-center ">
-                                <h1 class="feedStory_title mt-2 mt-lg-0">{{$story->title}} </h1>
-                                <h5 class="my-lg-3 my-2 story-author"> {{$story->author->pen_name}}</h5>
-                                
-                                <div class="d-flex">
-                                    @foreach ($story->tags(3) as $key=>$tag)
-                                    <div class="card-text cust_card-text  text-capitalize d-flex align-items-center">{{$tag->title}} 
-                                        @if($key < (count($story->tags(3)) - 1)) 
-                                            <span class="bi bi-dot story-slider-dot"> </span> 
-                                        @endif
-                                    </div>
-                                    @endforeach
-                                </div>
-                                    
-                                <div class="col-12 feed_story">
-                                    <div>
-                                        @if($story->blurb)
-                                            <?= substr(strip_tags($story->blurb), 0, 210) ?> ...
-                                        @else
-                                            <?= substr(strip_tags($story->content), 0, 210) ?> ...
-                                        @endif
-                                    </div>
-                                
-                                </div>
+                    <div class="card px-4 mb-5 rounded-4" id="{{$story->slug}}">
+                        <div class="row">
+                            <div class="cover_img ">
+                                @if($story->cover_photo()->count() > 0)
+                                <img src="{{asset('storage/'.$story->cover_photo[0]->file)}}" alt="" class="horror py-4 story-card-img">
+                                @else
+                                <img src="{{asset('assets/img/feedstory/Rectangle.jpg')}}" alt="" class="horror py-4 story-card-img">
+                                @endif
                             </div>
-                            
+                            <div class="col-12 col-lg-6">
+                                <h1 class="feedStory_title">
+                                    {{$story->title}}
+                                </h1>
+                                <h5 class="my-lg-3 my-2 story-author"> {{$story->author->pen_name}}</h5>
+                            </div>
+                            <div class=" col-12 col-lg-5 offset-lg-1">
+                                
+                                @foreach ($story->tags(3) as $key=>$tag)
+                                <p class="card-text cust_card-text d-inline text-capitalize">{{$tag->title}} 
+                                    @if($key < (count($story->tags(3)) - 1)) 
+                                        <span class="bi bi-dot story-slider-dot"> </span> 
+                                    @endif
+                                </p>
+                                @endforeach
+                            </div>
+                        </div>
+                
+                        <div class="row mt-lg-0 mt-3">
+                            <div class="col-12 feed_story">
+                                <div>
+                                    @if($story->blurb)
+                                        <?= substr(strip_tags($story->blurb), 0, 200) ?> ...
+                                    @else
+                                        <?= substr(strip_tags($story->content), 0, 200) ?> ...
+                                    @endif
+                                </div>
+                               
+                            </div>
                         </div>
                     
                         
@@ -63,21 +71,20 @@
                             <div class="col-12 col-md-9 story_stats">
                                 <small class=""><i class="bi bi-book fs-6"></i> {{number_format($story->reads->count())}} Reads</small> 
                                 
-                                {{-- <small><i class="bi bi-clock fs-6 ms-3"></i>
+                                <small><i class="bi bi-clock fs-6 ms-3"></i>
                                     {{formatReadTimeCount($story->reads()->sum('time_spent'))}}
-                                </small> --}}
+                                </small>
                                 <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">{{($story->comments->count())}}</span> comments</small>
                             </div>
                             
-                            {{-- <div class="col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
+                            <div class="col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
                                 <a href="{{route('read-story', $story->slug)}}" class="ts-btn ts-btn-md ts-btn-primary" >Read</a>
-                            </div> --}}
+                            </div>
                             
                         </div>
                     </div>
-                </a>
                 @endforeach
-                
+                    
             </div>
              
         </div>
@@ -200,16 +207,16 @@
                     dotsElement =``;
                 }
                 // update the variable value for story tags (categories) elements
-                tagsParagraph += `<div class="card-text cust_card-text  text-capitalize d-flex align-items-center">${story.tags[i].title} ${dotsElement} </div>`; 
+                tagsParagraph += `<p class="card-text cust_card-text d-inline text-capitalize">${story.tags[i].title} ${dotsElement} </p>`; 
             }
 
             // initialise the story blurb variable
             let intro;
             // determine story blurb content and trim the characters to 200
             if(story.blurb == null){
-                intro = story.content.replace( /(<([^>]+)>)/ig, '').slice(0, 210);
+                intro = story.content.replace( /(<([^>]+)>)/ig, '').slice(0, 200);
             }else{
-                intro = story.blurb.replace( /(<([^>]+)>)/ig, '').slice(0, 210);
+                intro = story.blurb.replace( /(<([^>]+)>)/ig, '').slice(0, 200);
             }
 
             // url for story detail
@@ -222,22 +229,21 @@
             // "formatReadTimeCount($story->reads()->sum('time_spent'))";
                                     
             $('#story-box').append(`
-            <a href="${story_url}" class="story-link">
-                <div class="card story-card px-4 mb-5 rounded-4 pt-3"  id="${story.slug}">
-                    <div class="row story-card-inner">
-                       
-                        <div class="col-lg-6  story-card-img" style="background-image: url('${cover_photo_url}')"></div>
-                        <div class="col-12 col-lg-6 d-flex flex-column justify-content-center ">
-                            <h1 class="feedStory_title mt-2 mt-lg-0">${story.title} </h1>
-                            <h5 class="my-lg-3 my-2 story-author"> ${story.author.pen_name}</h5>
-                        
-                            <div class=" d-flex"> ${tagsParagraph}</div>
-                            <div class="col-12 feed_story">
-                                <div>
-                                ${intro}
-                                </div>
-                            </div>
+                <div class="card px-4 my-5 rounded-4"  id="${story.slug}">
+                    <div class="row">
+                        <div class="cover_img ">
+                            <img src="${cover_photo_url}" alt="" class="horror py-4 story-card-img">
                         </div>
+                        <div class="col-12 col-lg-6">
+                            <h1 class="feedStory_title">${story.title} </h1>
+                            <h5 class="my-lg-3 my-2 story-author"> ${story.author.pen_name}</h5>
+                        </div>
+                        <div class=" col-12 col-lg-5 offset-lg-1"> ${tagsParagraph}</div>
+                    </div>
+            
+            
+                    <div class="row mt-lg-0 mt-3">
+                        <div class="col-12 col-lg-12 feed_story"> ${intro} </div>
                     </div>
                 
                     
@@ -247,12 +253,18 @@
                         <div class="col-12 col-md-9 story_stats">
                             <small class=""><i class="bi bi-book fs-6"></i> ${story.reads.length} Reads</small> 
                             
+                            <small><i class="bi bi-clock fs-6 ms-3"></i>
+                                ${story_read_time}
+                            </small>
                             <small class="ms-3"><i class="bi bi-chat-left fs-6"></i> <span class="comment-count">${story.comments.length}</span> comments</small>
+                        </div>
+                        
+                        <div class="col-12 col-md-3  mt-lg-0 mt-3 ms-0 mt-md-0" >
+                            <a href="${story_url}" class="ts-btn ts-btn-md ts-btn-primary" >Read</a>
                         </div>
                         
                     </div>
                 </div>
-            </a>
             `);
             
         })

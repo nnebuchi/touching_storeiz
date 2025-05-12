@@ -4,29 +4,7 @@
 <div class="container">
     <div id="alert-holder" class="alert-holder"></div>
     <section class="read_section" >
-        <div class="read_hero">
-            <div class="cust_container-read">
-                <div class="owl-carousel owl-theme ad-banner-carousel">
-                     
-                    <div class="item">
-                       <div>
-                           <img src="{{asset('assets/img/readstory/coca-cola.png')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
-                       </div>
-                             
-                    </div>
-                    <div class="item">
-                        <div>
-                            <img src="{{asset('assets/img/readstory/coca-cola.png')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div>
-                            <img src="{{asset('assets/img/readstory/coca-cola.png')}}" class="img-fluid rounded-start readCust_card-img"  alt="..." style="max-height: 250px;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{-- @include('layouts.shared.ads') --}}
 
     </section>
     <section class="story_detials">
