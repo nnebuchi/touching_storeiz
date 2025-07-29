@@ -19,6 +19,10 @@ Route::get('/search', [StoryController::class, 'search'])->name('search');
 
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 
+Route::get('/terms-and-conditions', function(){
+    return view('pages.terms');
+})->name('terms');
+
 Route::get('/unverified-email', function () {
    return view('auth.verify_email');
 })->name('unverified-email');

@@ -51,7 +51,7 @@
                                 <div class="form-check">
                                   <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
                                   <label class="" for="invalidCheck">
-                                    <small>I have read and accepted the <a href="#">terms and conditions</a> </small> 
+                                    <small>I have read and accepted the <a href="{{route('terms')}}">terms and conditions</a> </small> 
                                   </label>
                                   <div class="invalid-feedback">
                                     Check this to proceed

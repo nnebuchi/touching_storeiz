@@ -1,10 +1,10 @@
 @extends('layouts.main.app')
 @section('content')
-<div class="container-lg parent-container">
+<div class="container-lg parent-container ">
 
-    <section class="feed_section pt-5">
-        <div class="feed_hero row ">
-            <div class="col-12 col-md-8">
+    <section class="feed_section pt-5 ">
+        <div class="feed_hero row " >
+            <div class="col-12 col-md-8 " >
                 {{-- @include('layouts.shared.ads') --}}
 
             </div>
@@ -30,6 +30,7 @@
                     <div class="card story-card px-4 mb-5 rounded-4 pt-3" id="{{$story->slug}}">
                         <div class="row story-card-inner">
                             <div class="col-lg-6  story-card-img" style="background-image: url('{{asset('storage/'.$story->cover_photo[0]->file)}}')"></div>
+                            
                             <div class="col-12 col-lg-6 d-flex flex-column justify-content-center ">
                                 <h1 class="feedStory_title mt-2 mt-lg-0">{{$story->title}} </h1>
                                 <h5 class="my-lg-3 my-2 story-author"> {{$story->author->pen_name}}</h5>
@@ -259,11 +260,8 @@
     }
 
     const handleLeftSideBarScroll = () => {
-        // if (sideScrollY < window.scrollY) {
             var scrollHeight = window.pageYOffset
-            // scrollDiff = window.pageYOffset - initialPoint
-            // fixedDiv.style.marginBottom ='0px';
-            // fixedDiv.style.marginTop = (scrollHeight-fixedDivHeight).toString()+"px";
+            
             if(scrollHeight >= fixedDivHeight*0.65){
                 fixedDiv.style.removeProperty('top')
                 fixedDiv.style.position = 'fixed';
@@ -274,19 +272,7 @@
                 fixedDiv.style.top = '0px';
             }
             sideScrollY= window.scrollY
-        // }else{
-            
-           
-        //     var scrollHeight = window.pageYOffset 
-        //     fixedDiv.style.position = 'absolute';
-        //     fixedDiv.style.top = (scrollHeight).toString()+"px";
-        // }
-        
-        // initialPoint = 
-
-        // container.addEventListener('scroll', function() {
-           
-        // });
+       
     }
 
     var sideScrollY = window.scrollY;

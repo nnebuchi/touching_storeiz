@@ -12,7 +12,10 @@ class PagesController extends Controller
     public function about(){
         return PagesService::about();
     }
-
+    
+    public function terms(){
+        return PagesService::terms();
+    }
     public function setup(){
         $this->createCustomerRole();
         $this->setApplicationSettings();

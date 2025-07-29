@@ -12,10 +12,10 @@
             <a class="cust_nav-link nav-link ms-lg-5" href="#">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="cust_nav-link nav-link ms-lg-5 ms-2" href="#">Terms</a>
+            <a class="cust_nav-link nav-link ms-lg-5 ms-2" href="{{route('terms').'#terms'}}">Terms</a>
           </li>
           <li class="nav-item">
-            <a class="cust_nav-link nav-link ms-lg-5 ms-2" href="#">Privacy</a>
+            <a class="cust_nav-link nav-link ms-lg-5 ms-2" href="{{route('terms').'#privacy'}}">Privacy</a>
           </li>
          
         </div>
