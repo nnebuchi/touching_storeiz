@@ -18,6 +18,7 @@
               <li><a class="dropdown-item" href="{{route('my-stories')}}">My Stories</a></li>
               <li><a class="dropdown-item" href="{{route('add-story-form')}}">Create a new story</a></li>
               <li><a class="dropdown-item" href="{{route('tickets')}}">Tickets</a></li>
+              <li><a class="dropdown-item" href="{{route('writer.edit-profile')}}">Edit Profile</a></li>
               <li><a class="dropdown-item text-danger" href="javascript::void()" onclick="logout()">Logout</a></li>
             </ul>
           </div>      

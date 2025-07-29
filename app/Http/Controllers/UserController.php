@@ -37,12 +37,17 @@ class UserController extends Controller
     }
 
     public function updateProfile(Request $request){
-        $request->validate([
+        $validationData = [
             'first_name'=>'required',
             'last_name'=>'required',
-            'pen_name'=> Auth::user()->pen_name === $request->pen_name ? 'required' : 'required|unique:users',
-            'cover_photo'=>'mimes:jpeg,jpg,png',
-        ]);
+            'cover_photo'=>'mimes:jpeg,jpg,png'
+        ];
+
+        if(Auth::user()->is_writer){
+            $validationData['pen_name'] = Auth::user()->pen_name != $request->pen_name ? 'required|unique:users' : 'required';
+        }
+            
+        $request->validate($validationData);
 
         return UserService::updateProfile($request);
     }

@@ -55,6 +55,7 @@
                                 @enderror
                               </div>
                             </div>
+                            @if(Auth::user()->is_writer)
                             <div class="col- input_div mb-2">
                               <label for="validationCustomUsername" class="form-label">Pen Name</label>
                               <div class="input-group has-validation">
@@ -67,9 +68,10 @@
                                 @enderror
                               </div>
                             </div>
+                            @endif
                             
                             <div class="col- my-5">
-                              <button class=" cust_btn-1 w-100 login-btn" type="button" onclick="validateLoginForm()">Become a Writer</button>
+                              <button class=" cust_btn-1 w-100 login-btn" type="button" onclick="validateLoginForm()">Update profile</button>
                             </div>
                           </form>
                         
