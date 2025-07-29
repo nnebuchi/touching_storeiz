@@ -36,5 +36,19 @@ class UserController extends Controller
         return 'Writers Dashboard is under construction';
     }
 
-    
+    public function updateProfile(Request $request){
+        $request->validate([
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'pen_name'=> Auth::user()->pen_name === $request->pen_name ? 'required' : 'required|unique:users',
+            'cover_photo'=>'mimes:jpeg,jpg,png',
+        ]);
+
+        return UserService::updateProfile($request);
+    }
+
+    public function editProfile(){
+        $user = User::where('id', Auth::user()->id)->first();
+        return view('writer.edit-profile')->with(['user'=>$user]);
+    }
 }

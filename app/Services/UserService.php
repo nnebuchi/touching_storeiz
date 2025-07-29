@@ -36,7 +36,7 @@ class UserService
         WriterCreated::dispatch($user);
 
        if(Auth::attempt(['email'=>$user->email, 'password'=>sanitize_input($request->password)])){
-            return redirect(route('writer-dashboard'));
+            return redirect(route('add-story-form'));
        }
         
         // event (new UserCreated(“abc@gmail.com”));
@@ -61,7 +61,7 @@ class UserService
         WriterCreated::dispatch($user);
         $user->save();
         WriterCreated::dispatch($user);
-        return redirect(route('writer-dashboard'));
+        return redirect(route('add-story-form'));
     }
 
     public static function verifyEmail($request){
@@ -102,5 +102,20 @@ class UserService
             
         }
         return;
+    }
+
+    public static function updateProfile($request){
+        $user = User::where('id', Auth::user()->id)->first();
+        if($request->hasFile('cover_photo')){
+            $uploaded_photo = FileService::upload($request, 'cover_photo', 'public', 'writers_cover_photos', $user->cover_photo);
+            $user->cover_photo = $uploaded_photo;
+        }
+
+        $user->first_name = sanitize_input($request->first_name);
+        $user->last_name = sanitize_input($request->last_name);
+        $user->pen_name = sanitize_input($request->pen_name);
+        $user->username = sanitize_input($request->username);
+        $user->save();
+        return redirect()->route('writer.edit-profile');
     }
 }

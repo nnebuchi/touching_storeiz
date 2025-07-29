@@ -38,7 +38,8 @@ Route::group(['prefix' => 'writer'], function () {
     })->name('become-a-writer');
 
     Route::post('/new', [UserController::class, 'becomeWriter'])->name('writer.new');
-
+    Route::get('/edit-profile', [UserController::class, 'editProfile'])->name('writer.edit-profile');
+    Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('writer.update-profile');
     Route::group(['middleware' => ['verified_writer']], function () {
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('writer-dashboard');
     });
