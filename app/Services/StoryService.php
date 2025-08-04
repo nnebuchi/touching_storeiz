@@ -56,7 +56,7 @@ class StoryService
         $story_media->file_id = $media->id;
         $story_media->save();
 
-        return;
+        return true;
     }
 
     private static function add_story_tags(Story $story, Array $tags){
@@ -70,7 +70,7 @@ class StoryService
             $story_tag->save();
         }
 
-        return;
+        return true;
     }
 
     private static function update_story_tags(Story $story, Array $tags){
