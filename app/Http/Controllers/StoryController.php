@@ -13,7 +13,7 @@ class StoryController extends Controller
     }
 
     public function add(Request $request){
-        dd("testing");
+        
         $request->validate([
             'title'=>'required',
             'tags'=>'required',

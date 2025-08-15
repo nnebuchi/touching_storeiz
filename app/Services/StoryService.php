@@ -26,7 +26,7 @@ class StoryService
 
 
     public static function add(Request $request){
-        //dd($request);
+        dd("testing");
         $uploaded_photo = FileService::upload($request, 'cover_photo', 'public', 'stories_cover_photos');
 
         $story_cover = FileService::addmedia($uploaded_photo);
