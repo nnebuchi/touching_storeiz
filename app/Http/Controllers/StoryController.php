@@ -18,7 +18,7 @@ class StoryController extends Controller
             'title'=>'required',
             'tags'=>'required',
             'genre'=>'required',
-            'story'=>'required|min:200',
+            'story'=>'required|min:50',
             'cover_photo'=>'required|mimes:jpeg,jpg,png'
         ]);
         return StoryService::add($request);
