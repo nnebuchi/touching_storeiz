@@ -14,13 +14,13 @@ class StoryController extends Controller
 
     public function add(Request $request){
         
-        $request->validate([
-            'title'=>'required',
-            'tags'=>'required',
-            'genre'=>'required',
-            'story'=>'required|min:50',
-            'cover_photo'=>'required|mimes:jpeg,jpg,png'
-        ]);
+        // $request->validate([
+        //     'title'=>'required',
+        //     'tags'=>'required',
+        //     'genre'=>'required',
+        //     'story'=>'required|min:50',
+        //     'cover_photo'=>'required|mimes:jpeg,jpg,png'
+        // ]);
         return StoryService::add($request);
     }
 
